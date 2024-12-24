@@ -28,7 +28,7 @@ const projects = {
       title: "Fintech Fraud Detection",
       description: "Developed ML models to detect suspicious transactions in Fintech, focusing on various transaction types.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
-      github: "#",
+      github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
     }
   ],
   fr: [
@@ -54,7 +54,7 @@ const projects = {
       title: "Détection de Fraude Fintech",
       description: "Développement de modèles ML pour détecter les transactions suspectes dans le secteur Fintech.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
-      github: "#",
+      github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
     }
   ]
 };
