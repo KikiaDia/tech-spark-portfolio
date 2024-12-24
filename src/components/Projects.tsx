@@ -31,7 +31,7 @@ const projects = {
       github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
     },
     {
-      title: "PageRank Performance Comparison with PySpark on GCP",
+      title: "PageRank Comparison with PySpark on GCP",
       description: "Compared PageRank with PySpark DataFrame and RDD, analyzing partitioning and cluster performance on Google Cloud Dataproc.",
       tags: ["Big Data", "PySpark", "Google Cloud Dataproc", "Distributed Computing", "PageRank", "Cluster Performance", "Data Partitioning"],
       github: "https://github.com/KikiaDia/PageRank_Project",
@@ -63,7 +63,7 @@ const projects = {
       github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
     },
     {
-      title: "Comparaison des Performances de PageRank avec PySpark sur GCP",
+      title: "Comparaison de PageRank avec PySpark sur GCP",
       description: "Comparaison de PageRank avec PySpark DataFrame et RDD, en analysant le partitionnement et les performances des clusters sur Google Cloud Dataproc.",
       tags: ["Big Data", "PySpark", "Google Cloud Dataproc", "Calcul Distribué", "PageRank", "Performance Cluster", "Partitionnement des Données"],
       github: "https://github.com/KikiaDia/PageRank_Project",
