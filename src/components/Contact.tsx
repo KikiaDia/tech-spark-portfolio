@@ -60,6 +60,14 @@ export const Contact = () => {
           <a className="button w-full mt-4 hover-scale" href="mailto:dkikia@ept.sn">
             {content[language].sendEmail}
           </a>
+          <Button
+            className="w-full mt-4 hover-scale"
+            asChild
+            onClick={() => console.log("Button clicked")}
+          >
+            <a href="mailto:dkikia@ept.sn">{content[language].sendEmail}</a>
+          </Button>
+
 
         </CardContent>
       </Card>
