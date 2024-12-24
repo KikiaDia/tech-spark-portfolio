@@ -33,7 +33,7 @@ export const Contact = () => {
             <a href="mailto:dkikia@ept.sn" className="hover:text-primary">
               dkikia@ept.sn
             </a>
-
+            
           </div>
           <div className="flex items-center gap-3">
             <Phone className="w-5 h-5 text-muted-foreground" />
@@ -54,20 +54,15 @@ export const Contact = () => {
               linkedin.com/in/kikiadia
             </a>
           </div>
-          <Button className="w-full mt-4 hover-scale" asChild>
+          {/* <Button className="w-full mt-4 hover-scale" asChild>
             <a href="mailto:dkikia@ept.sn">{content[language].sendEmail}</a>
-          </Button>
-          <a className="button w-full mt-4 hover-scale" href="mailto:dkikia@ept.sn">
+          </Button> */}
+          <a
+            className="button w-full mt-4 hover-scale"
+            href="mailto:dkikia@ept.sn"
+          >
             {content[language].sendEmail}
           </a>
-          <Button
-            className="w-full mt-4 hover-scale"
-            asChild
-            onClick={() => console.log("Button clicked")}
-          >
-            <a href="mailto:dkikia@ept.sn">{content[language].sendEmail}</a>
-          </Button>
-
 
         </CardContent>
       </Card>
