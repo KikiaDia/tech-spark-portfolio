@@ -53,9 +53,9 @@ export const Contact = () => {
               linkedin.com/in/kikiadia
             </a>
           </div>
-          <Button className="w-full mt-4 hover-scale" asChild>
+          {/* <Button className="w-full mt-4 hover-scale" asChild>
             <a href="mailto:dkikia@ept.sn">{content[language].sendEmail}</a>
-          </Button>
+          </Button> */}
         </CardContent>
       </Card>
     </section>
