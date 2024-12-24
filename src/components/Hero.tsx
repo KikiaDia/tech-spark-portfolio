@@ -20,25 +20,26 @@ const content = {
 
 export const Hero = () => {
   const { language, setLanguage } = useLanguage();
+  console.log("Hero component rendering");
   console.log("Current language:", language);
-  console.log("Avatar image path:", "/lovable-uploads/1af50d24-c56b-46d5-9807-1e29ab841b75.png");
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-4 py-20 relative">
+    <section className="min-h-screen flex flex-col justify-center items-center px-4 py-20 relative bg-gradient-to-b from-background to-background/80">
       <Button
         variant="ghost"
         size="icon"
-        className="absolute top-4 right-4"
+        className="absolute top-4 right-4 z-10"
         onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
       >
         <Languages className="h-5 w-5" />
       </Button>
 
-      <div className="text-center max-w-3xl mx-auto space-y-8 fade-in">
+      <div className="text-center max-w-3xl mx-auto space-y-8 animate-fade-up">
         <Avatar className="w-32 h-32 mx-auto border-2 border-primary/20">
           <AvatarImage 
             src="/lovable-uploads/1af50d24-c56b-46d5-9807-1e29ab841b75.png" 
             alt="Kikia Dia"
+            className="object-cover"
           />
           <AvatarFallback>KD</AvatarFallback>
         </Avatar>

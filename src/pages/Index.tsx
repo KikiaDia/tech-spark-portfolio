@@ -5,14 +5,15 @@ import { Contact } from "@/components/Contact";
 import { Experience } from "@/components/Experience";
 
 const Index = () => {
+  console.log("Rendering Index component");
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       <Hero />
       <Experience />
       <Projects />
       <Skills />
       <Contact />
-    </div>
+    </main>
   );
 };
 
