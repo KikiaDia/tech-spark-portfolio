@@ -1,15 +1,31 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Mail, Linkedin, MapPin, Phone } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+const content = {
+  en: {
+    title: "Get In Touch",
+    description: "Feel free to reach out for opportunities or collaborations",
+    sendEmail: "Send Email"
+  },
+  fr: {
+    title: "Contact",
+    description: "N'hésitez pas à me contacter pour des opportunités ou des collaborations",
+    sendEmail: "Envoyer un Email"
+  }
+};
 
 export const Contact = () => {
+  const { language } = useLanguage();
+
   return (
     <section id="contact" className="py-20 px-4">
-      <h2 className="section-title">Get In Touch</h2>
+      <h2 className="section-title">{content[language].title}</h2>
       <Card className="max-w-2xl mx-auto glass-card">
         <CardHeader>
-          <CardTitle>Contact Information</CardTitle>
-          <CardDescription>Feel free to reach out for opportunities or collaborations</CardDescription>
+          <CardTitle>{content[language].title}</CardTitle>
+          <CardDescription>{content[language].description}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center gap-3">
@@ -38,7 +54,7 @@ export const Contact = () => {
             </a>
           </div>
           <Button className="w-full mt-4 hover-scale" asChild>
-            <a href="mailto:dkikia@ept.sn">Send Email</a>
+            <a href="mailto:dkikia@ept.sn">{content[language].sendEmail}</a>
           </Button>
         </CardContent>
       </Card>
