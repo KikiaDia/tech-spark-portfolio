@@ -22,7 +22,7 @@ const projects = {
       title: "Real-time Weather Pipeline",
       description: "Implemented an ETL pipeline using Microsoft Azure for processing and visualizing weather data with forecasting capabilities.",
       tags: ["Azure", "Databricks", "Power BI", "Machine Learning"],
-      github: "#",
+      github: "https://github.com/KikiaDia/Real-time-Weather-Pipeline/tree/main",
     },
     {
       title: "Fintech Fraud Detection",
@@ -48,7 +48,7 @@ const projects = {
       title: "Pipeline en temps réel de données météo",
       description: "Mise en place d'un pipeline ETL basé sur Microsoft Azure pour traiter et visualiser les données météorologiques avec prévisions climatiques.",
       tags: ["Azure", "Databricks", "Power BI", "Machine Learning"],
-      github: "#",
+      github: "https://github.com/KikiaDia/Real-time-Weather-Pipeline/tree/main",
     },
     {
       title: "Détection de Fraude Fintech",
