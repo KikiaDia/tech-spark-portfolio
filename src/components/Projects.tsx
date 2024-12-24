@@ -10,7 +10,7 @@ const projects = {
       title: "Agricultural Chatbot Advisor",
       description: "Built an intelligent chatbot for agricultural yield prediction and weather forecasting using RAG and LLMs.",
       tags: ["ChatBot", "RAG", "Streamlit", "Docker"],
-      github: "#",
+      github: "https://github.com/KikiaDia/chatbot_agricole",
     },
     {
       title: "Disaster Detection in Tweets",
@@ -36,7 +36,7 @@ const projects = {
       title: "Chatbot Conseiller Agricole",
       description: "Développement de modèles de prédiction du rendement, de forecasting de prix, de la température et Chatbot agricole.",
       tags: ["ChatBot", "RAG", "Streamlit", "Docker"],
-      github: "#",
+      github: "https://github.com/KikiaDia/chatbot_agricole",
     },
     {
       title: "Détection de Catastrophes dans les Tweets",
