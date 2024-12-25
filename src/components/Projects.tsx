@@ -1,8 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Github } from "lucide-react";
+import { Github, Video } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 
 const projects = {
   en: [
@@ -11,12 +12,14 @@ const projects = {
       description: "Built an intelligent chatbot for agricultural yield prediction and weather forecasting using RAG and LLMs.",
       tags: ["ChatBot", "RAG", "Streamlit", "Docker"],
       github: "https://github.com/KikiaDia/chatbot_agricole",
+      videoUrl: "https://youtu.be/your-video-id-1"
     },
     {
       title: "Disaster Detection in Tweets",
       description: "Development, optimization, and deployment of machine learning models to classify tweets into 'disaster' and 'non-disaster' categories.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
       github: "#",
+      videoUrl: "https://youtu.be/your-video-id-2"
     },
     {
       title: "Real-time Weather Pipeline",
@@ -43,12 +46,14 @@ const projects = {
       description: "Développement de modèles de prédiction du rendement, de forecasting de prix, de la température et Chatbot agricole.",
       tags: ["ChatBot", "RAG", "Streamlit", "Docker"],
       github: "https://github.com/KikiaDia/chatbot_agricole",
+      videoUrl: "https://youtu.be/your-video-id-1"
     },
     {
       title: "Détection de Catastrophes dans les Tweets",
       description: "Développement, optimisation et déploiement de modèle de machine learning pour classifier les tweets en catégories 'catastrophe' et 'non-catastrophe'.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
       github: "#",
+      videoUrl: "https://youtu.be/your-video-id-2"
     },
     {
       title: "Pipeline en temps réel de données météo",
@@ -99,6 +104,32 @@ export const Projects = () => {
                     {language === 'en' ? 'View Code' : 'Voir le Code'}
                   </a>
                 </Button>
+                {project.videoUrl && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        <Video className="w-4 h-4 mr-2" />
+                        {language === 'en' ? 'Watch Demo' : 'Voir la Démo'}
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl">
+                      <DialogHeader>
+                        <DialogTitle>{project.title}</DialogTitle>
+                      </DialogHeader>
+                      <div className="aspect-video">
+                        <iframe
+                          width="100%"
+                          height="100%"
+                          src={project.videoUrl.replace('youtu.be/', 'youtube.com/embed/')}
+                          title={project.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
               </div>
             </CardContent>
           </Card>

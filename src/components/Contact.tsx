@@ -2,22 +2,51 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { Button } from "./ui/button";
 import { Mail, Linkedin, MapPin, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { useState } from "react";
+import { useToast } from "./ui/use-toast";
 
 const content = {
   en: {
     title: "Get In Touch",
     description: "Feel free to reach out for opportunities or collaborations",
-    sendEmail: "Send Email"
+    sendEmail: "Send Email",
+    subject: "Subject",
+    message: "Message",
+    send: "Send",
+    emailSent: "Email sent successfully!",
+    emailError: "Error sending email. Please try again."
   },
   fr: {
     title: "Contact",
     description: "N'hésitez pas à me contacter pour des opportunités ou des collaborations",
-    sendEmail: "Envoyer un Email"
+    sendEmail: "Envoyer un Email",
+    subject: "Sujet",
+    message: "Message",
+    send: "Envoyer",
+    emailSent: "Email envoyé avec succès !",
+    emailError: "Erreur lors de l'envoi de l'email. Veuillez réessayer."
   }
 };
 
 export const Contact = () => {
   const { language } = useLanguage();
+  const { toast } = useToast();
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSendEmail = () => {
+    const mailtoLink = `mailto:dkikia@ept.sn?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    window.location.href = mailtoLink;
+    toast({
+      title: content[language].emailSent,
+      duration: 3000,
+    });
+    setSubject("");
+    setMessage("");
+  };
 
   return (
     <section id="contact" className="py-20 px-4">
@@ -53,9 +82,35 @@ export const Contact = () => {
               linkedin.com/in/kikiadia
             </a>
           </div>
-          {/* <Button className="w-full mt-4 hover-scale" asChild>
-            <a href="mailto:dkikia@ept.sn">{content[language].sendEmail}</a>
-          </Button> */}
+          
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="w-full mt-4 hover-scale">
+                {content[language].sendEmail}
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>{content[language].sendEmail}</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                <Input
+                  placeholder={content[language].subject}
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                />
+                <Textarea
+                  placeholder={content[language].message}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={5}
+                />
+                <Button onClick={handleSendEmail} className="w-full">
+                  {content[language].send}
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
         </CardContent>
       </Card>
     </section>
