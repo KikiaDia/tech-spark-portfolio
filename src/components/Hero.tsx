@@ -1,8 +1,13 @@
 import { Button } from "./ui/button";
 import { Languages } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const content = {
   en: {
@@ -18,7 +23,8 @@ const content = {
       mobility: "Île-de-France, Pays de la Loire"
     },
     viewProjects: "View Projects",
-    contactMe: "Contact Me"
+    contactMe: "Contact Me",
+    changeLanguage: "Change Language"
   },
   fr: {
     quote: "Transformer les Données en Insights, le Code en Innovation",
@@ -33,7 +39,8 @@ const content = {
       mobility: "Île-de-France, Pays de la Loire"
     },
     viewProjects: "Voir les Projets",
-    contactMe: "Me Contacter"
+    contactMe: "Me Contacter",
+    changeLanguage: "Changer de Langue"
   }
 };
 
@@ -44,14 +51,23 @@ export const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-gradient-to-br from-background via-purple-50/10 to-background/80">
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute top-4 right-4 z-10"
-        onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
-      >
-        <Languages className="h-5 w-5" />
-      </Button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 z-10 hover:bg-purple-100/50"
+              onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
+            >
+              <Languages className="h-5 w-5 text-purple-600" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{content[language].changeLanguage}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
 
       <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-8 items-center">
         <motion.div 
@@ -66,19 +82,10 @@ export const Hero = () => {
             transition={{ delay: 0.3 }}
             className="space-y-4"
           >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 2, ease: "linear" }}
-              className="overflow-hidden whitespace-nowrap text-lg italic text-muted-foreground"
-            >
-              "{content[language].quote}"
-            </motion.div>
-            
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
               Kikia Dia
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground">
+            <p className="text-xl md:text-2xl text-purple-600">
               {content[language].role}
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -90,10 +97,10 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="grid grid-cols-2 gap-4 text-sm text-muted-foreground"
+            className="grid grid-cols-2 gap-4 text-sm"
           >
             {Object.entries(content[language].details).map(([key, value]) => (
-              <div key={key} className="p-2 rounded-lg bg-purple-50/20 backdrop-blur-sm border border-purple-100/20">
+              <div key={key} className="p-2 rounded-lg bg-purple-600 text-white shadow-md hover:bg-purple-700 transition-colors">
                 <p>{value}</p>
               </div>
             ))}
@@ -106,7 +113,7 @@ export const Hero = () => {
             className="flex gap-4 pt-4"
           >
             <Button
-              className="hover-scale bg-purple-600 hover:bg-purple-700"
+              className="hover-scale bg-orange-500 hover:bg-orange-600"
               onClick={() => {
                 const projectsSection = document.getElementById("projects");
                 projectsSection?.scrollIntoView({ behavior: "smooth" });
@@ -116,7 +123,7 @@ export const Hero = () => {
             </Button>
             <Button
               variant="outline"
-              className="hover-scale border-purple-200 hover:border-purple-300"
+              className="hover-scale border-purple-600 text-purple-600 hover:bg-purple-50"
               onClick={() => {
                 const contactSection = document.getElementById("contact");
                 contactSection?.scrollIntoView({ behavior: "smooth" });
@@ -127,21 +134,32 @@ export const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative w-full max-w-md mx-auto aspect-square"
-        >
-          <div className="absolute inset-0 rounded-lg border-2 border-purple-200/50 animate-pulse" />
-          <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-purple-100/20 shadow-xl bg-gradient-to-br from-purple-50/30 via-white/50 to-purple-50/30 backdrop-blur-sm">
-            <img 
-              src="/lovable-uploads/1af50d24-c56b-46d5-9807-1e29ab841b75.png" 
-              alt="Kikia Dia"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </motion.div>
+        <div className="space-y-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="relative w-full max-w-md mx-auto aspect-square"
+          >
+            <div className="absolute inset-0 rounded-lg border-2 border-purple-200/50 animate-pulse" />
+            <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-purple-100/20 shadow-xl bg-gradient-to-br from-purple-50/30 via-white/50 to-purple-50/30 backdrop-blur-sm">
+              <img 
+                src="/lovable-uploads/a9d7bcfc-afa9-431a-b75b-c27e5c7ec6af.png" 
+                alt="Kikia Dia"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 2, ease: "linear" }}
+            className="overflow-hidden whitespace-nowrap text-lg italic text-purple-600 text-center"
+          >
+            "{content[language].quote}"
+          </motion.div>
+        </div>
       </div>
     </section>
   );
