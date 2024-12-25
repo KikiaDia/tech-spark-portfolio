@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { motion } from "framer-motion";
 
 const experiences = {
   en: [
@@ -9,6 +10,8 @@ const experiences = {
       period: "September 2023 – June 2024",
       location: "Dakar, Senegal",
       description: "Improving Customer Experience through AI and Data",
+      logo: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png",
+      companyUrl: "https://www.orange.sn/",
       responsibilities: [
         "Development of sentiment analysis model to detect vulnerable customers during phone interactions",
         "Development of Topic Modeling to detect customer call patterns",
@@ -26,6 +29,8 @@ const experiences = {
       period: "September 2022 – December 2022",
       location: "Dakar, Senegal",
       description: "Web and Mobile Platform Development",
+      logo: "/lovable-uploads/69f3ee3d-7d45-4d59-bc70-6700666fc4e5.png",
+      companyUrl: "https://teamxgroup.com/",
       responsibilities: [
         "Development of business logic for mobile and web backend platforms with NestJS",
         "Structuring and managing data flows with MongoDB",
@@ -40,12 +45,14 @@ const experiences = {
       period: "Septembre 2023 – Juin 2024",
       location: "Dakar, Sénégal",
       description: "Amélioration de l'expérience client par l'IA et la Data",
+      logo: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png",
+      companyUrl: "https://www.orange.sn/",
       responsibilities: [
         "Développement de modèle d'analyse de sentiment pour détecter les clients fragiles lors des interactions téléphoniques",
         "Développement de Topic Modeling pour détecter les motifs d'appels des clients",
         "Développement de modèle de forecasting pour la prédiction de flux d'appels téléphoniques",
         "Déploiement de Modèles de machine learning dans des API REST",
-        "Transcription de conversations audio téléphoniques avec le modèle Whisper d'OpenAi",
+        "Transcription de conversations audio téléphoniques avec le modèle Whisper d'OpenAI",
         "Automatisation du calcul de KPIs",
         "Mise en place de dashboards",
         "Collaboration étroite avec l'équipe technique pour l'intégration des modèles"
@@ -57,10 +64,12 @@ const experiences = {
       period: "Septembre 2022 – Décembre 2022",
       location: "Dakar, Sénégal",
       description: "Développement de plateformes Web et Mobiles",
+      logo: "/lovable-uploads/69f3ee3d-7d45-4d59-bc70-6700666fc4e5.png",
+      companyUrl: "https://teamxgroup.com/",
       responsibilities: [
-        "Développement de la logique métier de plateformes mobiles et web backend avec NestJS",
-        "Structuration et gestion de flux de données avec MongoDB",
-        "Utilisation d'outils de test de requêtes (Postman)"
+        "Développer la logique métier de plateformes mobiles et web backend avec NestJS",
+        "Structurer et gérer le flux de données avec MongoDB",
+        "Utiliser des outils de test de requêtes (Postman)"
       ],
       tools: ["Javascript", "Node.js", "MongoDB", "Postman", "Mongoose", "API Rest", "CRUD"]
     }
@@ -75,34 +84,51 @@ export const Experience = () => {
       <h2 className="section-title">{language === 'en' ? 'Professional Experience' : 'Expérience Professionnelle'}</h2>
       <div className="max-w-4xl mx-auto space-y-8">
         {experiences[language].map((exp, index) => (
-          <Card key={index} className="glass-card hover-scale">
-            <CardHeader>
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
-                <div>
-                  <CardTitle className="text-xl">{exp.title}</CardTitle>
-                  <p className="text-muted-foreground">{exp.description}</p>
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            viewport={{ once: true }}
+          >
+            <Card className="glass-card hover-scale">
+              <CardHeader>
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                  <div className="flex items-center gap-4">
+                    <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer">
+                      <img 
+                        src={exp.logo} 
+                        alt={exp.title}
+                        className="w-16 h-16 object-contain rounded-lg"
+                      />
+                    </a>
+                    <div>
+                      <CardTitle className="text-xl">{exp.title}</CardTitle>
+                      <p className="text-muted-foreground">{exp.description}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium">{exp.period}</p>
+                    <p className="text-sm text-muted-foreground">{exp.location}</p>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium">{exp.period}</p>
-                  <p className="text-sm text-muted-foreground">{exp.location}</p>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside space-y-2 mb-4 text-sm">
+                  {exp.responsibilities.map((resp, idx) => (
+                    <li key={idx} className="text-muted-foreground">{resp}</li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {exp.tools.map((tool) => (
+                    <Badge key={tool} variant="secondary">
+                      {tool}
+                    </Badge>
+                  ))}
                 </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <ul className="list-disc list-inside space-y-2 mb-4 text-sm">
-                {exp.responsibilities.map((resp, idx) => (
-                  <li key={idx} className="text-muted-foreground">{resp}</li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-2 mt-4">
-                {exp.tools.map((tool) => (
-                  <Badge key={tool} variant="secondary">
-                    {tool}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </section>
