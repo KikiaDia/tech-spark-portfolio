@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +10,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 const experiences = {
   en: [
@@ -85,12 +89,28 @@ const experiences = {
 
 export const Experience = () => {
   const { language } = useLanguage();
-  
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true },
+    [Autoplay({ delay: 5000, stopOnInteraction: true })]
+  );
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setCurrentSlide(emblaApi.selectedScrollSnap());
+      });
+    }
+  }, [emblaApi]);
+
   return (
     <section id="experience" className="py-20 px-4 bg-secondary/50">
       <h2 className="section-title">{language === 'en' ? 'Professional Experience' : 'Expérience Professionnelle'}</h2>
       <div className="max-w-4xl mx-auto">
-        <Carousel className="w-full">
+        <Carousel 
+          ref={emblaRef as any}
+          className="w-full"
+        >
           <CarouselContent>
             {experiences[language].map((exp, index) => (
               <CarouselItem key={index}>
@@ -144,6 +164,23 @@ export const Experience = () => {
           <CarouselPrevious className="bg-[#18181b] text-white hover:bg-[#18181b]/80" />
           <CarouselNext className="bg-[#18181b] text-white hover:bg-[#18181b]/80" />
         </Carousel>
+        <div className="mt-4 flex justify-center">
+          <Pagination>
+            <PaginationContent>
+              {experiences[language].map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    isActive={currentSlide === index}
+                    className={`w-2 h-2 rounded-full mx-1 ${
+                      currentSlide === index ? 'bg-[#18181b]' : 'bg-gray-300'
+                    }`}
+                    onClick={() => emblaApi?.scrollTo(index)}
+                  />
+                </PaginationItem>
+              ))}
+            </PaginationContent>
+          </Pagination>
+        </div>
       </div>
     </section>
   );

@@ -90,12 +90,28 @@ const projects = {
 
 export const Projects = () => {
   const { language } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true },
+    [Autoplay({ delay: 5000, stopOnInteraction: true })]
+  );
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setCurrentSlide(emblaApi.selectedScrollSnap());
+      });
+    }
+  }, [emblaApi]);
 
   return (
     <section id="projects" className="py-20 px-4 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <h2 className="section-title">{language === 'en' ? 'Featured Projects' : 'Projets'}</h2>
       <div className="max-w-6xl mx-auto">
-        <Carousel className="w-full">
+        <Carousel 
+          ref={emblaRef as any}
+          className="w-full"
+        >
           <CarouselContent>
             {projects[language].map((project, index) => (
               <CarouselItem key={index} className="md:basis-1/2">
@@ -168,9 +184,24 @@ export const Projects = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-[#18181b]/80" />
-          <CarouselNext className="bg-[#18181b] text-white hover:bg-[#18181b]/80" />
         </Carousel>
+        <div className="mt-4 flex justify-center">
+          <Pagination>
+            <PaginationContent>
+              {projects[language].map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    isActive={currentSlide === index}
+                    className={`w-2 h-2 rounded-full mx-1 ${
+                      currentSlide === index ? 'bg-[#18181b]' : 'bg-gray-300'
+                    }`}
+                    onClick={() => emblaApi?.scrollTo(index)}
+                  />
+                </PaginationItem>
+              ))}
+            </PaginationContent>
+          </Pagination>
+        </div>
       </div>
     </section>
   );
