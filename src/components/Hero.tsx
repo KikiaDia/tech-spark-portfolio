@@ -50,14 +50,14 @@ export const Hero = () => {
   console.log("Current language:", language);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-[#18181b]">
+    <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 right-4 z-10 text-white hover:bg-white/10"
+              className="absolute top-4 right-4 z-10 text-gray-700 hover:bg-gray-200"
               onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
             >
               <Languages className="h-5 w-5" />
@@ -82,13 +82,13 @@ export const Hero = () => {
             transition={{ delay: 0.3 }}
             className="space-y-4"
           >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900">
               Kikia Dia
             </h1>
-            <p className="text-xl md:text-2xl text-[#F97316]">
+            <p className="text-xl md:text-2xl text-[#18181b]">
               {content[language].role}
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-gray-600 leading-relaxed">
               {content[language].description}
             </p>
           </motion.div>
@@ -123,7 +123,7 @@ export const Hero = () => {
             </Button>
             <Button
               variant="outline"
-              className="hover-scale border-gray-600 text-gray-300 hover:bg-gray-800"
+              className="hover-scale border-gray-600 text-gray-700 hover:bg-gray-200"
               onClick={() => {
                 const contactSection = document.getElementById("contact");
                 contactSection?.scrollIntoView({ behavior: "smooth" });
@@ -141,10 +141,10 @@ export const Hero = () => {
             transition={{ duration: 0.5 }}
             className="relative w-full max-w-md mx-auto aspect-square"
           >
-            <div className="absolute inset-0 rounded-lg border-2 border-gray-600/50 animate-pulse" />
-            <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-700/20 shadow-xl">
+            <div className="absolute inset-0 rounded-lg border-2 border-gray-300 animate-pulse" />
+            <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-200 shadow-xl">
               <img 
-                src="/lovable-uploads/a9d7bcfc-afa9-431a-b75b-c27e5c7ec6af.png" 
+                src="/lovable-uploads/2e7c3ea0-3746-4917-ade5-e611f01f6fe0.png" 
                 alt="Kikia Dia"
                 className="w-full h-full object-cover"
               />
@@ -155,7 +155,7 @@ export const Hero = () => {
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ duration: 2, ease: "linear" }}
-            className="overflow-hidden whitespace-nowrap text-lg italic text-[#F97316] text-center"
+            className="overflow-hidden whitespace-nowrap text-lg italic text-[#18181b] text-center"
           >
             "{content[language].quote}"
           </motion.div>

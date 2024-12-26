@@ -79,12 +79,12 @@ export const Skills = () => {
                       <span>{skill.name}</span>
                       <span>{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                        className="h-full bg-primary rounded-full"
+                        className="h-full bg-[#18181b] rounded-full"
                       />
                     </div>
                   </div>

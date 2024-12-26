@@ -85,7 +85,7 @@ export const Projects = () => {
   const { language } = useLanguage();
 
   return (
-    <section id="projects" className="py-20 px-4 bg-gradient-to-br from-purple-50/10 via-background to-purple-50/10">
+    <section id="projects" className="py-20 px-4 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <h2 className="section-title">{language === 'en' ? 'Featured Projects' : 'Projets'}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
         {projects[language].map((project, index) => (
@@ -113,13 +113,13 @@ export const Projects = () => {
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="bg-purple-100/50">
+                    <Badge key={tag} variant="secondary" className="bg-[#18181b] text-white">
                       {tag}
                     </Badge>
                   ))}
                 </div>
                 <div className="flex gap-4">
-                  <Button variant="outline" size="sm" asChild className="border-purple-200 hover:border-purple-300">
+                  <Button variant="outline" size="sm" asChild className="bg-[#18181b] text-white hover:bg-[#18181b]/90">
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4 mr-2" />
                       {language === 'en' ? 'View Code' : 'Voir le Code'}
@@ -128,7 +128,7 @@ export const Projects = () => {
                   {project.videoUrl && (
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button variant="outline" size="sm" className="border-purple-200 hover:border-purple-300">
+                        <Button variant="outline" size="sm" className="bg-[#18181b] text-white hover:bg-[#18181b]/90">
                           <Video className="w-4 h-4 mr-2" />
                           {language === 'en' ? 'Watch Demo' : 'Voir la Démo'}
                         </Button>
