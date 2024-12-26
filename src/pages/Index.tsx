@@ -1,10 +1,10 @@
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
-import { Contact } from "@/components/Contact";
 import { Experience } from "@/components/Experience";
 import { Navbar } from "@/components/Navbar";
 import { Certifications } from "@/components/Certifications";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   console.log("Rendering Index component");
@@ -17,7 +17,7 @@ const Index = () => {
         <Projects />
         <Skills />
         <Certifications />
-        <Contact />
+        <Footer />
       </div>
     </main>
   );

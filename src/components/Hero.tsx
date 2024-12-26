@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { Languages } from "lucide-react";
+import { Languages, User, Calendar, IdCard, MapPin, Flag, Plane } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import {
@@ -97,13 +97,28 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="flex flex-wrap gap-2"
+            className="grid grid-cols-2 gap-2"
           >
-            {Object.entries(content[language].details).map(([key, value]) => (
-              <div key={key} className="p-2 rounded-lg bg-[#18181b] text-white border border-gray-700 shadow-md hover:bg-gray-800 transition-colors">
-                <p className="px-3 whitespace-nowrap">{value}</p>
-              </div>
-            ))}
+            {Object.entries(content[language].details).map(([key, value], index) => {
+              const icons = {
+                age: <Calendar className="h-4 w-4" />,
+                status: <User className="h-4 w-4" />,
+                license: <IdCard className="h-4 w-4" />,
+                address: <MapPin className="h-4 w-4" />,
+                origin: <Flag className="h-4 w-4" />,
+                mobility: <Plane className="h-4 w-4" />
+              };
+              
+              return (
+                <div 
+                  key={key} 
+                  className="p-2 rounded-lg bg-[#18181b] text-white border border-gray-700 shadow-md hover:bg-gray-800 transition-colors flex items-center gap-2"
+                >
+                  {icons[key as keyof typeof icons]}
+                  <p className="whitespace-nowrap">{value}</p>
+                </div>
+              );
+            })}
           </motion.div>
 
           <motion.div
@@ -113,7 +128,7 @@ export const Hero = () => {
             className="flex gap-4 pt-4"
           >
             <Button
-              className="hover-scale bg-[#F97316] hover:bg-[#F97316]/90 text-white"
+              className="hover-scale bg-[#18181b] hover:bg-[#18181b]/90 text-white"
               onClick={() => {
                 const projectsSection = document.getElementById("projects");
                 projectsSection?.scrollIntoView({ behavior: "smooth" });

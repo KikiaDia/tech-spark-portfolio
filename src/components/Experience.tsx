@@ -2,6 +2,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const experiences = {
   en: [
@@ -82,54 +89,61 @@ export const Experience = () => {
   return (
     <section id="experience" className="py-20 px-4 bg-secondary/50">
       <h2 className="section-title">{language === 'en' ? 'Professional Experience' : 'Expérience Professionnelle'}</h2>
-      <div className="max-w-4xl mx-auto space-y-8">
-        {experiences[language].map((exp, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            viewport={{ once: true }}
-          >
-            <Card className="glass-card hover-scale">
-              <CardHeader>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                  <div className="flex items-center gap-4">
-                    <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer">
-                      <img 
-                        src={exp.logo} 
-                        alt={exp.title}
-                        className="w-16 h-16 object-contain rounded-lg"
-                      />
-                    </a>
-                    <div>
-                      <CardTitle className="text-xl">{exp.title}</CardTitle>
-                      <p className="text-muted-foreground">{exp.description}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-medium">{exp.period}</p>
-                    <p className="text-sm text-muted-foreground">{exp.location}</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside space-y-2 mb-4 text-sm">
-                  {exp.responsibilities.map((resp, idx) => (
-                    <li key={idx} className="text-muted-foreground">{resp}</li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {exp.tools.map((tool) => (
-                    <Badge key={tool} variant="secondary">
-                      {tool}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+      <div className="max-w-4xl mx-auto">
+        <Carousel className="w-full">
+          <CarouselContent>
+            {experiences[language].map((exp, index) => (
+              <CarouselItem key={index}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="glass-card hover-scale">
+                    <CardHeader>
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div className="flex items-center gap-4">
+                          <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer">
+                            <img 
+                              src={exp.logo} 
+                              alt={exp.title}
+                              className="w-16 h-16 object-contain rounded-lg"
+                            />
+                          </a>
+                          <div>
+                            <CardTitle className="text-xl">{exp.title}</CardTitle>
+                            <p className="text-muted-foreground">{exp.description}</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium">{exp.period}</p>
+                          <p className="text-sm text-muted-foreground">{exp.location}</p>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="list-disc list-inside space-y-2 mb-4 text-sm">
+                        {exp.responsibilities.map((resp, idx) => (
+                          <li key={idx} className="text-muted-foreground">{resp}</li>
+                        ))}
+                      </ul>
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {exp.tools.map((tool) => (
+                          <Badge key={tool} variant="secondary" className="bg-[#18181b] text-white">
+                            {tool}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-[#18181b]/80" />
+          <CarouselNext className="bg-[#18181b] text-white hover:bg-[#18181b]/80" />
+        </Carousel>
       </div>
     </section>
   );
