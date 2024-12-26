@@ -58,13 +58,13 @@ export const Navbar = () => {
   }, [language]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#18181b] backdrop-blur-sm border-b">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <motion.h1 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="text-xl font-bold"
+            className="text-xl font-bold text-white"
           >
             Kikia Dia
           </motion.h1>
@@ -72,7 +72,7 @@ export const Navbar = () => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="md:hidden"
+            className="md:hidden text-white hover:bg-white/10"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -84,15 +84,15 @@ export const Navbar = () => {
                 key={key}
                 variant="ghost" 
                 onClick={() => scrollToSection(key)}
-                className={`relative hover:text-primary transition-colors ${
-                  activeSection === key ? "text-primary" : ""
+                className={`relative text-white hover:bg-white/10 transition-colors ${
+                  activeSection === key ? "text-white" : "text-gray-300"
                 }`}
               >
                 {value}
                 {activeSection === key && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
                     initial={false}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -110,7 +110,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-background/95 border-b"
+            className="md:hidden bg-[#18181b]/95 border-b"
           >
             <div className="flex flex-col p-4 space-y-2">
               {Object.entries(content[language]).map(([key, value]) => (
@@ -118,15 +118,15 @@ export const Navbar = () => {
                   key={key}
                   variant="ghost"
                   onClick={() => scrollToSection(key)}
-                  className={`w-full text-left justify-start ${
-                    activeSection === key ? "text-primary" : ""
+                  className={`w-full text-left justify-start text-white hover:bg-white/10 ${
+                    activeSection === key ? "text-white" : "text-gray-300"
                   }`}
                 >
                   {value}
                   {activeSection === key && (
                     <motion.div
                       layoutId="activeSectionMobile"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
                       initial={false}
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />

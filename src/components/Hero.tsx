@@ -50,17 +50,17 @@ export const Hero = () => {
   console.log("Current language:", language);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-gradient-to-br from-background via-purple-50/10 to-background/80">
+    <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-[#18181b]">
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 right-4 z-10 hover:bg-purple-100/50"
+              className="absolute top-4 right-4 z-10 text-white hover:bg-white/10"
               onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
             >
-              <Languages className="h-5 w-5 text-purple-600" />
+              <Languages className="h-5 w-5" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
@@ -82,13 +82,13 @@ export const Hero = () => {
             transition={{ delay: 0.3 }}
             className="space-y-4"
           >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white">
               Kikia Dia
             </h1>
-            <p className="text-xl md:text-2xl text-purple-600">
+            <p className="text-xl md:text-2xl text-purple-400">
               {content[language].role}
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-lg text-gray-300 leading-relaxed">
               {content[language].description}
             </p>
           </motion.div>
@@ -100,8 +100,8 @@ export const Hero = () => {
             className="grid grid-cols-2 gap-4 text-sm"
           >
             {Object.entries(content[language].details).map(([key, value]) => (
-              <div key={key} className="p-2 rounded-lg bg-purple-600 text-white shadow-md hover:bg-purple-700 transition-colors">
-                <p>{value}</p>
+              <div key={key} className="p-2 rounded-lg bg-purple-600 text-white shadow-md hover:bg-purple-700 transition-colors w-fit">
+                <p className="px-3">{value}</p>
               </div>
             ))}
           </motion.div>
@@ -113,7 +113,7 @@ export const Hero = () => {
             className="flex gap-4 pt-4"
           >
             <Button
-              className="hover-scale bg-orange-500 hover:bg-orange-600"
+              className="hover-scale bg-[#F97316] hover:bg-[#F97316]/90 text-white"
               onClick={() => {
                 const projectsSection = document.getElementById("projects");
                 projectsSection?.scrollIntoView({ behavior: "smooth" });
@@ -123,7 +123,7 @@ export const Hero = () => {
             </Button>
             <Button
               variant="outline"
-              className="hover-scale border-purple-600 text-purple-600 hover:bg-purple-50"
+              className="hover-scale border-purple-600 text-purple-400 hover:bg-purple-600/10"
               onClick={() => {
                 const contactSection = document.getElementById("contact");
                 contactSection?.scrollIntoView({ behavior: "smooth" });
@@ -155,7 +155,7 @@ export const Hero = () => {
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ duration: 2, ease: "linear" }}
-            className="overflow-hidden whitespace-nowrap text-lg italic text-purple-600 text-center"
+            className="overflow-hidden whitespace-nowrap text-lg italic text-purple-400 text-center"
           >
             "{content[language].quote}"
           </motion.div>
