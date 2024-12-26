@@ -85,7 +85,7 @@ export const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white">
               Kikia Dia
             </h1>
-            <p className="text-xl md:text-2xl text-purple-400">
+            <p className="text-xl md:text-2xl text-[#F97316]">
               {content[language].role}
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
@@ -97,11 +97,11 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="grid grid-cols-2 gap-4 text-sm"
+            className="flex flex-wrap gap-2"
           >
             {Object.entries(content[language].details).map(([key, value]) => (
-              <div key={key} className="p-2 rounded-lg bg-purple-600 text-white shadow-md hover:bg-purple-700 transition-colors w-fit">
-                <p className="px-3">{value}</p>
+              <div key={key} className="p-2 rounded-lg bg-[#18181b] text-white border border-gray-700 shadow-md hover:bg-gray-800 transition-colors">
+                <p className="px-3 whitespace-nowrap">{value}</p>
               </div>
             ))}
           </motion.div>
@@ -123,7 +123,7 @@ export const Hero = () => {
             </Button>
             <Button
               variant="outline"
-              className="hover-scale border-purple-600 text-purple-400 hover:bg-purple-600/10"
+              className="hover-scale border-gray-600 text-gray-300 hover:bg-gray-800"
               onClick={() => {
                 const contactSection = document.getElementById("contact");
                 contactSection?.scrollIntoView({ behavior: "smooth" });
@@ -141,8 +141,8 @@ export const Hero = () => {
             transition={{ duration: 0.5 }}
             className="relative w-full max-w-md mx-auto aspect-square"
           >
-            <div className="absolute inset-0 rounded-lg border-2 border-purple-200/50 animate-pulse" />
-            <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-purple-100/20 shadow-xl bg-gradient-to-br from-purple-50/30 via-white/50 to-purple-50/30 backdrop-blur-sm">
+            <div className="absolute inset-0 rounded-lg border-2 border-gray-600/50 animate-pulse" />
+            <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-700/20 shadow-xl">
               <img 
                 src="/lovable-uploads/a9d7bcfc-afa9-431a-b75b-c27e5c7ec6af.png" 
                 alt="Kikia Dia"
@@ -155,7 +155,7 @@ export const Hero = () => {
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ duration: 2, ease: "linear" }}
-            className="overflow-hidden whitespace-nowrap text-lg italic text-purple-400 text-center"
+            className="overflow-hidden whitespace-nowrap text-lg italic text-[#F97316] text-center"
           >
             "{content[language].quote}"
           </motion.div>
