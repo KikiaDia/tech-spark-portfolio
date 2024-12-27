@@ -102,7 +102,7 @@ export const Projects = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 5000, stopOnInteraction: true })]
+    [Autoplay({ delay: 3000, stopOnInteraction: true })]
   );
 
   useEffect(() => {
@@ -118,7 +118,7 @@ export const Projects = () => {
       <h2 className="section-title">{language === 'en' ? 'Featured Projects' : 'Projets'}</h2>
       <div className="max-w-6xl mx-auto">
         <Carousel 
-          ref={emblaRef as any}
+          ref={emblaRef}
           className="w-full"
         >
           <CarouselContent>
@@ -131,7 +131,7 @@ export const Projects = () => {
                   viewport={{ once: true }}
                   className="p-1"
                 >
-                  <Card className="glass-card hover-scale overflow-hidden">
+                  <Card className="glass-card hover:bg-white hover:text-[#18181b] overflow-hidden">
                     {project.banner && (
                       <div className="relative h-48 w-full overflow-hidden">
                         <img
@@ -148,13 +148,13 @@ export const Projects = () => {
                     <CardContent>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary" className="bg-[#18181b] text-white">
+                          <Badge key={tag} variant="secondary" className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]">
                             {tag}
                           </Badge>
                         ))}
                       </div>
                       <div className="flex gap-4">
-                        <Button variant="outline" size="sm" asChild className="bg-[#18181b] text-white hover:bg-[#18181b]/90">
+                        <Button variant="outline" size="sm" asChild className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]">
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
                             <Github className="w-4 h-4 mr-2" />
                             {language === 'en' ? 'View Code' : 'Voir le Code'}
@@ -163,7 +163,7 @@ export const Projects = () => {
                         {project.videoUrl && (
                           <Dialog>
                             <DialogTrigger asChild>
-                              <Button variant="outline" size="sm" className="bg-[#18181b] text-white hover:bg-[#18181b]/90">
+                              <Button variant="outline" size="sm" className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]">
                                 <Video className="w-4 h-4 mr-2" />
                                 {language === 'en' ? 'Watch Demo' : 'Voir la Démo'}
                               </Button>
@@ -193,6 +193,8 @@ export const Projects = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>

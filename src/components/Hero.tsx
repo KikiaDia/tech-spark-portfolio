@@ -82,13 +82,13 @@ export const Hero = () => {
             transition={{ delay: 0.3 }}
             className="space-y-4"
           >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 overflow-hidden whitespace-nowrap border-r-4 border-[#18181b] animate-typing">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900">
               Kikia Dia
             </h1>
-            <p className="text-xl md:text-2xl text-[#18181b] overflow-hidden whitespace-nowrap border-r-4 border-[#18181b] animate-typing">
+            <p className="text-xl md:text-2xl text-[#18181b]">
               {content[language].role}
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed overflow-hidden whitespace-nowrap border-r-4 border-[#18181b] animate-typing">
+            <p className="text-lg text-gray-600 leading-relaxed">
               {content[language].description}
             </p>
           </motion.div>
@@ -97,7 +97,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="grid grid-cols-2 gap-2"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-2"
           >
             {Object.entries(content[language].details).map(([key, value], index) => {
               const icons = {
@@ -125,10 +125,10 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9 }}
-            className="flex gap-4 pt-4"
+            className="flex flex-col sm:flex-row gap-4 pt-4"
           >
             <Button
-              className="hover:bg-white hover:text-[#18181b] bg-[#18181b] text-white transition-colors"
+              className="w-full sm:w-auto hover:bg-white hover:text-[#18181b] bg-[#18181b] text-white transition-colors"
               onClick={() => {
                 const projectsSection = document.getElementById("projects");
                 projectsSection?.scrollIntoView({ behavior: "smooth" });
@@ -138,7 +138,7 @@ export const Hero = () => {
             </Button>
             <Button
               variant="outline"
-              className="border-gray-600 text-gray-700 hover:bg-white hover:text-[#18181b] transition-colors"
+              className="w-full sm:w-auto border-gray-600 text-gray-700 hover:bg-white hover:text-[#18181b] transition-colors"
               onClick={() => {
                 const contactSection = document.getElementById("contact");
                 contactSection?.scrollIntoView({ behavior: "smooth" });
@@ -149,7 +149,7 @@ export const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 mt-8 md:mt-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -170,7 +170,7 @@ export const Hero = () => {
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ duration: 2, ease: "linear" }}
-            className="overflow-hidden whitespace-nowrap text-lg italic text-[#18181b] text-center border-r-4 border-[#18181b] animate-typing"
+            className="overflow-hidden whitespace-nowrap text-lg italic text-[#18181b] text-center animate-typing"
           >
             "{content[language].quote}"
           </motion.div>

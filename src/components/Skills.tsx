@@ -110,7 +110,7 @@ export const Skills = () => {
                     <CardHeader className="flex flex-row items-center justify-between">
                       <CardTitle className="text-xl">{category.title}</CardTitle>
                       <ChevronDown 
-                        className={`w-5 h-5 transition-transform ${
+                        className={`w-5 h-5 transition-transform animate-bounce ${
                           selectedCategory === index ? 'rotate-180' : ''
                         }`}
                       />

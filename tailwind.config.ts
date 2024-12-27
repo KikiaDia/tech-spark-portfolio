@@ -94,11 +94,6 @@ export default {
           "100%": {
             width: "100%",
           }
-        },
-        blink: {
-          "50%": {
-            borderColor: "transparent"
-          }
         }
       },
       animation: {
@@ -107,7 +102,6 @@ export default {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-down": "fade-down 0.5s ease-out",
         "typing": "typing 3.5s steps(40, end) infinite",
-        "cursor-blink": "blink 1s step-end infinite"
       },
     },
   },
