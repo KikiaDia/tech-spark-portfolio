@@ -72,7 +72,7 @@ export const Navbar = () => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="md:hidden text-white hover:bg-white/10"
+            className="md:hidden text-white hover:bg-white hover:text-[#18181b]"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -84,7 +84,7 @@ export const Navbar = () => {
                 key={key}
                 variant="ghost" 
                 onClick={() => scrollToSection(key)}
-                className={`relative text-white hover:bg-white/10 transition-colors ${
+                className={`relative text-white hover:bg-white hover:text-[#18181b] transition-colors ${
                   activeSection === key ? "text-white" : "text-gray-300"
                 }`}
               >
@@ -118,7 +118,7 @@ export const Navbar = () => {
                   key={key}
                   variant="ghost"
                   onClick={() => scrollToSection(key)}
-                  className={`w-full text-left justify-start text-white hover:bg-white/10 ${
+                  className={`w-full text-left justify-start text-white hover:bg-white hover:text-[#18181b] ${
                     activeSection === key ? "text-white" : "text-gray-300"
                   }`}
                 >

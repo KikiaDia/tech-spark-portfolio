@@ -65,3 +65,23 @@
 .animate-typing {
   animation: typing 3.5s steps(40, end);
 }
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .section-title {
+    @apply text-2xl mb-6;
+  }
+  
+  .glass-card {
+    @apply mx-4;
+  }
+}
+
+/* Consistent hover effects */
+.hover-button {
+  @apply transition-colors duration-300 hover:bg-white hover:text-[#18181b];
+}
+
+.hover-link {
+  @apply transition-colors duration-300 hover:text-[#18181b];
+}
