@@ -102,7 +102,7 @@ export const Projects = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 3000, stopOnInteraction: true })]
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   useEffect(() => {
