@@ -54,7 +54,13 @@
 }
 
 .typing-animation {
-  @apply overflow-hidden whitespace-nowrap animate-typing;
+  @apply overflow-hidden whitespace-nowrap;
+  animation: typing 3.5s steps(40, end) infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
 /* Hover effects */
@@ -73,11 +79,11 @@
   }
   
   .glass-card {
-    @apply mx-4;
+    @apply mx-2;
   }
 
   .carousel-container {
-    @apply px-4;
+    @apply px-2;
   }
 
   .grid-container {
@@ -91,23 +97,60 @@
   .nav-menu {
     @apply flex-col space-y-2;
   }
+
+  .CarouselPrevious,
+  .CarouselNext {
+    @apply hidden;
+  }
+
+  .hero-content {
+    @apply flex-col items-center text-center;
+  }
+
+  .hero-image {
+    @apply w-3/4 mx-auto mb-8;
+  }
+
+  .experience-card {
+    @apply flex-col;
+  }
+
+  .experience-header {
+    @apply flex-col items-center text-center;
+  }
+
+  .skills-grid {
+    @apply grid-cols-1 gap-4;
+  }
 }
 
 /* Mobile optimization */
 @media (max-width: 640px) {
   .hero-content {
-    @apply flex-col-reverse;
+    @apply flex-col-reverse px-4;
   }
 
   .hero-image {
-    @apply w-3/4 mx-auto;
+    @apply w-full max-w-[250px] mx-auto;
   }
 
   .details-grid {
-    @apply grid-cols-1;
+    @apply grid-cols-1 gap-2 px-4;
   }
 
   .carousel-nav {
     @apply hidden;
+  }
+
+  .card-content {
+    @apply px-3;
+  }
+
+  .badge-container {
+    @apply flex-wrap justify-center;
+  }
+
+  .section {
+    @apply px-4;
   }
 }

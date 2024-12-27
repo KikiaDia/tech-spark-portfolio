@@ -92,7 +92,7 @@ export const Experience = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 5000, stopOnInteraction: true })]
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   useEffect(() => {
@@ -108,23 +108,28 @@ export const Experience = () => {
       <h2 className="section-title">{language === 'en' ? 'Professional Experience' : 'Expérience Professionnelle'}</h2>
       <div className="max-w-4xl mx-auto">
         <Carousel 
-          ref={emblaRef as any}
+          ref={emblaRef}
           className="w-full"
         >
           <CarouselContent>
             {experiences[language].map((exp, index) => (
-              <CarouselItem key={index}>
+              <CarouselItem key={index} className="md:basis-1/2 p-2">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="glass-card hover-scale">
+                  <Card className="glass-card hover:bg-white hover:text-[#18181b] transition-all duration-300">
                     <CardHeader>
                       <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                         <div className="flex items-center gap-4">
-                          <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer">
+                          <a 
+                            href={exp.companyUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:opacity-80 transition-opacity"
+                          >
                             <img 
                               src={exp.logo} 
                               alt={exp.title}
@@ -150,7 +155,11 @@ export const Experience = () => {
                       </ul>
                       <div className="flex flex-wrap gap-2 mt-4">
                         {exp.tools.map((tool) => (
-                          <Badge key={tool} variant="secondary" className="bg-[#18181b] text-white">
+                          <Badge 
+                            key={tool} 
+                            variant="secondary" 
+                            className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] transition-colors duration-300"
+                          >
                             {tool}
                           </Badge>
                         ))}
@@ -161,8 +170,8 @@ export const Experience = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-[#18181b]/80" />
-          <CarouselNext className="bg-[#18181b] text-white hover:bg-[#18181b]/80" />
+          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>

@@ -76,7 +76,7 @@ export const Skills = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 3000, stopOnInteraction: true })]
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export const Skills = () => {
         <Carousel ref={emblaRef} className="w-full">
           <CarouselContent>
             {skillCategories.map((category, index) => (
-              <CarouselItem key={index} className="md:basis-1/3">
+              <CarouselItem key={index} className="md:basis-1/3 p-2">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ export const Skills = () => {
                   viewport={{ once: true }}
                 >
                   <Card 
-                    className={`glass-card hover:bg-white hover:text-[#18181b] cursor-pointer transition-all ${
+                    className={`glass-card hover:bg-white hover:text-[#18181b] cursor-pointer transition-all duration-300 ${
                       selectedCategory === index ? 'ring-2 ring-[#18181b]' : ''
                     }`}
                     onClick={() => setSelectedCategory(selectedCategory === index ? null : index)}
