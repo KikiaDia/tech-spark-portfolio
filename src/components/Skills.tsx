@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { ChevronDown } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -75,7 +76,7 @@ export const Skills = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 5000, stopOnInteraction: true })]
+    [Autoplay({ delay: 3000, stopOnInteraction: true })]
   );
 
   useEffect(() => {
@@ -101,13 +102,18 @@ export const Skills = () => {
                   viewport={{ once: true }}
                 >
                   <Card 
-                    className={`glass-card hover-scale cursor-pointer transition-all ${
+                    className={`glass-card hover:bg-white hover:text-[#18181b] cursor-pointer transition-all ${
                       selectedCategory === index ? 'ring-2 ring-[#18181b]' : ''
                     }`}
                     onClick={() => setSelectedCategory(selectedCategory === index ? null : index)}
                   >
-                    <CardHeader>
+                    <CardHeader className="flex flex-row items-center justify-between">
                       <CardTitle className="text-xl">{category.title}</CardTitle>
+                      <ChevronDown 
+                        className={`w-5 h-5 transition-transform ${
+                          selectedCategory === index ? 'rotate-180' : ''
+                        }`}
+                      />
                     </CardHeader>
                     {selectedCategory === index && (
                       <CardContent className="space-y-4">

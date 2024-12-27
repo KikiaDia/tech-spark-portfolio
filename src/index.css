@@ -57,13 +57,13 @@
   @apply overflow-hidden whitespace-nowrap animate-typing;
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+/* Hover effects */
+.hover-button {
+  @apply transition-colors duration-300 hover:bg-white hover:text-[#18181b];
 }
 
-.animate-typing {
-  animation: typing 3.5s steps(40, end);
+.hover-link {
+  @apply transition-colors duration-300 hover:text-[#18181b];
 }
 
 /* Responsive design */
@@ -75,13 +75,39 @@
   .glass-card {
     @apply mx-4;
   }
+
+  .carousel-container {
+    @apply px-4;
+  }
+
+  .grid-container {
+    @apply grid-cols-1;
+  }
+
+  .button-container {
+    @apply flex-col space-y-4;
+  }
+
+  .nav-menu {
+    @apply flex-col space-y-2;
+  }
 }
 
-/* Consistent hover effects */
-.hover-button {
-  @apply transition-colors duration-300 hover:bg-white hover:text-[#18181b];
-}
+/* Mobile optimization */
+@media (max-width: 640px) {
+  .hero-content {
+    @apply flex-col-reverse;
+  }
 
-.hover-link {
-  @apply transition-colors duration-300 hover:text-[#18181b];
+  .hero-image {
+    @apply w-3/4 mx-auto;
+  }
+
+  .details-grid {
+    @apply grid-cols-1;
+  }
+
+  .carousel-nav {
+    @apply hidden;
+  }
 }

@@ -87,12 +87,27 @@ export default {
             transform: "translateY(0)",
           },
         },
+        typing: {
+          "0%": {
+            width: "0%",
+          },
+          "100%": {
+            width: "100%",
+          }
+        },
+        blink: {
+          "50%": {
+            borderColor: "transparent"
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.5s ease-out",
         "fade-down": "fade-down 0.5s ease-out",
+        "typing": "typing 3.5s steps(40, end) infinite",
+        "cursor-blink": "blink 1s step-end infinite"
       },
     },
   },

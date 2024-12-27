@@ -57,7 +57,7 @@ export const Hero = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 right-4 z-10 text-gray-700 hover:bg-gray-200"
+              className="absolute top-4 right-4 z-10 text-gray-700 hover:bg-white hover:text-[#18181b]"
               onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
             >
               <Languages className="h-5 w-5" />
@@ -82,13 +82,13 @@ export const Hero = () => {
             transition={{ delay: 0.3 }}
             className="space-y-4"
           >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 overflow-hidden whitespace-nowrap border-r-4 border-[#18181b] animate-typing">
               Kikia Dia
             </h1>
-            <p className="text-xl md:text-2xl text-[#18181b]">
+            <p className="text-xl md:text-2xl text-[#18181b] overflow-hidden whitespace-nowrap border-r-4 border-[#18181b] animate-typing">
               {content[language].role}
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-lg text-gray-600 leading-relaxed overflow-hidden whitespace-nowrap border-r-4 border-[#18181b] animate-typing">
               {content[language].description}
             </p>
           </motion.div>
@@ -112,7 +112,7 @@ export const Hero = () => {
               return (
                 <div 
                   key={key} 
-                  className="p-2 rounded-lg bg-[#18181b] text-white border border-gray-700 shadow-md hover:bg-gray-800 transition-colors flex items-center gap-2"
+                  className="p-2 rounded-lg bg-[#18181b] text-white border border-gray-700 shadow-md hover:bg-white hover:text-[#18181b] transition-colors flex items-center gap-2"
                 >
                   {icons[key as keyof typeof icons]}
                   <p className="whitespace-nowrap">{value}</p>
@@ -128,7 +128,7 @@ export const Hero = () => {
             className="flex gap-4 pt-4"
           >
             <Button
-              className="hover-scale bg-[#18181b] hover:bg-[#18181b]/90 text-white"
+              className="hover:bg-white hover:text-[#18181b] bg-[#18181b] text-white transition-colors"
               onClick={() => {
                 const projectsSection = document.getElementById("projects");
                 projectsSection?.scrollIntoView({ behavior: "smooth" });
@@ -138,7 +138,7 @@ export const Hero = () => {
             </Button>
             <Button
               variant="outline"
-              className="hover-scale border-gray-600 text-gray-700 hover:bg-gray-200"
+              className="border-gray-600 text-gray-700 hover:bg-white hover:text-[#18181b] transition-colors"
               onClick={() => {
                 const contactSection = document.getElementById("contact");
                 contactSection?.scrollIntoView({ behavior: "smooth" });
@@ -170,7 +170,7 @@ export const Hero = () => {
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ duration: 2, ease: "linear" }}
-            className="overflow-hidden whitespace-nowrap text-lg italic text-[#18181b] text-center"
+            className="overflow-hidden whitespace-nowrap text-lg italic text-[#18181b] text-center border-r-4 border-[#18181b] animate-typing"
           >
             "{content[language].quote}"
           </motion.div>
