@@ -174,7 +174,20 @@ export const Education = () => {
         {language === 'en' ? 'Education' : 'Formation'}
       </h2>
       <div className="max-w-6xl mx-auto">
-        <Carousel ref={emblaRef} className="w-full">
+        <Carousel 
+          ref={emblaRef} 
+          className="w-full"
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 3000,
+              stopOnInteraction: false,
+            }),
+          ]}
+        >
           <CarouselContent>
             {education[language].map((edu, index) => (
               <CarouselItem key={index} className="w-full">
@@ -250,6 +263,8 @@ export const Education = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>

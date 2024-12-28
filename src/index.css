@@ -58,75 +58,20 @@
   animation: typing 3.5s steps(40, end) infinite;
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* Hover effects */
-.hover-button {
-  @apply transition-colors duration-300 hover:bg-white hover:text-[#18181b];
-}
-
-.hover-link {
-  @apply transition-colors duration-300 hover:text-[#18181b];
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .section-title {
-    @apply text-2xl mb-6;
-  }
-  
-  .glass-card {
-    @apply mx-4;
-  }
-
-  .carousel-container {
-    @apply px-4;
-  }
-
-  .grid-container {
-    @apply grid-cols-1;
-  }
-
-  .button-container {
-    @apply flex-col space-y-4;
-  }
-
-  .nav-menu {
-    @apply flex-col space-y-2;
-  }
-
-  .CarouselPrevious,
-  .CarouselNext {
-    @apply hidden;
-  }
-
+/* Mobile optimization */
+@media (max-width: 640px) {
   .hero-content {
-    @apply flex-col items-center text-center px-4;
+    @apply flex-col-reverse px-4;
   }
 
   .hero-image {
-    @apply w-3/4 mx-auto mb-8;
+    @apply w-full max-w-[250px] mx-auto;
   }
 
-  .experience-card {
-    @apply flex-col;
-  }
-
-  .experience-header {
-    @apply flex-col items-center text-center;
-  }
-
-  .skills-grid {
-    @apply grid-cols-1 gap-4;
-  }
-  
   .hero-details {
-    @apply grid grid-cols-1 sm:grid-cols-2 gap-2 px-4;
+    @apply grid-cols-1 gap-2 px-4;
   }
-  
+
   .hero-text {
     @apply text-base px-4;
   }
@@ -142,38 +87,7 @@
   .hero-buttons {
     @apply flex-col space-y-4 px-4;
   }
-}
 
-/* Mobile optimization */
-@media (max-width: 640px) {
-  .hero-content {
-    @apply flex-col-reverse px-4;
-  }
-
-  .hero-image {
-    @apply w-full max-w-[250px] mx-auto;
-  }
-
-  .details-grid {
-    @apply grid-cols-1 gap-2 px-4;
-  }
-
-  .carousel-nav {
-    @apply hidden;
-  }
-
-  .card-content {
-    @apply px-3;
-  }
-
-  .badge-container {
-    @apply flex-wrap justify-center;
-  }
-
-  .section {
-    @apply px-4;
-  }
-  
   .glass-card {
     @apply mx-2 p-4;
   }
@@ -213,7 +127,7 @@
 @media (max-width: 768px) {
   .CarouselPrevious,
   .CarouselNext {
-    @apply hidden;
+    @apply flex;
   }
   
   .carousel-container {
