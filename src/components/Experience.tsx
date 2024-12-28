@@ -93,12 +93,6 @@ export const Experience = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showResponsibilities, setShowResponsibilities] = useState<number | null>(null);
   
-  const autoplayOptions = {
-    delay: 3000,
-    stopOnInteraction: false,
-    rootNode: (emblaRoot: any) => emblaRoot.parentElement,
-  };
-  
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
@@ -106,7 +100,11 @@ export const Experience = () => {
       slidesToScroll: 1,
       skipSnaps: false
     },
-    [Autoplay(autoplayOptions)]
+    [Autoplay({ 
+      delay: 3000, 
+      stopOnInteraction: false,
+      playOnInit: true
+    })]
   );
 
   useEffect(() => {
@@ -115,7 +113,7 @@ export const Experience = () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
       
-      // Reset autoplay on component mount
+      // Réinitialiser l'autoplay au montage du composant
       emblaApi.reInit();
     }
     

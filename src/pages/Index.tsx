@@ -4,6 +4,7 @@ import { Skills } from "@/components/Skills";
 import { Experience } from "@/components/Experience";
 import { Navbar } from "@/components/Navbar";
 import { Certifications } from "@/components/Certifications";
+import { Education } from "@/components/Education";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -13,6 +14,7 @@ const Index = () => {
       <Navbar />
       <div className="pt-16">
         <Hero />
+        <Education />
         <Experience />
         <Projects />
         <Skills />
