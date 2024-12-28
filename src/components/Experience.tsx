@@ -24,6 +24,7 @@ const experiences = {
       description: "Improving Customer Experience through AI and Data",
       logo: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png",
       companyUrl: "https://www.orange.sn/",
+      projectUrl: "https://github.com/yourusername/orange-sonatel-project", // Add your actual project URL here
       responsibilities: [
         "Development of sentiment analysis model to detect vulnerable customers during phone interactions",
         "Development of Topic Modeling to detect customer call patterns",
@@ -59,6 +60,7 @@ const experiences = {
       description: "Amélioration de l'expérience client par l'IA et la Data",
       logo: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png",
       companyUrl: "https://www.orange.sn/",
+      projectUrl: "https://github.com/yourusername/orange-sonatel-project", // Add your actual project URL here
       responsibilities: [
         "Développement de modèle d'analyse de sentiment pour détecter les clients fragiles lors des interactions téléphoniques",
         "Développement de Topic Modeling pour détecter les motifs d'appels des clients",
@@ -113,7 +115,6 @@ export const Experience = () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
       
-      // Réinitialiser l'autoplay au montage du composant
       emblaApi.reInit();
     }
     
@@ -160,6 +161,16 @@ export const Experience = () => {
                           <div>
                             <CardTitle className="text-xl">{exp.title}</CardTitle>
                             <p className="text-muted-foreground">{exp.description}</p>
+                            {exp.projectUrl && (
+                              <a
+                                href={exp.projectUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm text-blue-600 hover:text-blue-800 mt-2 inline-block"
+                              >
+                                {language === 'en' ? 'View Final Year Project' : 'Voir le Projet de Fin d\'Études'}
+                              </a>
+                            )}
                           </div>
                         </div>
                         <div className="text-right">

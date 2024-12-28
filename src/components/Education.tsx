@@ -1,9 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { ChevronDown } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -25,6 +27,8 @@ const education = {
       degree: "Master's Degree in Machine Learning and Natural Language Processing (NLP)",
       school: "Nantes University - Faculty of Sciences and Technology",
       location: "Nantes, France",
+      logo: "/lovable-uploads/a9d7bcfc-afa9-431a-b75b-c27e5c7ec6af.png",
+      schoolUrl: "https://sciences-techniques.univ-nantes.fr/",
       courses: [
         "Large Language Models (Transformer architecture)",
         "Static semantic representation",
@@ -45,6 +49,8 @@ const education = {
       degree: "Engineering Degree in Computer Science",
       school: "Polytechnic School of Thiès",
       location: "Thiès, Senegal",
+      logo: "/lovable-uploads/2e7c3ea0-3746-4917-ade5-e611f01f6fe0.png",
+      schoolUrl: "https://ept.sn/",
       courses: [
         "Data Analysis",
         "Software Architecture",
@@ -67,7 +73,9 @@ const education = {
       period: "2018 – 2019",
       degree: "Baccalaureate in Experimental Sciences (S2) - With Highest Honors",
       school: "High School",
-      location: "Dakar, Senegal"
+      location: "Dakar, Senegal",
+      logo: "/lovable-uploads/1af50d24-c56b-46d5-9807-1e29ab841b75.png",
+      schoolUrl: "#"
     }
   ],
   fr: [
@@ -76,6 +84,8 @@ const education = {
       degree: "Master 2 Machine Learning et Traitement Automatique de la Langue (NLP)",
       school: "Nantes Université - UFR Sciences et Techniques",
       location: "Nantes, France",
+      logo: "/lovable-uploads/a9d7bcfc-afa9-431a-b75b-c27e5c7ec6af.png",
+      schoolUrl: "https://sciences-techniques.univ-nantes.fr/",
       courses: [
         "Large Language Models (Architecture Transformer)",
         "Représentation sémantique statique",
@@ -96,6 +106,8 @@ const education = {
       degree: "Diplôme d'ingénieur de Conception en Informatique",
       school: "École Polytechnique de Thiès",
       location: "Thiès, Sénégal",
+      logo: "/lovable-uploads/2e7c3ea0-3746-4917-ade5-e611f01f6fe0.png",
+      schoolUrl: "https://ept.sn/",
       courses: [
         "Analyse de données",
         "Architecture Logicielle",
@@ -118,7 +130,9 @@ const education = {
       period: "2018 – 2019",
       degree: "Baccalauréat Sciences Expérimentales (S2) - Mention Très Bien",
       school: "Lycée",
-      location: "Dakar, Sénégal"
+      location: "Dakar, Sénégal",
+      logo: "/lovable-uploads/1af50d24-c56b-46d5-9807-1e29ab841b75.png",
+      schoolUrl: "#"
     }
   ]
 };
@@ -126,6 +140,7 @@ const education = {
 export const Education = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showCourses, setShowCourses] = useState<number | null>(null);
   
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
@@ -171,26 +186,66 @@ export const Education = () => {
                 >
                   <Card className="glass-card hover:bg-white hover:text-[#18181b]">
                     <CardHeader>
-                      <CardTitle className="text-xl">{edu.degree}</CardTitle>
-                      <p className="text-muted-foreground">{edu.school}</p>
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>{edu.period}</span>
-                        <span>{edu.location}</span>
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div className="flex items-center gap-4">
+                          <a 
+                            href={edu.schoolUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:opacity-80 transition-opacity"
+                          >
+                            <img 
+                              src={edu.logo} 
+                              alt={edu.school}
+                              className="w-16 h-16 object-contain rounded-lg"
+                            />
+                          </a>
+                          <div>
+                            <CardTitle className="text-xl">{edu.degree}</CardTitle>
+                            <p className="text-muted-foreground">{edu.school}</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium">{edu.period}</p>
+                          <p className="text-sm text-muted-foreground">{edu.location}</p>
+                        </div>
                       </div>
                     </CardHeader>
                     {edu.courses && (
                       <CardContent>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                          {edu.courses.map((course, idx) => (
-                            <div 
-                              key={idx}
-                              className="text-sm text-muted-foreground flex items-center gap-2"
-                            >
-                              <span className="w-2 h-2 bg-[#18181b] rounded-full"></span>
-                              {course}
-                            </div>
-                          ))}
+                        <div 
+                          className="flex items-center gap-2 mb-4 cursor-pointer hover:text-[#18181b]"
+                          onClick={() => setShowCourses(showCourses === index ? null : index)}
+                        >
+                          <ChevronDown 
+                            className={`w-5 h-5 transition-transform ${
+                              showCourses === index ? 'rotate-180' : ''
+                            }`}
+                          />
+                          <span className="font-medium">
+                            {language === 'en' ? 'View Courses' : 'Voir les Cours'}
+                          </span>
                         </div>
+                        
+                        {showCourses === index && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="grid grid-cols-1 md:grid-cols-2 gap-2"
+                          >
+                            {edu.courses.map((course, idx) => (
+                              <div 
+                                key={idx}
+                                className="text-sm text-muted-foreground flex items-center gap-2"
+                              >
+                                <span className="w-2 h-2 bg-[#18181b] rounded-full"></span>
+                                {course}
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
                       </CardContent>
                     )}
                   </Card>

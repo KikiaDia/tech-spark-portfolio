@@ -1,109 +1,87 @@
 import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
-import { toast } from "sonner";
+import { useToast } from "./ui/use-toast";
 
 export const Contact = () => {
   const { language } = useLanguage();
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = `mailto:dkikia@ept.sn?subject=Portfolio Contact&body=${encodeURIComponent(message)}`;
-    toast.success(language === 'en' ? 'Email client opened!' : 'Client email ouvert !');
-    setEmail("");
-    setMessage("");
+    
+    try {
+      const mailtoLink = `mailto:kikia.dia@gmail.com?subject=Contact from Portfolio - ${formData.name}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      )}`;
+      
+      window.location.href = mailtoLink;
+      
+      toast({
+        title: language === 'en' ? "Email client opened" : "Client email ouvert",
+        description: language === 'en' 
+          ? "Please send the email from your email client" 
+          : "Veuillez envoyer l'email depuis votre client email",
+      });
+      
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast({
+        title: language === 'en' ? "Error" : "Erreur",
+        description: language === 'en' 
+          ? "Failed to open email client" 
+          : "Impossible d'ouvrir le client email",
+        variant: "destructive",
+      });
+    }
   };
-  
+
   return (
-    <section id="contact" className="max-w-4xl mx-auto">
-      <Card className="bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
-            {language === 'en' ? 'Get in Touch' : 'Me Contacter'}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <MapPin className="text-[#18181b]" />
-                <span>Nantes, France</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="text-[#18181b]" />
-                <a href="mailto:dkikia@ept.sn" className="hover:underline">
-                  dkikia@ept.sn
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="text-[#18181b]" />
-                <a href="tel:+33766523097" className="hover:underline">
-                  +33 7 66 52 30 97
-                </a>
-              </div>
-              <div className="flex gap-4 justify-start mt-4">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"
-                  asChild
-                >
-                  <a
-                    href="https://github.com/KikiaDia"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="h-5 w-5" />
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"
-                  asChild
-                >
-                  <a
-                    href="https://www.linkedin.com/in/kikia-dia/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                </Button>
-              </div>
-            </div>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                type="email"
-                placeholder={language === 'en' ? 'Your email' : 'Votre email'}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <Textarea
-                placeholder={language === 'en' ? 'Your message' : 'Votre message'}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-                className="min-h-[100px]"
-              />
-              <Button 
-                type="submit"
-                className="w-full bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"
-              >
-                <Send className="mr-2 h-4 w-4" />
-                {language === 'en' ? 'Send Message' : 'Envoyer'}
-              </Button>
-            </form>
-          </div>
-        </CardContent>
-      </Card>
-    </section>
+    <div className="max-w-md mx-auto">
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        {language === 'en' ? 'Contact Me' : 'Me Contacter'}
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <Input
+            placeholder={language === 'en' ? 'Your Name' : 'Votre Nom'}
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
+          />
+        </div>
+        <div>
+          <Input
+            type="email"
+            placeholder={language === 'en' ? 'Your Email' : 'Votre Email'}
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            required
+          />
+        </div>
+        <div>
+          <Textarea
+            placeholder={language === 'en' ? 'Your Message' : 'Votre Message'}
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            required
+            className="min-h-[150px]"
+          />
+        </div>
+        <Button 
+          type="submit"
+          className="w-full bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"
+        >
+          {language === 'en' ? 'Send Message' : 'Envoyer le Message'}
+        </Button>
+      </form>
+    </div>
   );
 };

@@ -153,4 +153,36 @@
   .section {
     @apply px-4;
   }
+  
+  .glass-card {
+    @apply mx-2 p-4;
+  }
+  
+  .card-header {
+    @apply flex-col items-start;
+  }
+  
+  .text-xl {
+    @apply text-lg;
+  }
+  
+  .nav-menu {
+    @apply py-2;
+  }
+  
+  .nav-link {
+    @apply block w-full text-center py-2;
+  }
+}
+
+/* Carousel responsiveness */
+@media (max-width: 768px) {
+  .CarouselPrevious,
+  .CarouselNext {
+    @apply hidden;
+  }
+  
+  .carousel-container {
+    @apply px-2;
+  }
 }

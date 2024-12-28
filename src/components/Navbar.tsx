@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const content = {
   en: {
     home: "Home",
+    education: "Education",
     experience: "Experience",
     projects: "Projects",
     skills: "Skills",
@@ -15,6 +16,7 @@ const content = {
   },
   fr: {
     home: "Accueil",
+    education: "Formation",
     experience: "Expérience",
     projects: "Projets",
     skills: "Compétences",
