@@ -236,11 +236,8 @@ export const Education = () => {
                             className="grid grid-cols-1 md:grid-cols-2 gap-2"
                           >
                             {edu.courses.map((course, idx) => (
-                              <div 
-                                key={idx}
-                                className="text-sm text-muted-foreground flex items-center gap-2"
-                              >
-                                <span className="w-2 h-2 bg-[#18181b] rounded-full"></span>
+                              <div key={idx} className="education-course">
+                                <span className="education-bullet"></span>
                                 {course}
                               </div>
                             ))}
@@ -253,8 +250,6 @@ export const Education = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] hidden md:flex" />
-          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] hidden md:flex" />
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>

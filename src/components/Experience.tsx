@@ -166,7 +166,7 @@ export const Experience = () => {
                                 href={exp.projectUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-sm text-blue-600 hover:text-blue-800 mt-2 inline-block"
+                                className="project-link mt-2 inline-block"
                               >
                                 {language === 'en' ? 'View Final Year Project' : 'Voir le Projet de Fin d\'Études'}
                               </a>
@@ -225,8 +225,6 @@ export const Experience = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] hidden md:flex" />
-          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] hidden md:flex" />
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>

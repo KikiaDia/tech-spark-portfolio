@@ -44,7 +44,7 @@ export const Contact = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto glass-card p-6 rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">
         {language === 'en' ? 'Contact Me' : 'Me Contacter'}
       </h2>
@@ -55,6 +55,7 @@ export const Contact = () => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
+            className="bg-white/50"
           />
         </div>
         <div>
@@ -64,6 +65,7 @@ export const Contact = () => {
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             required
+            className="bg-white/50"
           />
         </div>
         <div>
@@ -72,7 +74,7 @@ export const Contact = () => {
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             required
-            className="min-h-[150px]"
+            className="min-h-[150px] bg-white/50"
           />
         </div>
         <Button 

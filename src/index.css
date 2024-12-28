@@ -79,11 +79,11 @@
   }
   
   .glass-card {
-    @apply mx-2;
+    @apply mx-4;
   }
 
   .carousel-container {
-    @apply px-2;
+    @apply px-4;
   }
 
   .grid-container {
@@ -104,7 +104,7 @@
   }
 
   .hero-content {
-    @apply flex-col items-center text-center;
+    @apply flex-col items-center text-center px-4;
   }
 
   .hero-image {
@@ -121,6 +121,26 @@
 
   .skills-grid {
     @apply grid-cols-1 gap-4;
+  }
+  
+  .hero-details {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-2 px-4;
+  }
+  
+  .hero-text {
+    @apply text-base px-4;
+  }
+  
+  .hero-title {
+    @apply text-3xl px-4;
+  }
+  
+  .hero-subtitle {
+    @apply text-xl px-4;
+  }
+  
+  .hero-buttons {
+    @apply flex-col space-y-4 px-4;
   }
 }
 
@@ -173,6 +193,20 @@
   .nav-link {
     @apply block w-full text-center py-2;
   }
+}
+
+/* Education section */
+.education-bullet {
+  @apply w-1.5 h-1.5 bg-[#18181b] rounded-full flex-shrink-0;
+}
+
+.education-course {
+  @apply text-sm text-muted-foreground flex items-center gap-2;
+}
+
+/* Project link color */
+.project-link {
+  @apply text-[#18181b] hover:text-[#18181b]/80 transition-colors;
 }
 
 /* Carousel responsiveness */
