@@ -13,6 +13,7 @@ import {
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { ChevronDown } from "lucide-react";
 
 const experiences = {
   en: [
@@ -90,9 +91,22 @@ const experiences = {
 export const Experience = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showResponsibilities, setShowResponsibilities] = useState<number | null>(null);
+  
+  const autoplayOptions = {
+    delay: 3000,
+    stopOnInteraction: false,
+    rootNode: (emblaRoot: any) => emblaRoot.parentElement,
+  };
+  
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    { 
+      loop: true,
+      align: "center",
+      slidesToScroll: 1,
+      skipSnaps: false
+    },
+    [Autoplay(autoplayOptions)]
   );
 
   useEffect(() => {
@@ -100,7 +114,16 @@ export const Experience = () => {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
+      
+      // Reset autoplay on component mount
+      emblaApi.reInit();
     }
+    
+    return () => {
+      if (emblaApi) {
+        emblaApi.destroy();
+      }
+    };
   }, [emblaApi]);
 
   return (
@@ -113,7 +136,7 @@ export const Experience = () => {
         >
           <CarouselContent>
             {experiences[language].map((exp, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 p-2">
+              <CarouselItem key={index} className="w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -148,11 +171,34 @@ export const Experience = () => {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <ul className="list-disc list-inside space-y-2 mb-4 text-sm">
-                        {exp.responsibilities.map((resp, idx) => (
-                          <li key={idx} className="text-muted-foreground">{resp}</li>
-                        ))}
-                      </ul>
+                      <div 
+                        className="flex items-center gap-2 mb-4 cursor-pointer hover:text-[#18181b]"
+                        onClick={() => setShowResponsibilities(showResponsibilities === index ? null : index)}
+                      >
+                        <ChevronDown 
+                          className={`w-5 h-5 transition-transform ${
+                            showResponsibilities === index ? 'rotate-180' : ''
+                          }`}
+                        />
+                        <span className="font-medium">
+                          {language === 'en' ? 'View Responsibilities' : 'Voir les Responsabilités'}
+                        </span>
+                      </div>
+                      
+                      {showResponsibilities === index && (
+                        <motion.ul 
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="list-disc list-inside space-y-2 mb-4 text-sm"
+                        >
+                          {exp.responsibilities.map((resp, idx) => (
+                            <li key={idx} className="text-muted-foreground">{resp}</li>
+                          ))}
+                        </motion.ul>
+                      )}
+                      
                       <div className="flex flex-wrap gap-2 mt-4">
                         {exp.tools.map((tool) => (
                           <Badge 
@@ -170,8 +216,8 @@ export const Experience = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
-          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] hidden md:flex" />
+          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] hidden md:flex" />
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>
