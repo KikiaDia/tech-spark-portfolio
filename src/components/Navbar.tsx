@@ -31,18 +31,24 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
   
   const scrollToSection = (sectionId: string) => {
-    console.log("Scrolling to section:", sectionId);
+    console.log("Attempting to scroll to section:", sectionId);
     const section = document.getElementById(sectionId);
     if (section) {
-      const navbarHeight = 64; // Height of the fixed navbar (16 * 4 = 64px)
+      console.log("Found section element:", section);
+      const navbarHeight = 64;
       const sectionPosition = section.offsetTop - navbarHeight;
+      console.log("Scrolling to position:", sectionPosition);
+      
       window.scrollTo({
         top: sectionPosition,
         behavior: "smooth"
       });
+      
+      setIsOpen(false);
+      setActiveSection(sectionId);
+    } else {
+      console.warn("Section not found:", sectionId);
     }
-    setIsOpen(false);
-    setActiveSection(sectionId);
   };
 
   useEffect(() => {
