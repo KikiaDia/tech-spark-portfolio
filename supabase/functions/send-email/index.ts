@@ -17,38 +17,42 @@ serve(async (req) => {
     console.log("Sujet:", subject);
     console.log("Contenu du message:", message);
 
-    // Encode credentials
-    const email = "dkikia@ept.sn";
-    const password = Deno.env.get('EMAIL_PASSWORD');
-    const auth = btoa(`${email}:${password}`);
+    // SendGrid API Key
+    const SENDGRID_API_KEY = Deno.env.get('SENDGRID_API_KEY');
+    if (!SENDGRID_API_KEY) {
+      throw new Error('SendGrid API key not found');
+    }
 
-    // Gmail API endpoint
-    const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+    const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
       method: 'POST',
       headers: {
-        'Authorization': `Basic ${auth}`,
+        'Authorization': `Bearer ${SENDGRID_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        raw: btoa(
-          `From: ${email}\r\n` +
-          `Reply-To: ${from}\r\n` +
-          `To: ${email}\r\n` +
-          `Subject: ${subject}\r\n` +
-          `Content-Type: text/html; charset=utf-8\r\n\r\n` +
-          `<h2>Message reçu via le formulaire de contact</h2>
-          <p><strong>De:</strong> ${from}</p>
-          <p><strong>Sujet:</strong> ${subject}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>`
-        ).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+        personalizations: [{
+          to: [{ email: 'dkikia@ept.sn' }],
+          subject: subject,
+        }],
+        from: { email: 'dkikia@ept.sn', name: 'Portfolio Contact Form' },
+        reply_to: { email: from },
+        content: [{
+          type: 'text/html',
+          value: `
+            <h2>Message reçu via le formulaire de contact</h2>
+            <p><strong>De:</strong> ${from}</p>
+            <p><strong>Sujet:</strong> ${subject}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message.replace(/\n/g, '<br>')}</p>
+          `
+        }]
       })
     });
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error("Erreur Gmail API:", errorData);
-      throw new Error(`Gmail API error: ${response.status}`);
+      console.error("Erreur SendGrid:", errorData);
+      throw new Error(`SendGrid API error: ${response.status}`);
     }
 
     console.log("Email envoyé avec succès");
