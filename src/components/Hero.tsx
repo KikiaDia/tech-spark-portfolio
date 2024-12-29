@@ -51,6 +51,15 @@ export const Hero = () => {
   console.log("Hero component rendering");
   console.log("Current language:", language);
 
+  const renderPersonalDetail = (icon: React.ReactNode, text: string) => (
+    <div className="flex items-center gap-3 bg-white/80 p-3 rounded-lg shadow-sm">
+      <div className="text-gray-700">
+        {icon}
+      </div>
+      <span className="text-gray-800">{text}</span>
+    </div>
+  );
+
   return (
     <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <TooltipProvider>
@@ -137,31 +146,14 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className={`grid grid-cols-1 sm:grid-cols-2 gap-2 personal-details-grid ${!showDetails ? 'hidden md:grid' : 'grid'}`}
+            className={`grid grid-cols-1 gap-3 ${!showDetails ? 'hidden md:grid' : 'grid'}`}
           >
-            {Object.entries(content[language].details).map(([key, value], index) => {
-              const icons = {
-                age: <Calendar className="personal-details-icon" />,
-                status: <User className="personal-details-icon" />,
-                license: <IdCard className="personal-details-icon" />,
-                address: <MapPin className="personal-details-icon" />,
-                origin: <Flag className="personal-details-icon" />,
-                mobility: <Plane className="personal-details-icon" />
-              };
-              
-              return (
-                <motion.div 
-                  key={key}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 * index }}
-                  className="personal-details-item"
-                >
-                  {icons[key as keyof typeof icons]}
-                  <span className="truncate">{value}</span>
-                </motion.div>
-              );
-            })}
+            {renderPersonalDetail(<Calendar className="w-5 h-5" />, content[language].details.age)}
+            {renderPersonalDetail(<User className="w-5 h-5" />, content[language].details.status)}
+            {renderPersonalDetail(<IdCard className="w-5 h-5" />, content[language].details.license)}
+            {renderPersonalDetail(<MapPin className="w-5 h-5" />, content[language].details.address)}
+            {renderPersonalDetail(<Flag className="w-5 h-5" />, content[language].details.origin)}
+            {renderPersonalDetail(<Plane className="w-5 h-5" />, content[language].details.mobility)}
           </motion.div>
 
           <motion.div
