@@ -114,7 +114,6 @@
 }
 
 /* Education section */
-
 .education-bullet {
   @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
 }
@@ -138,4 +137,19 @@
   .carousel-container {
     @apply px-2;
   }
+}
+
+/* Section containers */
+section {
+  @apply bg-white/90 backdrop-blur-md;
+}
+
+/* Ensure text visibility */
+h1, h2, h3, p, span {
+  @apply text-[#18181b];
+}
+
+/* Ensure navbar visibility */
+nav {
+  @apply bg-[#18181b]/95 text-white;
 }
