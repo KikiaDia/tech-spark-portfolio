@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const content = {
   en: {
-    home: "Home",
     education: "Education",
     experience: "Experience",
     projects: "Projects",
@@ -15,7 +14,6 @@ const content = {
     contact: "Contact"
   },
   fr: {
-    home: "Accueil",
     education: "Formation",
     experience: "Expérience",
     projects: "Projets",
@@ -38,19 +36,15 @@ export const Navbar = () => {
       console.log("Found section element:", section);
       const navbarHeight = 64;
       
-      // Fermer d'abord le menu
       setIsOpen(false);
       
-      // Attendre que l'animation de fermeture du menu soit terminée
       setTimeout(() => {
-        // Calculer la position exacte de la section
         const sectionRect = section.getBoundingClientRect();
         const absoluteTop = sectionRect.top + window.pageYOffset;
         const scrollPosition = absoluteTop - navbarHeight;
         
         console.log("Calculated scroll position:", scrollPosition);
         
-        // Faire défiler jusqu'à la position calculée
         window.scrollTo({
           top: scrollPosition,
           behavior: "smooth"
@@ -58,7 +52,7 @@ export const Navbar = () => {
         
         setActiveSection(sectionId);
         console.log("Scrolling complete, new active section:", sectionId);
-      }, 300); // Augmenter le délai pour s'assurer que le menu est fermé
+      }, 300);
     } else {
       console.warn("Section not found:", sectionId);
     }
@@ -94,7 +88,8 @@ export const Navbar = () => {
           <motion.h1 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="text-xl font-bold text-white"
+            className="text-xl font-bold text-white cursor-pointer"
+            onClick={() => scrollToSection('home')}
           >
             Kikia Dia
           </motion.h1>
