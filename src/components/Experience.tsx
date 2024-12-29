@@ -97,23 +97,22 @@ export const Experience = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showResponsibilities, setShowResponsibilities] = useState<number | null>(null);
+  
   const [autoplayPlugin] = useState(() => 
-    Autoplay({ 
-      delay: 3000, 
+    Autoplay({
+      delay: 3000,
       stopOnInteraction: true,
-      playOnInit: true,
       rootNode: (emblaRoot) => emblaRoot.parentElement,
     })
   );
-  
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
+    {
       loop: true,
       align: "center",
-      slidesToScroll: 1,
       skipSnaps: false,
-      duration: 25,
-      dragFree: false
+      duration: 30,
+      dragFree: true
     },
     [autoplayPlugin]
   );
@@ -126,16 +125,12 @@ export const Experience = () => {
 
       emblaApi.on('select', onSelect);
       
-      // Pause autoplay when showing responsibilities
       if (showResponsibilities !== null) {
         autoplayPlugin.stop();
       } else {
         autoplayPlugin.play();
       }
-      
-      // Force a reinitialization to ensure proper sliding
-      emblaApi.reInit();
-      
+
       return () => {
         emblaApi.off('select', onSelect);
       };
@@ -165,7 +160,8 @@ export const Experience = () => {
           opts={{
             loop: true,
             align: "center",
-            duration: 25,
+            duration: 30,
+            dragFree: true
           }}
         >
           <CarouselContent>
