@@ -44,10 +44,10 @@ export const MobileHero = () => {
           Kikia Dia
         </h1>
         <div className="space-y-2 overflow-hidden">
-          <p className="text-xl text-[#18181b] whitespace-pre-line text-left break-words">
+          <p className="text-xl text-[#18181b] whitespace-pre-line text-justify break-words">
             {content[language].role}
           </p>
-          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-left break-words">
+          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-justify break-words">
             {content[language].description}
           </p>
         </div>
