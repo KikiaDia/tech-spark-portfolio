@@ -101,33 +101,15 @@ export const Projects = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true,
-      align: "center",
-      skipSnaps: false,
-      duration: 20
-    },
-    [
-      Autoplay({
-        delay: 3000,
-        stopOnInteraction: true,
-        rootNode: (emblaRoot) => emblaRoot.parentElement
-      })
-    ]
+    { loop: true },
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   useEffect(() => {
     if (emblaApi) {
-      const onSelect = () => {
+      emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
-      };
-
-      emblaApi.on('select', onSelect);
-      emblaApi.reInit();
-
-      return () => {
-        emblaApi.off('select', onSelect);
-      };
+      });
     }
   }, [emblaApi]);
 
@@ -138,11 +120,6 @@ export const Projects = () => {
         <Carousel 
           ref={emblaRef}
           className="w-full"
-          opts={{
-            loop: true,
-            align: "center",
-            duration: 20
-          }}
         >
           <CarouselContent>
             {projects[language].map((project, index) => (
