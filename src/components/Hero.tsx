@@ -52,11 +52,11 @@ export const Hero = () => {
   console.log("Current language:", language);
 
   const renderPersonalDetail = (icon: React.ReactNode, text: string) => (
-    <div className="flex items-center gap-3 bg-white/80 p-3 rounded-lg shadow-sm">
-      <div className="text-gray-700">
+    <div className="flex items-center gap-2 bg-[#18181b] p-2 rounded-2xl shadow-sm w-full max-w-[250px] mx-auto">
+      <div className="text-white">
         {icon}
       </div>
-      <span className="text-gray-800">{text}</span>
+      <span className="text-white text-sm">{text}</span>
     </div>
   );
 
