@@ -51,15 +51,6 @@ export const Hero = () => {
   console.log("Hero component rendering");
   console.log("Current language:", language);
 
-  const renderPersonalDetail = (icon: React.ReactNode, text: string) => (
-    <div className="flex items-center gap-2 bg-[#18181b] p-2 rounded-2xl shadow-sm w-full max-w-[250px] mx-auto">
-      <div className="text-white">
-        {icon}
-      </div>
-      <span className="text-white text-sm">{text}</span>
-    </div>
-  );
-
   return (
     <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <TooltipProvider>
@@ -96,42 +87,13 @@ export const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 hero-title">
               Kikia Dia
             </h1>
-            <div className="mobile-text-container">
-              <p className="text-xl md:text-2xl text-[#18181b] hero-subtitle">
-                {"Machine Learning Engineer\n& NLP Specialist"}
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed hero-text">
-                {"Computer engineering graduate specializing\nin Machine Learning and NLP,\nseeking a 6-month internship starting February 2025 in Artificial Intelligence."}
-              </p>
-            </div>
+            <p className="text-xl md:text-2xl text-[#18181b] hero-subtitle">
+              {content[language].role}
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed hero-text">
+              {content[language].description}
+            </p>
           </motion.div>
-
-          <div className="space-y-6 mt-8 md:mt-0 mobile-hero-image">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="relative w-full max-w-md mx-auto aspect-square hero-image"
-            >
-              <div className="absolute inset-0 rounded-lg border-2 border-gray-300 animate-pulse" />
-              <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-200 shadow-xl">
-                <img 
-                  src="/lovable-uploads/2e7c3ea0-3746-4917-ade5-e611f01f6fe0.png" 
-                  alt="Kikia Dia"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 2, ease: "linear" }}
-              className="overflow-hidden whitespace-nowrap text-lg italic text-[#18181b] text-center animate-typing"
-            >
-              "{content[language].quote}"
-            </motion.div>
-          </div>
 
           <div className="md:hidden flex justify-center items-center">
             <Button
@@ -148,14 +110,31 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className={`grid grid-cols-1 gap-3 ${!showDetails ? 'hidden md:grid' : 'grid'}`}
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-2 personal-details-grid ${!showDetails ? 'hidden md:grid' : 'grid'}`}
           >
-            {renderPersonalDetail(<Calendar className="w-5 h-5" />, content[language].details.age)}
-            {renderPersonalDetail(<User className="w-5 h-5" />, content[language].details.status)}
-            {renderPersonalDetail(<IdCard className="w-5 h-5" />, content[language].details.license)}
-            {renderPersonalDetail(<MapPin className="w-5 h-5" />, content[language].details.address)}
-            {renderPersonalDetail(<Flag className="w-5 h-5" />, content[language].details.origin)}
-            {renderPersonalDetail(<Plane className="w-5 h-5" />, content[language].details.mobility)}
+            {Object.entries(content[language].details).map(([key, value], index) => {
+              const icons = {
+                age: <Calendar className="personal-details-icon" />,
+                status: <User className="personal-details-icon" />,
+                license: <IdCard className="personal-details-icon" />,
+                address: <MapPin className="personal-details-icon" />,
+                origin: <Flag className="personal-details-icon" />,
+                mobility: <Plane className="personal-details-icon" />
+              };
+              
+              return (
+                <motion.div 
+                  key={key}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 * index }}
+                  className="personal-details-item"
+                >
+                  {icons[key as keyof typeof icons]}
+                  <span className="truncate">{value}</span>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           <motion.div
@@ -186,12 +165,12 @@ export const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <div className="hidden md:block space-y-6">
+        <div className="space-y-6 mt-8 md:mt-0 mobile-hero-image">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative w-full max-w-md mx-auto aspect-square"
+            className="relative w-full max-w-md mx-auto aspect-square hero-image"
           >
             <div className="absolute inset-0 rounded-lg border-2 border-gray-300 animate-pulse" />
             <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-200 shadow-xl">
