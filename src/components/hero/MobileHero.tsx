@@ -43,12 +43,14 @@ export const MobileHero = () => {
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 text-left">
           Kikia Dia
         </h1>
-        <p className="text-xl text-[#18181b] whitespace-pre-line text-left">
-          {content[language].role}
-        </p>
-        <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-left">
-          {content[language].description}
-        </p>
+        <div className="space-y-2 overflow-hidden">
+          <p className="text-xl text-[#18181b] whitespace-pre-line text-left break-words">
+            {content[language].role}
+          </p>
+          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-left break-words">
+            {content[language].description}
+          </p>
+        </div>
       </div>
 
       <motion.div

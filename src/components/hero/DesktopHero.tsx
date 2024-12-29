@@ -64,10 +64,10 @@ export const DesktopHero = () => {
           <h1 className="text-6xl font-bold tracking-tight text-gray-900">
             Kikia Dia
           </h1>
-          <p className="text-2xl text-[#18181b] whitespace-pre-line">
+          <p className="text-2xl text-[#18181b] whitespace-pre-line max-w-xl">
             {content[language].role}
           </p>
-          <p className="text-lg text-gray-600 leading-relaxed whitespace-pre-line">
+          <p className="text-lg text-gray-600 leading-relaxed whitespace-pre-line max-w-xl">
             {content[language].description}
           </p>
         </motion.div>
