@@ -10,13 +10,13 @@ serve(async (req) => {
   console.log("Fonction d'envoi d'email appelée");
   
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+    return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // L'email de l'utilisateur qui envoie le message
-    const { from, message } = await req.json();
+    const { from, subject, message } = await req.json();
     console.log("Message reçu de:", from);
+    console.log("Sujet:", subject);
     console.log("Contenu du message:", message);
 
     const client = new SmtpClient();
@@ -36,7 +36,7 @@ serve(async (req) => {
       from: "dkikia@ept.sn",
       to: "dkikia@ept.sn",
       replyTo: from,
-      subject: "Nouveau message du portfolio",
+      subject: `Nouveau message de contact: ${subject}`,
       content: `Message reçu via le formulaire de contact\n\nDe: ${from}\n\nMessage:\n${message}`,
       html: `
         <h2>Message reçu via le formulaire de contact</h2>

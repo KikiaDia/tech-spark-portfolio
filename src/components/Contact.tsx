@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 export const Contact = () => {
   const { language } = useLanguage();
   const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -17,7 +18,7 @@ export const Contact = () => {
     e.preventDefault();
     console.log("Début de la soumission du formulaire");
     
-    if (!email || !message) {
+    if (!email || !subject || !message) {
       toast({
         variant: "destructive",
         title: language === 'en' ? "Error" : "Erreur",
@@ -35,7 +36,7 @@ export const Contact = () => {
       const { data, error } = await supabase.functions.invoke('send-email', {
         body: {
           from: email,
-          subject: 'Nouveau message de contact',
+          subject: subject,
           message: message
         }
       });
@@ -56,6 +57,7 @@ export const Contact = () => {
       });
       
       setEmail("");
+      setSubject("");
       setMessage("");
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'email:", error);
@@ -146,6 +148,19 @@ export const Contact = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={language === 'en' ? 'Your email' : 'Votre email'}
+              className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] text-black placeholder:text-black/50"
+              required
+              disabled={isLoading}
+            />
+          </div>
+
+          <div>
+            <input
+              type="text"
+              name="subject"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              placeholder={language === 'en' ? 'Subject' : 'Objet'}
               className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] text-black placeholder:text-black/50"
               required
               disabled={isLoading}
