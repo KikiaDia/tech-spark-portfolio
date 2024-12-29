@@ -33,9 +33,9 @@ export const DesktopHero = () => {
       {key === 'mobility' && (
         <span className="ml-1">
           {expandedMobility ? (
-            <ChevronUp className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <ChevronUp className="h-4 w-4" />
           ) : (
-            <ChevronDown className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <ChevronDown className="h-4 w-4" />
           )}
         </span>
       )}
