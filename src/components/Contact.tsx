@@ -31,17 +31,28 @@ export const Contact = () => {
     setIsLoading(true);
 
     try {
-      sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
-      
-      const msg = {
-        to: 'dkikia@ept.sn',
-        from: email,
-        subject: 'Contact from Portfolio',
-        text: message,
-      };
+      const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.SENDGRID_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          personalizations: [{
+            to: [{ email: 'dkikia@ept.sn' }]
+          }],
+          from: { email: email },
+          subject: 'Contact from Portfolio',
+          content: [{
+            type: 'text/plain',
+            value: message
+          }]
+        })
+      });
 
-      console.log("Tentative d'envoi d'email via SendGrid");
-      await sgMail.send(msg);
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
       
       console.log("Email envoyé avec succès");
       toast({
