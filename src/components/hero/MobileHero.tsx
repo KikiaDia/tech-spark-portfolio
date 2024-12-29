@@ -25,6 +25,9 @@ export const MobileHero = () => {
         <p className="text-xl text-[#18181b] whitespace-pre-line text-left">
           {content[language].role}
         </p>
+        <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-left">
+          {content[language].description}
+        </p>
       </div>
 
       <motion.div
@@ -42,12 +45,6 @@ export const MobileHero = () => {
           />
         </div>
       </motion.div>
-
-      <div className="max-w-[280px] mx-auto">
-        <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-left">
-          {content[language].description}
-        </p>
-      </div>
 
       <div className="flex justify-center">
         <Button
