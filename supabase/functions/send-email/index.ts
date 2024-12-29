@@ -15,13 +15,19 @@ serve(async (req) => {
 
   try {
     const { from, subject, message } = await req.json()
-    console.log("Données reçues:", { from, subject, message })
+    console.log("Received request data:", { from, subject, message })
 
     if (!SENDGRID_API_KEY) {
+      console.error("SENDGRID_API_KEY is not set")
       throw new Error('SENDGRID_API_KEY is not set')
     }
 
-    console.log("Envoi de l'email via SendGrid...")
+    if (!from || !subject || !message) {
+      console.error("Missing required fields:", { from, subject, message })
+      throw new Error('Missing required fields')
+    }
+
+    console.log("Preparing SendGrid request...")
     const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
       method: 'POST',
       headers: {
@@ -33,36 +39,40 @@ serve(async (req) => {
           to: [{ email: 'dkikia@ept.sn' }]
         }],
         from: {
-          email: "noreply@yourdomain.com",  // This should be your verified sender in SendGrid
-          name: "Contact Form"
+          email: "noreply@kikia-dia.com",
+          name: "Portfolio Contact Form"
         },
         reply_to: {
           email: from,
-          name: "Sender"
+          name: "Contact Form User"
         },
-        subject: subject,
+        subject: `Portfolio Contact: ${subject}`,
         content: [{
           type: 'text/html',
           value: `
-            <h2>New Contact Form Message</h2>
-            <p><strong>From:</strong> ${from}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Message:</strong></p>
-            <p>${message.replace(/\n/g, '<br>')}</p>
+            <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px;">
+              <h2 style="color: #333;">New Contact Form Message</h2>
+              <p><strong>From:</strong> ${from}</p>
+              <p><strong>Subject:</strong> ${subject}</p>
+              <div style="margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
+                <p><strong>Message:</strong></p>
+                <p style="white-space: pre-wrap;">${message.replace(/\n/g, '<br>')}</p>
+              </div>
+            </div>
           `
         }]
       })
     });
 
-    console.log("SendGrid Response Status:", response.status);
+    console.log("SendGrid API Response Status:", response.status);
     
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("SendGrid Error Response:", errorText);
-      throw new Error(`SendGrid API error: ${response.status}`);
+      console.error("SendGrid API Error Response:", errorText);
+      throw new Error(`SendGrid API error: ${response.status} - ${errorText}`);
     }
 
-    console.log("Email envoyé avec succès");
+    console.log("Email sent successfully");
     return new Response(
       JSON.stringify({ success: true }),
       { 
@@ -74,9 +84,12 @@ serve(async (req) => {
     )
 
   } catch (error) {
-    console.error("Erreur lors de l'envoi d'email:", error);
+    console.error("Error in send-email function:", error.message);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: error.toString()
+      }),
       { 
         status: 500,
         headers: { 
