@@ -15,7 +15,7 @@ const content = {
     contact: "Contact"
   },
   fr: {
-    home: "Accueil",
+    home: "Kikia Dia",
     education: "Formation",
     experience: "Expérience",
     projects: "Projets",
