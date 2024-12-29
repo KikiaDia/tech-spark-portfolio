@@ -106,6 +106,7 @@ export const Projects = () => {
       align: "center",
       skipSnaps: false,
       duration: 20,
+      slidesToScroll: 2,
     },
     [
       Autoplay({
@@ -134,7 +135,7 @@ export const Projects = () => {
   return (
     <section id="projects" className="py-20 px-4 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <h2 className="section-title">{language === 'en' ? 'Featured Projects' : 'Projets'}</h2>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative">
         <Carousel 
           ref={emblaRef}
           className="w-full"
@@ -142,11 +143,12 @@ export const Projects = () => {
             loop: true,
             align: "center",
             duration: 20,
+            slidesToScroll: 2,
           }}
         >
           <CarouselContent>
             {projects[language].map((project, index) => (
-              <CarouselItem key={index} className="md:basis-1/2">
+              <CarouselItem key={index} className="basis-1/2">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -216,20 +218,24 @@ export const Projects = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
-          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <div className="absolute -left-12 top-1/2 -translate-y-1/2">
+            <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          </div>
+          <div className="absolute -right-12 top-1/2 -translate-y-1/2">
+            <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          </div>
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>
             <PaginationContent>
-              {projects[language].map((_, index) => (
+              {Array.from({ length: Math.ceil(projects[language].length / 2) }).map((_, index) => (
                 <PaginationItem key={index}>
                   <PaginationLink
-                    isActive={currentSlide === index}
+                    isActive={Math.floor(currentSlide / 2) === index}
                     className={`w-2 h-2 rounded-full mx-1 ${
-                      currentSlide === index ? 'bg-[#18181b]' : 'bg-gray-300'
+                      Math.floor(currentSlide / 2) === index ? 'bg-[#18181b]' : 'bg-gray-300'
                     }`}
-                    onClick={() => emblaApi?.scrollTo(index)}
+                    onClick={() => emblaApi?.scrollTo(index * 2)}
                   />
                 </PaginationItem>
               ))}
