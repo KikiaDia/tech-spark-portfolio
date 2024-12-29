@@ -84,7 +84,7 @@
   }
 
   .mobile-hero-image {
-    @apply order-2 mb-8;
+    @apply order-1 mb-8;
   }
 
   .hero-image {

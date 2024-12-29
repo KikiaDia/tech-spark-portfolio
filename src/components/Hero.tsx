@@ -87,13 +87,40 @@ export const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 hero-title">
               Kikia Dia
             </h1>
-            <p className="text-xl md:text-2xl text-[#18181b] hero-subtitle">
+            <p className="text-xl md:text-2xl text-[#18181b] hero-subtitle whitespace-pre-line">
               {content[language].role}
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed hero-text">
+            <p className="text-lg text-gray-600 leading-relaxed hero-text whitespace-pre-line">
               {content[language].description}
             </p>
           </motion.div>
+
+          <div className="space-y-6 mt-8 md:mt-0 mobile-hero-image">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative w-full max-w-md mx-auto aspect-square hero-image"
+            >
+              <div className="absolute inset-0 rounded-lg border-2 border-gray-300 animate-pulse" />
+              <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-200 shadow-xl">
+                <img 
+                  src="/lovable-uploads/2e7c3ea0-3746-4917-ade5-e611f01f6fe0.png" 
+                  alt="Kikia Dia"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 2, ease: "linear" }}
+              className="overflow-hidden whitespace-nowrap text-lg italic text-[#18181b] text-center animate-typing"
+            >
+              "{content[language].quote}"
+            </motion.div>
+          </div>
 
           <div className="md:hidden flex justify-center items-center">
             <Button
@@ -165,12 +192,12 @@ export const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <div className="space-y-6 mt-8 md:mt-0 mobile-hero-image">
+        <div className="hidden md:block space-y-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative w-full max-w-md mx-auto aspect-square hero-image"
+            className="relative w-full max-w-md mx-auto aspect-square"
           >
             <div className="absolute inset-0 rounded-lg border-2 border-gray-300 animate-pulse" />
             <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-200 shadow-xl">
