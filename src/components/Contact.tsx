@@ -7,7 +7,7 @@ export const Contact = () => {
   const { language } = useLanguage();
 
   return (
-    <div className="max-w-4xl mx-auto glass-card p-8 rounded-lg bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
+    <div className="max-w-4xl mx-auto glass-card p-8 rounded-lg bg-white/80">
       <h2 className="text-2xl font-bold mb-8 text-center text-[#18181b]">
         {language === 'en' ? 'Contact Me' : 'Me Contacter'}
       </h2>

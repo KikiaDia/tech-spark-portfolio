@@ -74,9 +74,13 @@ const skillCategories = [
 export const Skills = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoplayPlugin] = useState(() => 
+    Autoplay({ delay: 3000, stopOnInteraction: false })
+  );
+  
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    [autoplayPlugin]
   );
 
   useEffect(() => {
@@ -84,8 +88,14 @@ export const Skills = () => {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
+      
+      if (selectedCategory !== null) {
+        autoplayPlugin.stop();
+      } else {
+        autoplayPlugin.play();
+      }
     }
-  }, [emblaApi]);
+  }, [emblaApi, selectedCategory, autoplayPlugin]);
 
   return (
     <section id="skills" className="py-20 px-4 bg-secondary/50">

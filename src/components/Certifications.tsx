@@ -42,9 +42,13 @@ const certifications = {
 export const Certifications = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoplayPlugin] = useState(() => 
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
+  
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    [autoplayPlugin]
   );
 
   useEffect(() => {

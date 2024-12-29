@@ -94,6 +94,9 @@ export const Experience = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showResponsibilities, setShowResponsibilities] = useState<number | null>(null);
+  const [autoplayPlugin] = useState(() => 
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
   
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
@@ -102,11 +105,7 @@ export const Experience = () => {
       slidesToScroll: 1,
       skipSnaps: false
     },
-    [Autoplay({ 
-      delay: 3000, 
-      stopOnInteraction: false,
-      playOnInit: true
-    })]
+    [autoplayPlugin]
   );
 
   useEffect(() => {
@@ -114,6 +113,13 @@ export const Experience = () => {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
+      
+      // Pause autoplay when showing responsibilities
+      if (showResponsibilities !== null) {
+        autoplayPlugin.stop();
+      } else {
+        autoplayPlugin.play();
+      }
       
       emblaApi.reInit();
     }
@@ -123,7 +129,18 @@ export const Experience = () => {
         emblaApi.destroy();
       }
     };
-  }, [emblaApi]);
+  }, [emblaApi, showResponsibilities, autoplayPlugin]);
+
+  const handleShowResponsibilities = (index: number) => {
+    setShowResponsibilities(showResponsibilities === index ? null : index);
+    if (autoplayPlugin) {
+      if (showResponsibilities === index) {
+        autoplayPlugin.play();
+      } else {
+        autoplayPlugin.stop();
+      }
+    }
+  };
 
   return (
     <section id="experience" className="py-20 px-4 bg-secondary/50">
@@ -182,7 +199,7 @@ export const Experience = () => {
                     <CardContent>
                       <div 
                         className="flex items-center gap-2 mb-4 cursor-pointer hover:text-[#18181b]"
-                        onClick={() => setShowResponsibilities(showResponsibilities === index ? null : index)}
+                        onClick={() => handleShowResponsibilities(index)}
                       >
                         <ChevronDown 
                           className={`w-5 h-5 transition-transform ${
