@@ -8,11 +8,23 @@ import { content } from "./content";
 export const MobileHero = () => {
   const { language } = useLanguage();
   const [showDetails, setShowDetails] = useState(false);
+  const [expandedMobility, setExpandedMobility] = useState(false);
 
-  const renderPersonalDetail = (icon: React.ReactNode, text: string) => (
-    <div className="flex items-center space-x-2 bg-[#18181b] text-white p-2 rounded-xl">
+  const renderPersonalDetail = (icon: React.ReactNode, text: string, key: string) => (
+    <div 
+      className={`flex items-center space-x-2 bg-[#18181b] text-white p-2 rounded-xl ${
+        key === 'mobility' ? 'cursor-pointer' : ''
+      }`}
+      onClick={() => {
+        if (key === 'mobility') {
+          setExpandedMobility(!expandedMobility);
+        }
+      }}
+    >
       {icon}
-      <span className="text-sm">{text}</span>
+      <span className={`text-sm ${key === 'mobility' && !expandedMobility ? 'truncate max-w-[120px]' : ''}`}>
+        {text}
+      </span>
     </div>
   );
 
@@ -81,7 +93,7 @@ export const MobileHero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
               >
-                {renderPersonalDetail(icons[key as keyof typeof icons], value)}
+                {renderPersonalDetail(icons[key as keyof typeof icons], value, key)}
               </motion.div>
             );
           })}
