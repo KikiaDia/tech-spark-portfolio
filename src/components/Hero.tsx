@@ -96,12 +96,14 @@ export const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 hero-title">
               Kikia Dia
             </h1>
-            <p className="text-xl md:text-2xl text-[#18181b] hero-subtitle whitespace-pre-line">
-              {content[language].role}
-            </p>
-            <p className="text-lg text-gray-600 leading-relaxed hero-text whitespace-pre-line">
-              {content[language].description}
-            </p>
+            <div className="mobile-text-container">
+              <p className="text-xl md:text-2xl text-[#18181b] hero-subtitle">
+                {"Machine Learning Engineer\n& NLP Specialist"}
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed hero-text">
+                {"Computer engineering graduate specializing\nin Machine Learning and NLP,\nseeking a 6-month internship starting February 2025 in Artificial Intelligence."}
+              </p>
+            </div>
           </motion.div>
 
           <div className="space-y-6 mt-8 md:mt-0 mobile-hero-image">
