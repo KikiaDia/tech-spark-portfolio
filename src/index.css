@@ -58,6 +58,21 @@
   animation: typing 3.5s steps(40, end) infinite;
 }
 
+/* Desktop styles for personal details */
+@media (min-width: 641px) {
+  .personal-details-grid {
+    @apply grid-cols-2 gap-3 max-w-[600px];
+  }
+
+  .personal-details-item {
+    @apply text-sm py-2 px-3;
+  }
+
+  .personal-details-icon {
+    @apply h-4 w-4 mr-2;
+  }
+}
+
 /* Mobile optimization */
 @media (max-width: 640px) {
   .hero-content {
