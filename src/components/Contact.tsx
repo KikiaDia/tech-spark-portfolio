@@ -1,88 +1,109 @@
 import { Button } from "./ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Contact = () => {
   const { language } = useLanguage();
 
   return (
-    <div className="max-w-4xl mx-auto p-8 rounded-lg bg-white shadow-lg">
+    <div className="max-w-4xl mx-auto p-8 rounded-3xl bg-white shadow-lg">
       <h2 className="text-2xl font-bold mb-8 text-center text-[#18181b]">
-        {language === 'en' ? 'Contact Me' : 'Me Contacter'}
+        {language === 'en' ? 'Get in Touch' : 'Me Contacter'}
       </h2>
       
-      <div className="grid grid-cols-1 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Contact Information */}
         <motion.div 
-          className="space-y-6 flex flex-col items-center"
+          className="space-y-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.div 
-            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm w-full max-w-lg"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="p-2 bg-[#18181b] rounded-full">
-              <Mail className="h-6 w-6 text-white" />
-            </div>
-            <a 
-              href="mailto:kikia.dia@gmail.com" 
-              className="text-[#18181b] hover:underline font-medium"
-            >
-              kikia.dia@gmail.com
-            </a>
-          </motion.div>
+          <div className="flex items-center gap-3">
+            <MapPin className="h-5 w-5 text-black" />
+            <span className="text-black">Nantes, France</span>
+          </div>
           
-          <motion.div 
-            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm w-full max-w-lg"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="p-2 bg-[#18181b] rounded-full">
-              <Phone className="h-6 w-6 text-white" />
-            </div>
+          <div className="flex items-center gap-3">
+            <Mail className="h-5 w-5 text-black" />
             <a 
-              href="tel:+33749457812" 
-              className="text-[#18181b] hover:underline font-medium"
+              href="mailto:dkikia@ept.sn" 
+              className="text-black hover:underline"
             >
-              +33 7 49 45 78 12
+              dkikia@ept.sn
             </a>
-          </motion.div>
+          </div>
           
-          <motion.div 
-            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm w-full max-w-lg"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="p-2 bg-[#18181b] rounded-full">
-              <Github className="h-6 w-6 text-white" />
-            </div>
+          <div className="flex items-center gap-3">
+            <Phone className="h-5 w-5 text-black" />
+            <a 
+              href="tel:+33766523097" 
+              className="text-black hover:underline"
+            >
+              +33 7 66 52 30 97
+            </a>
+          </div>
+          
+          <div className="flex items-center gap-4 mt-6">
             <a 
               href="https://github.com/kikiadoc" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[#18181b] hover:underline font-medium"
+              className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"
             >
-              github.com/kikiadoc
+              <Github className="h-5 w-5 text-white" />
             </a>
-          </motion.div>
-          
-          <motion.div 
-            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm w-full max-w-lg"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="p-2 bg-[#18181b] rounded-full">
-              <Linkedin className="h-6 w-6 text-white" />
-            </div>
+            
             <a 
               href="https://www.linkedin.com/in/kikia-dia" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[#18181b] hover:underline font-medium"
+              className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"
             >
-              linkedin.com/in/kikia-dia
+              <Linkedin className="h-5 w-5 text-white" />
             </a>
-          </motion.div>
+          </div>
         </motion.div>
+
+        {/* Contact Form */}
+        <motion.form 
+          className="space-y-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            window.location.href = `mailto:dkikia@ept.sn?subject=Contact from Portfolio&body=${e.currentTarget.message.value}`;
+          }}
+        >
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder={language === 'en' ? 'Your email' : 'Votre email'}
+              className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black/20"
+              required
+            />
+          </div>
+          
+          <div>
+            <textarea
+              name="message"
+              placeholder={language === 'en' ? 'Your message' : 'Votre message'}
+              rows={6}
+              className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black/20 resize-none"
+              required
+            />
+          </div>
+
+          <Button
+            type="submit"
+            className="w-full bg-black hover:bg-black/80 text-white flex items-center justify-center gap-2"
+          >
+            <span>{language === 'en' ? 'Send Message' : 'Envoyer'}</span>
+          </Button>
+        </motion.form>
       </div>
     </div>
   );
