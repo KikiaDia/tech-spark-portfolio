@@ -141,7 +141,7 @@
 
 /* Section containers */
 section {
-  @apply bg-white/90 backdrop-blur-md;
+  @apply bg-white/90 backdrop-blur-md rounded-lg my-8 mx-4 p-6 shadow-lg;
 }
 
 /* Ensure text visibility */
