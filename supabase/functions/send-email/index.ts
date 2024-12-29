@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { SmtpClient } from "https://deno.land/x/smtp@v0.13.0/mod.ts";
+import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -23,12 +23,11 @@ serve(async (req) => {
 
     console.log("Tentative de connexion au serveur SMTP Gmail");
     
-    await client.connect({
+    await client.connectTLS({
       hostname: "smtp.gmail.com",
       port: 465,
       username: "dkikia@ept.sn",
       password: Deno.env.get('EMAIL_PASSWORD'),
-      tls: true,
     });
 
     console.log("Connexion SMTP établie, envoi du message");
@@ -42,6 +41,7 @@ serve(async (req) => {
       html: `
         <h2>Message reçu via le formulaire de contact</h2>
         <p><strong>De:</strong> ${from}</p>
+        <p><strong>Sujet:</strong> ${subject}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
       `,
@@ -59,15 +59,12 @@ serve(async (req) => {
       }
     );
   } catch (error) {
-    console.error('Erreur lors de l\'envoi d\'email:', error);
+    console.error("Erreur lors de l'envoi d'email:", error);
     return new Response(
-      JSON.stringify({ 
-        error: error.message,
-        details: error.toString()
-      }),
+      JSON.stringify({ error: error.message }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 400 
+        status: 500 
       }
     );
   }
