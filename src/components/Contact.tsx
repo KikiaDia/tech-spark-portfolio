@@ -7,11 +7,11 @@ export const Contact = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8 rounded-3xl bg-white shadow-lg">
-      <h2 className="text-2xl font-bold mb-8 text-[#18181b] px-8">
+      <h2 className="text-2xl font-bold mb-8 text-[#18181b]">
         {language === 'en' ? 'Get in Touch' : 'Me Contacter'}
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <ContactInfo />
         <ContactForm />
       </div>
