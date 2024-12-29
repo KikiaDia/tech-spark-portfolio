@@ -3,7 +3,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Github, Linkedin, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
   const { language } = useLanguage();
@@ -28,10 +28,9 @@ export const Contact = () => {
 
     try {
       const mailBody = `From: ${email}\n\nMessage:\n${message}`;
-      const mailtoLink = document.createElement('a');
-      mailtoLink.href = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodeURIComponent(mailBody)}`;
+      const mailtoLink = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodeURIComponent(mailBody)}`;
       
-      mailtoLink.click();
+      window.location.href = mailtoLink;
       
       toast({
         title: language === 'en' ? "Success" : "Succès",
