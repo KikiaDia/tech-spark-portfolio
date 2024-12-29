@@ -25,7 +25,8 @@ const content = {
     },
     viewProjects: "View Projects",
     contactMe: "Contact Me",
-    changeLanguage: "Change Language"
+    changeLanguage: "Change Language",
+    personalDetails: "Personal Details"
   },
   fr: {
     quote: "Transformer les Données en Insights, le Code en Innovation",
@@ -41,7 +42,8 @@ const content = {
     },
     viewProjects: "Voir les Projets",
     contactMe: "Me Contacter",
-    changeLanguage: "Changer de Langue"
+    changeLanguage: "Changer de Langue",
+    personalDetails: "Détails Personnels"
   }
 };
 
@@ -50,6 +52,13 @@ export const Hero = () => {
   const [showDetails, setShowDetails] = useState(false);
   console.log("Hero component rendering");
   console.log("Current language:", language);
+
+  const renderPersonalDetail = (icon: React.ReactNode, text: string) => (
+    <div className="flex items-center space-x-2 bg-[#18181b] text-white p-2 rounded-xl w-full md:w-auto">
+      {icon}
+      <span className="text-sm">{text}</span>
+    </div>
+  );
 
   return (
     <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
@@ -76,7 +85,7 @@ export const Hero = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6 mobile-hero-content"
+          className="space-y-6 mobile-hero-content order-2 md:order-1"
         >
           <motion.div
             initial={{ opacity: 0 }}
@@ -84,15 +93,17 @@ export const Hero = () => {
             transition={{ delay: 0.3 }}
             className="space-y-4"
           >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 hero-title">
-              Kikia Dia
-            </h1>
-            <p className="text-xl md:text-2xl text-[#18181b] hero-subtitle">
-              {content[language].role}
-            </p>
-            <p className="text-lg text-gray-600 leading-relaxed hero-text">
-              {content[language].description}
-            </p>
+            <div className="max-w-[280px] mx-auto md:max-w-none md:mx-0">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 text-left">
+                Kikia Dia
+              </h1>
+              <p className="text-xl md:text-2xl text-[#18181b] whitespace-pre-line text-left">
+                {content[language].role}
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed whitespace-pre-line text-left">
+                {content[language].description}
+              </p>
+            </div>
           </motion.div>
 
           <div className="md:hidden flex justify-center items-center">
@@ -101,7 +112,7 @@ export const Hero = () => {
               onClick={() => setShowDetails(!showDetails)}
               className="flex items-center gap-2 text-gray-700"
             >
-              {language === 'en' ? 'Personal Details' : 'Détails Personnels'}
+              {content[language].personalDetails}
               {showDetails ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
             </Button>
           </div>
@@ -110,16 +121,16 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className={`grid grid-cols-1 sm:grid-cols-2 gap-2 personal-details-grid ${!showDetails ? 'hidden md:grid' : 'grid'}`}
+            className={`grid grid-cols-1 gap-2 max-w-[280px] mx-auto md:max-w-none md:grid-cols-2 ${!showDetails ? 'hidden md:grid' : 'grid'}`}
           >
             {Object.entries(content[language].details).map(([key, value], index) => {
               const icons = {
-                age: <Calendar className="personal-details-icon" />,
-                status: <User className="personal-details-icon" />,
-                license: <IdCard className="personal-details-icon" />,
-                address: <MapPin className="personal-details-icon" />,
-                origin: <Flag className="personal-details-icon" />,
-                mobility: <Plane className="personal-details-icon" />
+                age: <Calendar className="h-4 w-4" />,
+                status: <User className="h-4 w-4" />,
+                license: <IdCard className="h-4 w-4" />,
+                address: <MapPin className="h-4 w-4" />,
+                origin: <Flag className="h-4 w-4" />,
+                mobility: <Plane className="h-4 w-4" />
               };
               
               return (
@@ -128,10 +139,8 @@ export const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 * index }}
-                  className="personal-details-item"
                 >
-                  {icons[key as keyof typeof icons]}
-                  <span className="truncate">{value}</span>
+                  {renderPersonalDetail(icons[key as keyof typeof icons], value)}
                 </motion.div>
               );
             })}
@@ -141,7 +150,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9 }}
-            className="flex flex-col sm:flex-row gap-4 pt-4 hero-buttons"
+            className="flex flex-col sm:flex-row gap-4 pt-4 max-w-[280px] mx-auto md:max-w-none"
           >
             <Button
               className="w-full sm:w-auto hover:bg-white hover:text-[#18181b] bg-[#18181b] text-white transition-colors"
@@ -165,12 +174,12 @@ export const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <div className="space-y-6 mt-8 md:mt-0 mobile-hero-image">
+        <div className="space-y-6 order-1 md:order-2 mobile-hero-image">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative w-full max-w-md mx-auto aspect-square hero-image"
+            className="relative w-full max-w-md mx-auto aspect-square"
           >
             <div className="absolute inset-0 rounded-lg border-2 border-gray-300 animate-pulse" />
             <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-200 shadow-xl">
