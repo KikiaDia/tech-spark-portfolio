@@ -96,7 +96,7 @@
   }
 
   .hero-text {
-    @apply text-sm px-4 whitespace-normal break-words;
+    @apply text-sm px-4 whitespace-pre-line break-words;
   }
   
   .hero-title {
@@ -104,93 +104,60 @@
   }
   
   .hero-subtitle {
-    @apply text-xl px-4;
+    @apply text-xl px-4 whitespace-pre-line;
   }
   
   .hero-buttons {
-    @apply flex-col space-y-4 px-4;
+    @apply flex-col space-y-4 px-4 max-w-[280px] mx-auto;
   }
 
   .hero-buttons button {
     @apply text-sm py-1.5;
   }
 
-  .glass-card {
-    @apply mx-2 p-4;
-  }
-  
-  .card-header {
-    @apply flex-col items-start;
-  }
-  
-  .text-xl {
-    @apply text-lg;
-  }
-  
-  .nav-menu {
-    @apply py-2;
-  }
-  
-  .nav-link {
-    @apply block w-full text-center py-2;
+  /* Education section */
+  .education-bullet {
+    @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
   }
 
-  /* Mobile styles for personal details */
-  .personal-details-grid {
-    @apply grid-cols-1 gap-2 px-2 max-w-[280px] mx-auto;
+  .education-course {
+    @apply text-sm text-muted-foreground flex items-center gap-2;
   }
 
-  .personal-details-item {
-    @apply text-xs py-1.5 px-2 w-full flex items-center justify-start bg-[#18181b] text-white rounded-full;
+  /* Project link color */
+  .project-link {
+    @apply text-[#18181b] hover:text-[#18181b]/80 transition-colors;
   }
 
-  .personal-details-icon {
-    @apply h-4 w-4 mr-2;
-  }
-}
+  /* Carousel responsiveness */
+  @media (max-width: 768px) {
+    .CarouselPrevious,
+    .CarouselNext {
+      @apply hidden md:flex;
+    }
+    
+    .carousel-container {
+      @apply px-2;
+    }
 
-/* Education section */
-.education-bullet {
-  @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
-}
+    .section-title {
+      @apply text-2xl;
+    }
 
-.education-course {
-  @apply text-sm text-muted-foreground flex items-center gap-2;
-}
+    .glass-card {
+      @apply mx-2;
+    }
 
-/* Project link color */
-.project-link {
-  @apply text-[#18181b] hover:text-[#18181b]/80 transition-colors;
-}
+    .project-card {
+      @apply basis-full;
+    }
 
-/* Carousel responsiveness */
-@media (max-width: 768px) {
-  .CarouselPrevious,
-  .CarouselNext {
-    @apply hidden md:flex;
-  }
-  
-  .carousel-container {
-    @apply px-2;
-  }
+    .skills-card {
+      @apply basis-full;
+    }
 
-  .section-title {
-    @apply text-2xl;
-  }
-
-  .glass-card {
-    @apply mx-2;
-  }
-
-  .project-card {
-    @apply basis-full;
-  }
-
-  .skills-card {
-    @apply basis-full;
-  }
-
-  .certifications-card {
-    @apply basis-full;
+    .certifications-card {
+      @apply basis-full;
+    }
   }
 }
