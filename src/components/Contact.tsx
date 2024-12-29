@@ -30,7 +30,8 @@ export const Contact = () => {
       const mailBody = `From: ${email}\n\nMessage:\n${message}`;
       const mailtoLink = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodeURIComponent(mailBody)}`;
       
-      window.location.href = mailtoLink;
+      console.log("Tentative d'ouverture du client email avec:", mailtoLink);
+      window.open(mailtoLink, '_blank');
       
       toast({
         title: language === 'en' ? "Success" : "Succès",
