@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts"
+import { SmtpClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 const EMAIL_PASSWORD = Deno.env.get('EMAIL_PASSWORD')
 const EMAIL_ADDRESS = "dkikia@ept.sn"
@@ -37,24 +37,26 @@ serve(async (req) => {
     }
 
     console.log("Preparing SMTP client...")
-    const client = new SmtpClient()
-
-    try {
-      console.log("Attempting to connect to SMTP server...")
-      await client.connectTLS({
+    const client = new SmtpClient({
+      connection: {
         hostname: "smtp.gmail.com",
         port: 465,
-        username: EMAIL_ADDRESS,
-        password: EMAIL_PASSWORD,
-      })
-      
-      console.log("SMTP connection successful, preparing to send email...")
+        tls: true,
+        auth: {
+          username: EMAIL_ADDRESS,
+          password: EMAIL_PASSWORD,
+        },
+      },
+    });
+
+    try {
+      console.log("Attempting to send email...")
       await client.send({
-        from: EMAIL_ADDRESS, // Use the configured email as sender
+        from: EMAIL_ADDRESS,
         to: EMAIL_ADDRESS,
-        replyTo: from, // Set reply-to as the form submitter's email
+        replyTo: from,
         subject: `Portfolio Contact: ${subject}`,
-        content: `
+        html: `
           <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px;">
             <h2 style="color: #333;">New Contact Form Message</h2>
             <p><strong>From:</strong> ${from}</p>
@@ -65,11 +67,9 @@ serve(async (req) => {
             </div>
           </div>
         `,
-        html: true,
-      })
+      });
 
       console.log("Email sent successfully")
-      await client.close()
       
       return new Response(
         JSON.stringify({ success: true }),
@@ -83,12 +83,6 @@ serve(async (req) => {
     } catch (smtpError) {
       console.error("SMTP Error:", smtpError)
       throw new Error(`SMTP Error: ${smtpError.message}`)
-    } finally {
-      try {
-        await client.close()
-      } catch (closeError) {
-        console.error("Error closing SMTP connection:", closeError)
-      }
     }
 
   } catch (error: any) {
