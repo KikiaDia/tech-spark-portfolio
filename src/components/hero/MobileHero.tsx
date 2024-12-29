@@ -13,7 +13,7 @@ export const MobileHero = () => {
   const renderPersonalDetail = (icon: React.ReactNode, text: string, key: string) => (
     <div 
       className={`flex items-center space-x-2 bg-[#18181b] text-white p-2 rounded-xl ${
-        key === 'mobility' ? 'cursor-pointer' : ''
+        key === 'mobility' ? 'cursor-pointer relative' : ''
       }`}
       onClick={() => {
         if (key === 'mobility') {
@@ -25,6 +25,15 @@ export const MobileHero = () => {
       <span className={`text-sm ${key === 'mobility' && !expandedMobility ? 'truncate max-w-[120px]' : ''}`}>
         {text}
       </span>
+      {key === 'mobility' && (
+        <span className="ml-1">
+          {expandedMobility ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          )}
+        </span>
+      )}
     </div>
   );
 
