@@ -27,7 +27,7 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
       viewport={{ once: true }}
       className="p-1"
     >
-      <Card className="glass-card hover:bg-white hover:text-[#18181b] overflow-hidden">
+      <Card className="glass-card hover:bg-white hover:text-[#18181b] overflow-hidden h-full">
         {project.banner && (
           <div className="relative h-48 w-full overflow-hidden">
             <img
@@ -38,8 +38,8 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
           </div>
         )}
         <CardHeader>
-          <CardTitle>{project.title}</CardTitle>
-          <CardDescription>{project.description}</CardDescription>
+          <CardTitle className="text-xl md:text-2xl">{project.title}</CardTitle>
+          <CardDescription className="text-sm md:text-base">{project.description}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2 mb-4">
@@ -47,18 +47,18 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
               <Badge 
                 key={tag} 
                 variant="secondary" 
-                className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"
+                className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] text-xs md:text-sm"
               >
                 {tag}
               </Badge>
             ))}
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <Button 
               variant="outline" 
               size="sm" 
               asChild 
-              className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"
+              className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] w-full sm:w-auto"
             >
               <a href={project.github} target="_blank" rel="noopener noreferrer">
                 <Github className="w-4 h-4 mr-2" />
@@ -71,13 +71,13 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"
+                    className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] w-full sm:w-auto"
                   >
                     <Video className="w-4 h-4 mr-2" />
                     {language === 'en' ? 'Watch Demo' : 'Voir la Démo'}
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-4xl">
+                <DialogContent className="max-w-4xl w-[95vw] sm:w-full">
                   <DialogHeader>
                     <DialogTitle>{project.title}</DialogTitle>
                   </DialogHeader>

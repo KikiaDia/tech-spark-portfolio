@@ -128,11 +128,30 @@
 @media (max-width: 768px) {
   .CarouselPrevious,
   .CarouselNext {
-    @apply flex;
+    @apply hidden md:flex;
   }
   
   .carousel-container {
     @apply px-2;
   }
-}
 
+  .section-title {
+    @apply text-2xl;
+  }
+
+  .glass-card {
+    @apply mx-2;
+  }
+
+  .project-card {
+    @apply basis-full;
+  }
+
+  .skills-card {
+    @apply basis-full;
+  }
+
+  .certifications-card {
+    @apply basis-full;
+  }
+}

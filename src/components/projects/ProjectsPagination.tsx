@@ -1,10 +1,10 @@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "../ui/pagination";
-import { EmblaCarouselType } from "embla-carousel-react";
+import { UseEmblaCarouselType } from "embla-carousel-react";
 
 interface ProjectsPaginationProps {
   currentSlide: number;
   totalProjects: number;
-  emblaApi: EmblaCarouselType | undefined;
+  emblaApi: UseEmblaCarouselType[1] | undefined;
 }
 
 export const ProjectsPagination = ({ currentSlide, totalProjects, emblaApi }: ProjectsPaginationProps) => {
