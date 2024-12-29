@@ -108,32 +108,18 @@
     @apply block w-full text-center py-2;
   }
 
-  /* Ajout des styles pour les détails personnels en mobile */
+  /* Mise à jour des styles pour les détails personnels en mobile */
   .personal-details-grid {
-    @apply grid-cols-2 gap-2 px-2;
+    @apply flex flex-col gap-2 px-2;
   }
 
   .personal-details-item {
-    @apply text-xs p-1.5;
+    @apply text-sm p-2 w-full flex items-center justify-start gap-2;
   }
 
   .personal-details-icon {
-    @apply h-3 w-3;
+    @apply h-4 w-4;
   }
-}
-
-/* Education section */
-.education-bullet {
-  @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
-}
-
-.education-course {
-  @apply text-sm text-muted-foreground flex items-center gap-2;
-}
-
-/* Project link color */
-.project-link {
-  @apply text-[#18181b] hover:text-[#18181b]/80 transition-colors;
 }
 
 /* Carousel responsiveness */
