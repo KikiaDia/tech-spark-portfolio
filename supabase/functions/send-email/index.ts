@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
+import { SmtpClient } from "https://deno.land/x/smtp@v0.13.0/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -23,11 +23,12 @@ serve(async (req) => {
 
     console.log("Tentative de connexion au serveur SMTP Gmail");
     
-    await client.connectTLS({
+    await client.connect({
       hostname: "smtp.gmail.com",
       port: 465,
       username: "dkikia@ept.sn",
       password: Deno.env.get('EMAIL_PASSWORD'),
+      tls: true,
     });
 
     console.log("Connexion SMTP établie, envoi du message");
