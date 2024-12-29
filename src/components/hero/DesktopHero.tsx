@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import { Languages, User, Calendar, IdCard, MapPin, Flag, Plane } from "lucide-react";
+import { Languages, User, Calendar, IdCard, MapPin, Flag, Plane, ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import {
@@ -9,14 +9,41 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { content } from "./content";
+import { useState } from "react";
 
 export const DesktopHero = () => {
   const { language, setLanguage } = useLanguage();
+  const [expandedMobility, setExpandedMobility] = useState(false);
 
-  const renderPersonalDetail = (icon: React.ReactNode, text: string) => (
-    <div className="flex items-center space-x-2 bg-[#18181b] text-white p-2 rounded-xl w-full md:w-auto">
+  const renderPersonalDetail = (icon: React.ReactNode, text: string, key: string) => (
+    <div 
+      className={`flex items-center space-x-2 bg-[#18181b] text-white p-2 rounded-xl w-full md:w-auto group ${
+        key === 'mobility' ? 'cursor-pointer hover:bg-[#18181b]/90 relative' : ''
+      }`}
+      onClick={() => {
+        if (key === 'mobility') {
+          setExpandedMobility(!expandedMobility);
+        }
+      }}
+    >
       {icon}
-      <span className="text-sm">{text}</span>
+      <span className={`text-sm ${key === 'mobility' && !expandedMobility ? 'truncate max-w-[120px]' : ''}`}>
+        {text}
+      </span>
+      {key === 'mobility' && (
+        <span className="ml-1">
+          {expandedMobility ? (
+            <ChevronUp className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+          ) : (
+            <ChevronDown className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+          )}
+        </span>
+      )}
+      {key === 'mobility' && !expandedMobility && (
+        <span className="absolute -bottom-5 left-0 text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity">
+          Click to expand
+        </span>
+      )}
     </div>
   );
 
@@ -68,7 +95,7 @@ export const DesktopHero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 * index }}
               >
-                {renderPersonalDetail(icons[key as keyof typeof icons], value)}
+                {renderPersonalDetail(icons[key as keyof typeof icons], value, key)}
               </motion.div>
             );
           })}
