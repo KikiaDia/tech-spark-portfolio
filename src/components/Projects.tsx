@@ -12,17 +12,20 @@ import {
 import { projects } from "@/data/projects";
 import { ProjectCard } from "./projects/ProjectCard";
 import { ProjectsPagination } from "./projects/ProjectsPagination";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Projects = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const isMobile = useIsMobile();
+  
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
       align: "center",
       skipSnaps: false,
       duration: 20,
-      slidesToScroll: 2,
+      slidesToScroll: isMobile ? 1 : 2,
     },
     [
       Autoplay({
@@ -61,12 +64,12 @@ export const Projects = () => {
             loop: true,
             align: "center",
             duration: 20,
-            slidesToScroll: 2,
+            slidesToScroll: isMobile ? 1 : 2,
           }}
         >
           <CarouselContent>
             {projects[language].map((project, index) => (
-              <CarouselItem key={index} className="basis-1/2">
+              <CarouselItem key={index} className={`${isMobile ? 'basis-full' : 'basis-1/2'}`}>
                 <ProjectCard 
                   project={project}
                   index={index}

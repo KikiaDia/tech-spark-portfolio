@@ -107,10 +107,22 @@
   .nav-link {
     @apply block w-full text-center py-2;
   }
+
+  /* Ajout des styles pour les détails personnels en mobile */
+  .personal-details-grid {
+    @apply grid-cols-2 gap-2 px-2;
+  }
+
+  .personal-details-item {
+    @apply text-xs p-1.5;
+  }
+
+  .personal-details-icon {
+    @apply h-3 w-3;
+  }
 }
 
 /* Education section */
-
 .education-bullet {
   @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
 }
