@@ -1,8 +1,9 @@
-import { useLanguage } from "@/contexts/LanguageContext";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { ChevronDown } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -111,8 +112,8 @@ export const Experience = () => {
       loop: true,
       align: "center",
       skipSnaps: false,
-      duration: 30,
-      dragFree: true
+      duration: 20,
+      dragFree: false
     },
     [autoplayPlugin]
   );
@@ -130,6 +131,8 @@ export const Experience = () => {
       } else {
         autoplayPlugin.play();
       }
+
+      emblaApi.reInit();
 
       return () => {
         emblaApi.off('select', onSelect);
@@ -160,8 +163,8 @@ export const Experience = () => {
           opts={{
             loop: true,
             align: "center",
-            duration: 30,
-            dragFree: true
+            duration: 20,
+            dragFree: false
           }}
         >
           <CarouselContent>
