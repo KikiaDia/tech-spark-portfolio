@@ -100,13 +100,9 @@ const projects = {
 export const Projects = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [autoplayPlugin] = useState(() => 
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  );
-  
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [autoplayPlugin]
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   useEffect(() => {
