@@ -43,7 +43,12 @@ export const Certifications = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true },
+    { 
+      loop: true,
+      align: "center",
+      skipSnaps: false,
+      duration: 20
+    },
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
@@ -61,7 +66,15 @@ export const Certifications = () => {
         {language === 'en' ? 'Certifications' : 'Certifications'}
       </h2>
       <div className="max-w-4xl mx-auto">
-        <Carousel ref={emblaRef} className="w-full">
+        <Carousel 
+          ref={emblaRef}
+          className="w-full"
+          opts={{
+            loop: true,
+            align: "center",
+            duration: 20
+          }}
+        >
           <CarouselContent>
             {certifications[language].map((cert, index) => (
               <CarouselItem key={index} className="md:basis-1/2">
