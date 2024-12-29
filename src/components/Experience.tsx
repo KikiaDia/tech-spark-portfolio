@@ -1,8 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -10,10 +10,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import { ChevronDown } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+} from "@/components/ui/pagination";
+import { ExperienceCard } from "./experience/ExperienceCard";
 
 const experiences = {
   en: [
@@ -24,7 +27,7 @@ const experiences = {
       description: "Improving Customer Experience through AI and Data",
       logo: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png",
       companyUrl: "https://www.orange.sn/",
-      projectUrl: "https://github.com/yourusername/orange-sonatel-project", // Add your actual project URL here
+      projectUrl: "https://github.com/yourusername/orange-sonatel-project",
       responsibilities: [
         "Development of sentiment analysis model to detect vulnerable customers during phone interactions",
         "Development of Topic Modeling to detect customer call patterns",
@@ -60,7 +63,7 @@ const experiences = {
       description: "Amélioration de l'expérience client par l'IA et la Data",
       logo: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png",
       companyUrl: "https://www.orange.sn/",
-      projectUrl: "https://github.com/yourusername/orange-sonatel-project", // Add your actual project URL here
+      projectUrl: "https://github.com/yourusername/orange-sonatel-project",
       responsibilities: [
         "Développement de modèle d'analyse de sentiment pour détecter les clients fragiles lors des interactions téléphoniques",
         "Développement de Topic Modeling pour détecter les motifs d'appels des clients",
@@ -94,6 +97,13 @@ export const Experience = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showResponsibilities, setShowResponsibilities] = useState<number | null>(null);
+  const [autoplayPlugin] = useState(() => 
+    Autoplay({ 
+      delay: 3000, 
+      stopOnInteraction: true,
+      playOnInit: true
+    })
+  );
   
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
@@ -102,11 +112,7 @@ export const Experience = () => {
       slidesToScroll: 1,
       skipSnaps: false
     },
-    [Autoplay({ 
-      delay: 3000, 
-      stopOnInteraction: false,
-      playOnInit: true
-    })]
+    [autoplayPlugin]
   );
 
   useEffect(() => {
@@ -114,6 +120,13 @@ export const Experience = () => {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
+      
+      // Pause autoplay when showing responsibilities
+      if (showResponsibilities !== null) {
+        autoplayPlugin.stop();
+      } else {
+        autoplayPlugin.play();
+      }
       
       emblaApi.reInit();
     }
@@ -123,11 +136,17 @@ export const Experience = () => {
         emblaApi.destroy();
       }
     };
-  }, [emblaApi]);
+  }, [emblaApi, showResponsibilities, autoplayPlugin]);
+
+  const handleToggleResponsibilities = (index: number) => {
+    setShowResponsibilities(showResponsibilities === index ? null : index);
+  };
 
   return (
     <section id="experience" className="py-20 px-4 bg-secondary/50">
-      <h2 className="section-title">{language === 'en' ? 'Professional Experience' : 'Expérience Professionnelle'}</h2>
+      <h2 className="section-title">
+        {language === 'en' ? 'Professional Experience' : 'Expérience Professionnelle'}
+      </h2>
       <div className="max-w-4xl mx-auto">
         <Carousel 
           ref={emblaRef}
@@ -136,95 +155,18 @@ export const Experience = () => {
           <CarouselContent>
             {experiences[language].map((exp, index) => (
               <CarouselItem key={index} className="w-full">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="glass-card hover:bg-white hover:text-[#18181b] transition-all duration-300">
-                    <CardHeader>
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                        <div className="flex items-center gap-4">
-                          <a 
-                            href={exp.companyUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="hover:opacity-80 transition-opacity"
-                          >
-                            <img 
-                              src={exp.logo} 
-                              alt={exp.title}
-                              className="w-16 h-16 object-contain rounded-lg"
-                            />
-                          </a>
-                          <div>
-                            <CardTitle className="text-xl">{exp.title}</CardTitle>
-                            <p className="text-muted-foreground">{exp.description}</p>
-                            {exp.projectUrl && (
-                              <a
-                                href={exp.projectUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="project-link mt-2 inline-block"
-                              >
-                                {language === 'en' ? 'View Final Year Project' : 'Voir le Projet de Fin d\'Études'}
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-sm font-medium">{exp.period}</p>
-                          <p className="text-sm text-muted-foreground">{exp.location}</p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div 
-                        className="flex items-center gap-2 mb-4 cursor-pointer hover:text-[#18181b]"
-                        onClick={() => setShowResponsibilities(showResponsibilities === index ? null : index)}
-                      >
-                        <ChevronDown 
-                          className={`w-5 h-5 transition-transform ${
-                            showResponsibilities === index ? 'rotate-180' : ''
-                          }`}
-                        />
-                        <span className="font-medium">
-                          {language === 'en' ? 'View Responsibilities' : 'Voir les Responsabilités'}
-                        </span>
-                      </div>
-                      
-                      {showResponsibilities === index && (
-                        <motion.ul 
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="list-disc list-inside space-y-2 mb-4 text-sm"
-                        >
-                          {exp.responsibilities.map((resp, idx) => (
-                            <li key={idx} className="text-muted-foreground">{resp}</li>
-                          ))}
-                        </motion.ul>
-                      )}
-                      
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {exp.tools.map((tool) => (
-                          <Badge 
-                            key={tool} 
-                            variant="secondary" 
-                            className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] transition-colors duration-300"
-                          >
-                            {tool}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <ExperienceCard
+                  exp={exp}
+                  showResponsibilities={showResponsibilities === index}
+                  onToggleResponsibilities={() => handleToggleResponsibilities(index)}
+                  language={language}
+                  index={index}
+                />
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>
@@ -236,7 +178,12 @@ export const Experience = () => {
                     className={`w-2 h-2 rounded-full mx-1 ${
                       currentSlide === index ? 'bg-[#18181b]' : 'bg-gray-300'
                     }`}
-                    onClick={() => emblaApi?.scrollTo(index)}
+                    onClick={() => {
+                      emblaApi?.scrollTo(index);
+                      if (autoplayPlugin) {
+                        autoplayPlugin.stop();
+                      }
+                    }}
                   />
                 </PaginationItem>
               ))}
