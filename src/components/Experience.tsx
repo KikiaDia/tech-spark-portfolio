@@ -101,7 +101,8 @@ export const Experience = () => {
     Autoplay({ 
       delay: 3000, 
       stopOnInteraction: true,
-      playOnInit: true
+      playOnInit: true,
+      rootNode: (emblaRoot) => emblaRoot.parentElement,
     })
   );
   
@@ -110,16 +111,20 @@ export const Experience = () => {
       loop: true,
       align: "center",
       slidesToScroll: 1,
-      skipSnaps: false
+      skipSnaps: false,
+      duration: 25,
+      dragFree: false
     },
     [autoplayPlugin]
   );
 
   useEffect(() => {
     if (emblaApi) {
-      emblaApi.on('select', () => {
+      const onSelect = () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
-      });
+      };
+
+      emblaApi.on('select', onSelect);
       
       // Pause autoplay when showing responsibilities
       if (showResponsibilities !== null) {
@@ -128,18 +133,24 @@ export const Experience = () => {
         autoplayPlugin.play();
       }
       
+      // Force a reinitialization to ensure proper sliding
       emblaApi.reInit();
+      
+      return () => {
+        emblaApi.off('select', onSelect);
+      };
     }
-    
-    return () => {
-      if (emblaApi) {
-        emblaApi.destroy();
-      }
-    };
   }, [emblaApi, showResponsibilities, autoplayPlugin]);
 
   const handleToggleResponsibilities = (index: number) => {
     setShowResponsibilities(showResponsibilities === index ? null : index);
+    if (autoplayPlugin) {
+      if (showResponsibilities === index) {
+        autoplayPlugin.play();
+      } else {
+        autoplayPlugin.stop();
+      }
+    }
   };
 
   return (
@@ -151,6 +162,11 @@ export const Experience = () => {
         <Carousel 
           ref={emblaRef}
           className="w-full"
+          opts={{
+            loop: true,
+            align: "center",
+            duration: 25,
+          }}
         >
           <CarouselContent>
             {experiences[language].map((exp, index) => (
