@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-
-const SENDGRID_API_KEY = Deno.env.get('SENDGRID_API_KEY');
+import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -19,49 +18,38 @@ serve(async (req) => {
     const { from, subject, message } = await req.json();
     console.log("Données reçues:", { from, subject, message });
 
-    if (!SENDGRID_API_KEY) {
-      console.error("Erreur: Clé API SendGrid non configurée");
-      throw new Error('SendGrid API key not configured');
-    }
+    const client = new SmtpClient();
 
-    console.log("Tentative d'envoi d'email avec SendGrid");
+    console.log("Tentative de connexion au serveur SMTP");
     
-    const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${SENDGRID_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        personalizations: [{
-          to: [{ email: "dkikia@ept.sn" }]
-        }],
-        from: { email: "dkikia@ept.sn" },
-        reply_to: { email: from },
-        subject: subject || "Nouveau message de contact",
-        content: [{
-          type: "text/plain",
-          value: `Message de: ${from}\n\n${message}`
-        }]
-      })
+    await client.connectTLS({
+      hostname: "smtp.gmail.com",
+      port: 465,
+      username: "dkikia@ept.sn",
+      password: Deno.env.get('EMAIL_PASSWORD'),
     });
 
-    console.log("Statut de la réponse SendGrid:", response.status);
+    console.log("Connexion SMTP établie, tentative d'envoi");
+
+    await client.send({
+      from: "dkikia@ept.sn",
+      to: "dkikia@ept.sn",
+      replyTo: from,
+      subject: subject || "Nouveau message de contact",
+      content: `Message de: ${from}\n\n${message}`,
+    });
+
+    console.log("Email envoyé avec succès");
     
-    if (response.ok) {
-      console.log("Email envoyé avec succès");
-      return new Response(
-        JSON.stringify({ success: true }),
-        { 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          status: 200 
-        }
-      );
-    } else {
-      const errorText = await response.text();
-      console.error("Échec de l'envoi d'email. Réponse:", errorText);
-      throw new Error(`Failed to send email: ${errorText}`);
-    }
+    await client.close();
+    
+    return new Response(
+      JSON.stringify({ success: true }),
+      { 
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200 
+      }
+    );
   } catch (error) {
     console.error('Erreur lors de l\'envoi d\'email:', error);
     return new Response(
