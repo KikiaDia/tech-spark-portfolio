@@ -14,13 +14,13 @@ export const Contact = () => {
       
       <div className="grid grid-cols-1 gap-8">
         <motion.div 
-          className="space-y-6"
+          className="space-y-6 flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <motion.div 
-            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm"
+            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm w-full max-w-lg"
             whileHover={{ scale: 1.02 }}
           >
             <div className="p-2 bg-[#18181b] rounded-full">
@@ -35,7 +35,7 @@ export const Contact = () => {
           </motion.div>
           
           <motion.div 
-            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm"
+            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm w-full max-w-lg"
             whileHover={{ scale: 1.02 }}
           >
             <div className="p-2 bg-[#18181b] rounded-full">
@@ -50,7 +50,7 @@ export const Contact = () => {
           </motion.div>
           
           <motion.div 
-            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm"
+            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm w-full max-w-lg"
             whileHover={{ scale: 1.02 }}
           >
             <div className="p-2 bg-[#18181b] rounded-full">
@@ -67,7 +67,7 @@ export const Contact = () => {
           </motion.div>
           
           <motion.div 
-            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm"
+            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-gray-50/80 p-4 rounded-lg shadow-sm w-full max-w-lg"
             whileHover={{ scale: 1.02 }}
           >
             <div className="p-2 bg-[#18181b] rounded-full">
