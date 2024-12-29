@@ -3,34 +3,54 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Github, Linkedin, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 export const Contact = () => {
   const { language } = useLanguage();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Début de la soumission du formulaire");
-    console.log("Email:", email);
-    console.log("Message:", message);
     
+    if (!email || !message) {
+      toast({
+        variant: "destructive",
+        title: language === 'en' ? "Error" : "Erreur",
+        description: language === 'en' 
+          ? "Please fill in all fields" 
+          : "Veuillez remplir tous les champs"
+      });
+      return;
+    }
+
     try {
-      // Encode the message for the mailto URL
-      const encodedMessage = encodeURIComponent(
-        `Email from: ${email}\n\nMessage:\n${message}`
-      );
-      console.log("Message encodé:", encodedMessage);
+      const mailBody = `From: ${email}\n\nMessage:\n${message}`;
+      const mailtoLink = document.createElement('a');
+      mailtoLink.href = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodeURIComponent(mailBody)}`;
       
-      // Create the mailto URL with the encoded subject and body
-      const mailtoUrl = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodedMessage}`;
-      console.log("URL mailto généré:", mailtoUrl);
+      mailtoLink.click();
       
-      // Open the default email client
-      window.location.href = mailtoUrl;
-      console.log("Email client ouvert avec succès");
+      toast({
+        title: language === 'en' ? "Success" : "Succès",
+        description: language === 'en' 
+          ? "Email client opened successfully" 
+          : "Client email ouvert avec succès"
+      });
+      
+      setEmail("");
+      setMessage("");
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'email:", error);
+      toast({
+        variant: "destructive",
+        title: language === 'en' ? "Error" : "Erreur",
+        description: language === 'en' 
+          ? "Failed to open email client" 
+          : "Impossible d'ouvrir le client email"
+      });
     }
   };
 
