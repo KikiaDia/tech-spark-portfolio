@@ -82,7 +82,7 @@ export const Contact = () => {
               type="email"
               name="email"
               placeholder={language === 'en' ? 'Your email' : 'Votre email'}
-              className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] text-black"
+              className="w-full p-3 rounded-lg border border-black focus:outline-none focus:ring-0 focus:border-black text-black placeholder-black"
               required
             />
           </div>
@@ -92,7 +92,7 @@ export const Contact = () => {
               name="message"
               placeholder={language === 'en' ? 'Your message' : 'Votre message'}
               rows={6}
-              className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] resize-none text-black"
+              className="w-full p-3 rounded-lg border border-black focus:outline-none focus:ring-0 focus:border-black resize-none text-black placeholder-black"
               required
             />
           </div>
