@@ -97,7 +97,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="personal-details-grid"
+            className="grid grid-cols-2 sm:grid-cols-2 gap-2 personal-details-grid"
           >
             {Object.entries(content[language].details).map(([key, value], index) => {
               const icons = {
@@ -110,16 +110,13 @@ export const Hero = () => {
               };
               
               return (
-                <motion.div 
-                  key={key}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 * index }}
-                  className="personal-details-item bg-[#18181b] text-white border border-gray-700 shadow-md hover:bg-white hover:text-[#18181b] transition-colors rounded-lg"
+                <div 
+                  key={key} 
+                  className="p-2 rounded-lg bg-[#18181b] text-white border border-gray-700 shadow-md hover:bg-white hover:text-[#18181b] transition-colors flex items-center gap-2 personal-details-item"
                 >
                   {icons[key as keyof typeof icons]}
-                  <span className="truncate">{value}</span>
-                </motion.div>
+                  <p className="whitespace-nowrap">{value}</p>
+                </div>
               );
             })}
           </motion.div>
