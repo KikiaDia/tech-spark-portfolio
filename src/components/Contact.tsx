@@ -59,7 +59,7 @@ export const Contact = () => {
       setEmail("");
       setSubject("");
       setMessage("");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erreur lors de l'envoi de l'email:", error);
       toast({
         variant: "destructive",

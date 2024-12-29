@@ -30,24 +30,22 @@ serve(async (req) => {
       body: JSON.stringify({
         personalizations: [{
           to: [{ email: 'dkikia@ept.sn' }],
+          from: { email: from },
         }],
-        from: { email: from }, // Using the visitor's email as sender
+        from: { email: from },
         subject: subject,
         content: [{
-          type: 'text/html',
-          value: `
-            <h2>New Contact Form Message</h2>
-            <p><strong>From:</strong> ${from}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Message:</strong></p>
-            <p>${message.replace(/\n/g, '<br>')}</p>
-          `
-        }]
+          type: 'text/plain',
+          value: message
+        }],
+        reply_to: { email: from }
       })
     });
 
+    console.log("Réponse SendGrid status:", response.status);
+    
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData = await response.text();
       console.error("Erreur SendGrid:", errorData);
       throw new Error(`SendGrid API error: ${response.status}`);
     }
@@ -55,7 +53,12 @@ serve(async (req) => {
     console.log("Email envoyé avec succès");
     return new Response(
       JSON.stringify({ success: true }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { 
+        headers: { 
+          ...corsHeaders,
+          'Content-Type': 'application/json'
+        }
+      }
     )
 
   } catch (error) {
@@ -64,7 +67,10 @@ serve(async (req) => {
       JSON.stringify({ error: error.message }),
       { 
         status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        headers: { 
+          ...corsHeaders,
+          'Content-Type': 'application/json'
+        }
       }
     )
   }
