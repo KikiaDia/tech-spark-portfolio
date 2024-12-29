@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -7,8 +6,7 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
-  console.log("Fonction d'envoi d'email appelée");
-  
+  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -19,37 +17,41 @@ serve(async (req) => {
     console.log("Sujet:", subject);
     console.log("Contenu du message:", message);
 
-    const client = new SmtpClient();
+    // Encode credentials
+    const email = "dkikia@ept.sn";
+    const password = Deno.env.get('EMAIL_PASSWORD');
+    const auth = btoa(`${email}:${password}`);
 
-    console.log("Tentative de connexion au serveur SMTP Gmail");
-    
-    await client.connectTLS({
-      hostname: "smtp.gmail.com",
-      port: 465,
-      username: "dkikia@ept.sn",
-      password: Deno.env.get('EMAIL_PASSWORD'),
+    // Gmail API endpoint
+    const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Basic ${auth}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        raw: btoa(
+          `From: ${email}\r\n` +
+          `Reply-To: ${from}\r\n` +
+          `To: ${email}\r\n` +
+          `Subject: ${subject}\r\n` +
+          `Content-Type: text/html; charset=utf-8\r\n\r\n` +
+          `<h2>Message reçu via le formulaire de contact</h2>
+          <p><strong>De:</strong> ${from}</p>
+          <p><strong>Sujet:</strong> ${subject}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message.replace(/\n/g, '<br>')}</p>`
+        ).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+      })
     });
 
-    console.log("Connexion SMTP établie, envoi du message");
-
-    await client.send({
-      from: "dkikia@ept.sn",
-      to: "dkikia@ept.sn",
-      replyTo: from,
-      subject: `Nouveau message de contact: ${subject}`,
-      content: `Message reçu via le formulaire de contact\n\nDe: ${from}\n\nMessage:\n${message}`,
-      html: `
-        <h2>Message reçu via le formulaire de contact</h2>
-        <p><strong>De:</strong> ${from}</p>
-        <p><strong>Sujet:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `,
-    });
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error("Erreur Gmail API:", errorData);
+      throw new Error(`Gmail API error: ${response.status}`);
+    }
 
     console.log("Email envoyé avec succès");
-    
-    await client.close();
     
     return new Response(
       JSON.stringify({ success: true }),
