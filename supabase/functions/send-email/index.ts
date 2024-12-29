@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import * as SendGrid from "https://deno.land/x/sendgrid@0.0.3/mod.ts";
 
 const SENDGRID_API_KEY = Deno.env.get('SENDGRID_API_KEY');
 
@@ -25,29 +24,29 @@ serve(async (req) => {
       throw new Error('SendGrid API key not configured');
     }
 
-    const sendgrid = new SendGrid.Client(SENDGRID_API_KEY);
-    console.log("Client SendGrid initialisé");
+    console.log("Tentative d'envoi d'email avec SendGrid");
     
-    const emailData = {
-      personalizations: [
-        {
-          to: [{ email: "dkikia@ept.sn" }],
-        },
-      ],
-      from: { email: "dkikia@ept.sn" },
-      replyTo: { email: from },
-      subject: subject || "Nouveau message de contact",
-      content: [
-        {
+    const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${SENDGRID_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        personalizations: [{
+          to: [{ email: "dkikia@ept.sn" }]
+        }],
+        from: { email: "dkikia@ept.sn" },
+        reply_to: { email: from },
+        subject: subject || "Nouveau message de contact",
+        content: [{
           type: "text/plain",
-          value: `Message de: ${from}\n\n${message}`,
-        },
-      ],
-    };
+          value: `Message de: ${from}\n\n${message}`
+        }]
+      })
+    });
 
-    console.log("Tentative d'envoi d'email avec les données:", emailData);
-    const response = await sendgrid.send(emailData);
-    console.log("Réponse SendGrid brute:", response);
+    console.log("Statut de la réponse SendGrid:", response.status);
     
     if (response.ok) {
       console.log("Email envoyé avec succès");
