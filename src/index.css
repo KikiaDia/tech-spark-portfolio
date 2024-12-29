@@ -110,7 +110,7 @@
 
   /* Updated styles for personal details in mobile */
   .personal-details-grid {
-    @apply grid-cols-1 gap-2 px-2 max-w-full;
+    @apply grid-cols-1 gap-2 px-2 max-w-[280px] mx-auto;
   }
 
   .personal-details-item {
