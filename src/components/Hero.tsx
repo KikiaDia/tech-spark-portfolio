@@ -1,4 +1,4 @@
-import { LocateFixed } from "lucide-react";
+import { Languages } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Tooltip,
@@ -27,7 +27,7 @@ export const Hero = () => {
               className="fixed top-20 right-4 z-50 text-gray-700 hover:bg-white hover:text-[#18181b] bg-white/50 backdrop-blur-sm shadow-md"
               onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
             >
-              <LocateFixed className="h-5 w-5" />
+              <Languages className="h-5 w-5" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
