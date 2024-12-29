@@ -88,7 +88,7 @@
   }
 
   .hero-text {
-    @apply text-base px-4;
+    @apply text-sm px-4 whitespace-normal break-words;
   }
   
   .hero-title {
@@ -101,6 +101,10 @@
   
   .hero-buttons {
     @apply flex-col space-y-4 px-4;
+  }
+
+  .hero-buttons button {
+    @apply text-sm py-1.5;
   }
 
   .glass-card {
