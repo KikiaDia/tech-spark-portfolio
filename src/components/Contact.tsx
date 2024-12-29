@@ -41,6 +41,7 @@ export const Contact = () => {
       });
 
       if (error) {
+        console.error("Erreur Supabase:", error);
         throw error;
       }
       
