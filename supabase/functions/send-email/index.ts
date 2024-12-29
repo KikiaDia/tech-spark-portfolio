@@ -18,7 +18,7 @@ serve(async (req) => {
 
   try {
     const { from, subject, message } = await req.json();
-    console.log("Données reçues:", { from, subject });
+    console.log("Données reçues:", { from, subject, message });
 
     if (!SENDGRID_API_KEY) {
       console.error("Erreur: Clé API SendGrid non configurée");
@@ -34,20 +34,20 @@ serve(async (req) => {
           to: [{ email: "dkikia@ept.sn" }],
         },
       ],
-      from: { email: "dkikia@ept.sn" }, // Utiliser votre email vérifié comme expéditeur
-      replyTo: { email: from }, // L'email du contact sera en reply-to
-      subject: "Contact from Portfolio: " + subject,
+      from: { email: "dkikia@ept.sn" },
+      replyTo: { email: from },
+      subject: subject || "Nouveau message de contact",
       content: [
         {
           type: "text/plain",
-          value: `Message from: ${from}\n\n${message}`,
+          value: `Message de: ${from}\n\n${message}`,
         },
       ],
     };
 
-    console.log("Tentative d'envoi d'email");
+    console.log("Tentative d'envoi d'email avec les données:", emailData);
     const response = await sendgrid.send(emailData);
-    console.log("Réponse SendGrid:", response);
+    console.log("Réponse SendGrid brute:", response);
     
     if (response.ok) {
       console.log("Email envoyé avec succès");
@@ -59,13 +59,17 @@ serve(async (req) => {
         }
       );
     } else {
-      console.error("Échec de l'envoi d'email:", response);
-      throw new Error('Failed to send email');
+      const errorText = await response.text();
+      console.error("Échec de l'envoi d'email. Réponse:", errorText);
+      throw new Error(`Failed to send email: ${errorText}`);
     }
   } catch (error) {
     console.error('Erreur lors de l\'envoi d\'email:', error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: error.toString()
+      }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 400 

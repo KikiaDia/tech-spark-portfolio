@@ -35,10 +35,12 @@ export const Contact = () => {
       const { data, error } = await supabase.functions.invoke('send-email', {
         body: {
           from: email,
-          subject: 'New Contact Message',
+          subject: 'Nouveau message de contact',
           message: message
         }
       });
+
+      console.log("Réponse de la fonction Edge:", { data, error });
 
       if (error) {
         console.error("Erreur Supabase:", error);
