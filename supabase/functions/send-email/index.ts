@@ -40,7 +40,7 @@ serve(async (req) => {
         to: [{ email: 'dkikia@ept.sn' }]
       }],
       from: {
-        email: "kikiadia26@gmail.com",
+        email: "dkikia@ept.sn",
         name: "Portfolio Contact Form"
       },
       reply_to: {
@@ -93,7 +93,7 @@ serve(async (req) => {
       }
     )
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error in send-email function:", error)
     return new Response(
       JSON.stringify({ 
