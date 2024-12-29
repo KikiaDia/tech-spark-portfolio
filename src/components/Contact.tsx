@@ -82,7 +82,7 @@ export const Contact = () => {
               type="email"
               name="email"
               placeholder={language === 'en' ? 'Your email' : 'Votre email'}
-              className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black/20"
+              className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb]"
               required
             />
           </div>
@@ -92,14 +92,14 @@ export const Contact = () => {
               name="message"
               placeholder={language === 'en' ? 'Your message' : 'Votre message'}
               rows={6}
-              className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black/20 resize-none"
+              className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] resize-none"
               required
             />
           </div>
 
           <Button
             type="submit"
-            className="w-full bg-black hover:bg-black/80 text-white flex items-center justify-center gap-2"
+            className="w-full bg-black hover:bg-black/80 text-white flex items-center justify-center gap-2 rounded-lg"
           >
             <span>{language === 'en' ? 'Send Message' : 'Envoyer'}</span>
           </Button>
