@@ -95,6 +95,14 @@ export const Experience = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showResponsibilities, setShowResponsibilities] = useState<number | null>(null);
   
+  const [autoplayPlugin] = useState(() => 
+    Autoplay({ 
+      delay: 3000, 
+      stopOnInteraction: true,
+      playOnInit: true
+    })
+  );
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
@@ -102,11 +110,7 @@ export const Experience = () => {
       slidesToScroll: 1,
       skipSnaps: false
     },
-    [Autoplay({ 
-      delay: 3000, 
-      stopOnInteraction: false,
-      playOnInit: true
-    })]
+    [autoplayPlugin]
   );
 
   useEffect(() => {
@@ -114,6 +118,12 @@ export const Experience = () => {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
+      
+      if (showResponsibilities !== null) {
+        autoplayPlugin.stop();
+      } else {
+        autoplayPlugin.play();
+      }
       
       emblaApi.reInit();
     }
@@ -123,7 +133,7 @@ export const Experience = () => {
         emblaApi.destroy();
       }
     };
-  }, [emblaApi]);
+  }, [emblaApi, showResponsibilities, autoplayPlugin]);
 
   return (
     <section id="experience" className="py-20 px-4 bg-secondary/50">

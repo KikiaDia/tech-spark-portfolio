@@ -42,9 +42,18 @@ const certifications = {
 export const Certifications = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoplayPlugin] = useState(() => 
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
+  
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    { 
+      loop: true,
+      align: "center",
+      slidesToScroll: 1,
+      skipSnaps: false
+    },
+    [autoplayPlugin]
   );
 
   useEffect(() => {
@@ -52,8 +61,16 @@ export const Certifications = () => {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
+      
+      emblaApi.reInit();
     }
-  }, [emblaApi]);
+    
+    return () => {
+      if (emblaApi) {
+        emblaApi.destroy();
+      }
+    };
+  }, [emblaApi, autoplayPlugin]);
 
   return (
     <section id="certifications" className="py-20 px-4 bg-secondary/50">
