@@ -11,18 +11,27 @@ export const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitting form with:", { email, message });
+    console.log("Début de la soumission du formulaire");
+    console.log("Email:", email);
+    console.log("Message:", message);
     
-    // Encode the message for the mailto URL
-    const encodedMessage = encodeURIComponent(
-      `Email from: ${email}\n\nMessage:\n${message}`
-    );
-    
-    // Create the mailto URL with the encoded subject and body
-    const mailtoUrl = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodedMessage}`;
-    
-    // Open the default email client
-    window.location.href = mailtoUrl;
+    try {
+      // Encode the message for the mailto URL
+      const encodedMessage = encodeURIComponent(
+        `Email from: ${email}\n\nMessage:\n${message}`
+      );
+      console.log("Message encodé:", encodedMessage);
+      
+      // Create the mailto URL with the encoded subject and body
+      const mailtoUrl = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodedMessage}`;
+      console.log("URL mailto généré:", mailtoUrl);
+      
+      // Open the default email client
+      window.location.href = mailtoUrl;
+      console.log("Email client ouvert avec succès");
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de l'email:", error);
+    }
   };
 
   return (
