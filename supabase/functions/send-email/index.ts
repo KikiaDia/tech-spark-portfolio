@@ -15,11 +15,10 @@ serve(async (req) => {
 
   try {
     const { from, subject, message } = await req.json();
-    console.log("Message reçu de:", from);
-    console.log("Sujet:", subject);
-    console.log("Contenu du message:", message);
+    console.log("Received email request:", { from, subject });
 
     if (!SENDGRID_API_KEY) {
+      console.error("SendGrid API key not found");
       throw new Error('SendGrid API key not found');
     }
 
@@ -32,40 +31,35 @@ serve(async (req) => {
       body: JSON.stringify({
         personalizations: [{
           to: [{ email: 'dkikia@ept.sn' }],
-          subject: subject,
         }],
-        from: { email: 'dkikia@ept.sn', name: 'Portfolio Contact Form' },
+        from: { email: 'dkikia@ept.sn' }, // This must be a verified sender in SendGrid
         reply_to: { email: from },
+        subject: subject,
         content: [{
-          type: 'text/html',
-          value: `
-            <h2>Message reçu via le formulaire de contact</h2>
-            <p><strong>De:</strong> ${from}</p>
-            <p><strong>Sujet:</strong> ${subject}</p>
-            <p><strong>Message:</strong></p>
-            <p>${message.replace(/\n/g, '<br>')}</p>
-          `
+          type: 'text/plain',
+          value: message
         }]
       })
     });
 
+    console.log("SendGrid API Response Status:", response.status);
+    
     if (!response.ok) {
       const errorData = await response.text();
-      console.error("Erreur SendGrid:", errorData);
+      console.error("SendGrid API Error Response:", errorData);
       throw new Error(`SendGrid API error: ${response.status}`);
     }
 
-    console.log("Email envoyé avec succès");
-    
-    return new Response(
-      JSON.stringify({ success: true }),
-      { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 200 
-      }
-    );
+    const data = await response.json();
+    console.log("Email sent successfully:", data);
+
+    return new Response(JSON.stringify({ success: true }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 200
+    });
+
   } catch (error) {
-    console.error("Erreur lors de l'envoi d'email:", error);
+    console.error("Error sending email:", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       { 
