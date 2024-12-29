@@ -4,6 +4,7 @@ import { Github, Linkedin, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Contact = () => {
   const { language } = useLanguage();
@@ -30,22 +31,17 @@ export const Contact = () => {
     setIsLoading(true);
 
     try {
-      console.log("Tentative d'envoi d'email via SendGrid");
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      console.log("Tentative d'envoi d'email via Supabase Edge Function");
+      const { data, error } = await supabase.functions.invoke('send-email', {
+        body: {
           from: email,
-          to: 'dkikia@ept.sn',
-          subject: 'Contact from Portfolio',
+          subject: 'New Contact Message',
           message: message
-        })
+        }
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to send email');
+      if (error) {
+        throw error;
       }
       
       console.log("Email envoyé avec succès");
