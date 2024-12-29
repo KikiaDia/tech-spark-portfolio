@@ -37,27 +37,6 @@
   }
 }
 
-.glass-card {
-  @apply bg-white/30 backdrop-blur-md border border-white/20 shadow-xl;
-}
-
-.section-title {
-  @apply text-3xl font-bold mb-8 text-center;
-}
-
-.fade-in {
-  @apply opacity-0 animate-fade-up;
-}
-
-.hover-scale {
-  @apply transition-transform duration-300 hover:scale-105;
-}
-
-.typing-animation {
-  @apply overflow-hidden whitespace-nowrap;
-  animation: typing 3.5s steps(40, end) infinite;
-}
-
 /* Mobile optimization */
 @media (max-width: 640px) {
   .hero-content {
@@ -69,7 +48,7 @@
   }
 
   .hero-details {
-    @apply grid-cols-1 gap-2 px-4;
+    @apply flex flex-col gap-2 px-4 w-full;
   }
 
   .hero-text {
@@ -88,82 +67,15 @@
     @apply flex-col space-y-4 px-4;
   }
 
-  .glass-card {
-    @apply mx-2 p-4;
-  }
-  
-  .card-header {
-    @apply flex-col items-start;
-  }
-  
-  .text-xl {
-    @apply text-lg;
-  }
-  
-  .nav-menu {
-    @apply py-2;
-  }
-  
-  .nav-link {
-    @apply block w-full text-center py-2;
-  }
-
-  /* Ajout des styles pour les détails personnels en mobile */
   .personal-details-grid {
-    @apply grid-cols-2 gap-2 px-2;
+    @apply flex flex-col gap-2 px-2 w-full;
   }
 
   .personal-details-item {
-    @apply text-xs p-1.5;
+    @apply text-sm p-2 w-full flex justify-start items-center;
   }
 
   .personal-details-icon {
-    @apply h-3 w-3;
-  }
-}
-
-/* Education section */
-.education-bullet {
-  @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
-}
-
-.education-course {
-  @apply text-sm text-muted-foreground flex items-center gap-2;
-}
-
-/* Project link color */
-.project-link {
-  @apply text-[#18181b] hover:text-[#18181b]/80 transition-colors;
-}
-
-/* Carousel responsiveness */
-@media (max-width: 768px) {
-  .CarouselPrevious,
-  .CarouselNext {
-    @apply hidden md:flex;
-  }
-  
-  .carousel-container {
-    @apply px-2;
-  }
-
-  .section-title {
-    @apply text-2xl;
-  }
-
-  .glass-card {
-    @apply mx-2;
-  }
-
-  .project-card {
-    @apply basis-full;
-  }
-
-  .skills-card {
-    @apply basis-full;
-  }
-
-  .certifications-card {
-    @apply basis-full;
+    @apply h-4 w-4 mr-2;
   }
 }
