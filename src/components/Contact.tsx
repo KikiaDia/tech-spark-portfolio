@@ -7,7 +7,7 @@ export const Contact = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8 rounded-3xl bg-white shadow-lg">
-      <h2 className="text-2xl font-bold mb-8 text-[#18181b]">
+      <h2 className="text-2xl font-bold mb-8 text-center text-[#18181b]">
         {language === 'en' ? 'Get in Touch' : 'Me Contacter'}
       </h2>
       
