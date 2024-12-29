@@ -14,8 +14,8 @@ serve(async (req) => {
   }
 
   try {
-    // from est l'email de l'utilisateur qui envoie le message
-    const { from, subject, message } = await req.json();
+    // L'email de l'utilisateur qui envoie le message
+    const { from, message } = await req.json();
     console.log("Message reçu de:", from);
     console.log("Contenu du message:", message);
 
@@ -26,21 +26,27 @@ serve(async (req) => {
     await client.connectTLS({
       hostname: "smtp.gmail.com",
       port: 465,
-      username: "dkikia@ept.sn", // Compte qui envoie le mail
+      username: "dkikia@ept.sn",
       password: Deno.env.get('EMAIL_PASSWORD'),
     });
 
-    console.log("Connexion SMTP établie, envoi du message à dkikia@ept.sn");
+    console.log("Connexion SMTP établie, envoi du message");
 
     await client.send({
-      from: "dkikia@ept.sn", // L'email est envoyé depuis ce compte
-      to: "dkikia@ept.sn", // L'email est reçu sur ce même compte
-      replyTo: from, // Permet de répondre directement à l'utilisateur qui a envoyé le message
-      subject: subject || "Nouveau message de contact",
+      from: "dkikia@ept.sn",
+      to: "dkikia@ept.sn",
+      replyTo: from,
+      subject: "Nouveau message du portfolio",
       content: `Message reçu via le formulaire de contact\n\nDe: ${from}\n\nMessage:\n${message}`,
+      html: `
+        <h2>Message reçu via le formulaire de contact</h2>
+        <p><strong>De:</strong> ${from}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `,
     });
 
-    console.log("Email envoyé avec succès à dkikia@ept.sn");
+    console.log("Email envoyé avec succès");
     
     await client.close();
     
