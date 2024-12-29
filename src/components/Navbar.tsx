@@ -31,8 +31,16 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
   
   const scrollToSection = (sectionId: string) => {
+    console.log("Scrolling to section:", sectionId);
     const section = document.getElementById(sectionId);
-    section?.scrollIntoView({ behavior: "smooth" });
+    if (section) {
+      const navbarHeight = 64; // Height of the fixed navbar (16 * 4 = 64px)
+      const sectionPosition = section.offsetTop - navbarHeight;
+      window.scrollTo({
+        top: sectionPosition,
+        behavior: "smooth"
+      });
+    }
     setIsOpen(false);
     setActiveSection(sectionId);
   };
@@ -46,7 +54,8 @@ export const Navbar = () => {
       const current = sections.reduce((acc, section) => {
         if (!section) return acc;
         const rect = section.getBoundingClientRect();
-        if (rect.top <= 100 && rect.bottom >= 100) {
+        const navbarHeight = 64;
+        if (rect.top <= navbarHeight + 100 && rect.bottom >= navbarHeight) {
           return section.id;
         }
         return acc;
