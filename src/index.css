@@ -38,28 +38,24 @@
 }
 
 .glass-card {
-  @apply bg-white/90 backdrop-blur-md border border-white/20 shadow-xl;
+  @apply bg-white/30 backdrop-blur-md border border-white/20 shadow-xl;
 }
 
-/* Contact section styling */
-.contact-container {
-  @apply bg-white/90 backdrop-blur-md rounded-lg shadow-xl p-8;
+.section-title {
+  @apply text-3xl font-bold mb-8 text-center;
 }
 
-.contact-item {
-  @apply flex items-center gap-4 hover:translate-x-2 transition-transform bg-white/50 p-4 rounded-lg shadow-sm;
+.fade-in {
+  @apply opacity-0 animate-fade-up;
 }
 
-.contact-icon-container {
-  @apply p-2 bg-[#18181b] rounded-full;
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
 }
 
-.contact-icon {
-  @apply h-6 w-6 text-white;
-}
-
-.contact-link {
-  @apply text-[#18181b] hover:underline font-medium;
+.typing-animation {
+  @apply overflow-hidden whitespace-nowrap;
+  animation: typing 3.5s steps(40, end) infinite;
 }
 
 /* Mobile optimization */
@@ -114,6 +110,7 @@
 }
 
 /* Education section */
+
 .education-bullet {
   @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
 }
@@ -139,17 +136,3 @@
   }
 }
 
-/* Section containers */
-section {
-  @apply bg-white/90 backdrop-blur-md rounded-lg my-8 mx-4 p-6 shadow-lg;
-}
-
-/* Ensure text visibility */
-h1, h2, h3, p, span {
-  @apply text-[#18181b];
-}
-
-/* Ensure navbar visibility */
-nav {
-  @apply bg-[#18181b]/95 text-white;
-}

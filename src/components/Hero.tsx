@@ -50,7 +50,7 @@ export const Hero = () => {
   console.log("Current language:", language);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative">
+    <section id="hero" className="min-h-screen flex items-center px-4 py-20 relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
@@ -74,7 +74,7 @@ export const Hero = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6 glass-card p-6 rounded-lg"
+          className="space-y-6"
         >
           <motion.div
             initial={{ opacity: 0 }}
