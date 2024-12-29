@@ -39,44 +39,57 @@ serve(async (req) => {
     console.log("Preparing SMTP client...")
     const client = new SmtpClient()
 
-    await client.connectTLS({
-      hostname: "smtp.gmail.com",
-      port: 465,
-      username: EMAIL_ADDRESS,
-      password: EMAIL_PASSWORD,
-    })
-
-    console.log("Sending email...")
-    await client.send({
-      from: from,
-      to: EMAIL_ADDRESS,
-      subject: `Portfolio Contact: ${subject}`,
-      content: `
-        <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px;">
-          <h2 style="color: #333;">New Contact Form Message</h2>
-          <p><strong>From:</strong> ${from}</p>
-          <p><strong>Subject:</strong> ${subject}</p>
-          <div style="margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
-            <p><strong>Message:</strong></p>
-            <p style="white-space: pre-wrap;">${message.replace(/\n/g, '<br>')}</p>
+    try {
+      console.log("Attempting to connect to SMTP server...")
+      await client.connectTLS({
+        hostname: "smtp.gmail.com",
+        port: 465,
+        username: EMAIL_ADDRESS,
+        password: EMAIL_PASSWORD,
+      })
+      
+      console.log("SMTP connection successful, preparing to send email...")
+      await client.send({
+        from: EMAIL_ADDRESS, // Use the configured email as sender
+        to: EMAIL_ADDRESS,
+        replyTo: from, // Set reply-to as the form submitter's email
+        subject: `Portfolio Contact: ${subject}`,
+        content: `
+          <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px;">
+            <h2 style="color: #333;">New Contact Form Message</h2>
+            <p><strong>From:</strong> ${from}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+            <div style="margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
+              <p><strong>Message:</strong></p>
+              <p style="white-space: pre-wrap;">${message.replace(/\n/g, '<br>')}</p>
+            </div>
           </div>
-        </div>
-      `,
-      html: true,
-    })
+        `,
+        html: true,
+      })
 
-    await client.close()
-    
-    console.log("Email sent successfully")
-    return new Response(
-      JSON.stringify({ success: true }),
-      { 
-        headers: {
-          ...corsHeaders,
-          'Content-Type': 'application/json'
+      console.log("Email sent successfully")
+      await client.close()
+      
+      return new Response(
+        JSON.stringify({ success: true }),
+        { 
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json'
+          }
         }
+      )
+    } catch (smtpError) {
+      console.error("SMTP Error:", smtpError)
+      throw new Error(`SMTP Error: ${smtpError.message}`)
+    } finally {
+      try {
+        await client.close()
+      } catch (closeError) {
+        console.error("Error closing SMTP connection:", closeError)
       }
-    )
+    }
 
   } catch (error: any) {
     console.error("Error in send-email function:", error)
