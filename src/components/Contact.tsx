@@ -4,14 +4,16 @@ import { Github, Linkedin, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import sgMail from '@sendgrid/mail';
 
 export const Contact = () => {
   const { language } = useLanguage();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Début de la soumission du formulaire");
     
@@ -26,23 +28,27 @@ export const Contact = () => {
       return;
     }
 
+    setIsLoading(true);
+
     try {
-      const mailBody = `From: ${email}\n\nMessage:\n${message}`;
-      const mailtoLink = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodeURIComponent(mailBody)}`;
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
       
-      console.log("Tentative d'ouverture du client email avec:", mailtoLink);
-      const opened = window.open(mailtoLink, '_blank');
+      const msg = {
+        to: 'dkikia@ept.sn',
+        from: email,
+        subject: 'Contact from Portfolio',
+        text: message,
+      };
+
+      console.log("Tentative d'envoi d'email via SendGrid");
+      await sgMail.send(msg);
       
-      if (!opened) {
-        console.error("Échec de l'ouverture du client email");
-        throw new Error("Failed to open email client");
-      }
-      
+      console.log("Email envoyé avec succès");
       toast({
         title: language === 'en' ? "Success" : "Succès",
         description: language === 'en' 
-          ? "Email client opened successfully" 
-          : "Client email ouvert avec succès"
+          ? "Message sent successfully" 
+          : "Message envoyé avec succès"
       });
       
       setEmail("");
@@ -53,9 +59,11 @@ export const Contact = () => {
         variant: "destructive",
         title: language === 'en' ? "Error" : "Erreur",
         description: language === 'en' 
-          ? "Failed to open email client" 
-          : "Impossible d'ouvrir le client email"
+          ? "Failed to send message. Please try again later." 
+          : "Échec de l'envoi du message. Veuillez réessayer plus tard."
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -136,6 +144,7 @@ export const Contact = () => {
               placeholder={language === 'en' ? 'Your email' : 'Votre email'}
               className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] text-black placeholder:text-black/50"
               required
+              disabled={isLoading}
             />
           </div>
           
@@ -148,14 +157,20 @@ export const Contact = () => {
               rows={6}
               className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] resize-none text-black placeholder:text-black/50"
               required
+              disabled={isLoading}
             />
           </div>
 
           <Button
             type="submit"
             className="w-full bg-black hover:bg-black/80 text-white flex items-center justify-center gap-2 rounded-lg"
+            disabled={isLoading}
           >
-            <span>{language === 'en' ? 'Send Message' : 'Envoyer'}</span>
+            <span>
+              {isLoading 
+                ? (language === 'en' ? 'Sending...' : 'Envoi...') 
+                : (language === 'en' ? 'Send Message' : 'Envoyer')}
+            </span>
           </Button>
         </motion.form>
       </div>
