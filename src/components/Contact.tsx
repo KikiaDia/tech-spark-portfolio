@@ -2,9 +2,28 @@ import { Button } from "./ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Github, Linkedin, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export const Contact = () => {
   const { language } = useLanguage();
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Submitting form with:", { email, message });
+    
+    // Encode the message for the mailto URL
+    const encodedMessage = encodeURIComponent(
+      `Email from: ${email}\n\nMessage:\n${message}`
+    );
+    
+    // Create the mailto URL with the encoded subject and body
+    const mailtoUrl = `mailto:dkikia@ept.sn?subject=${encodeURIComponent('Contact from Portfolio')}&body=${encodedMessage}`;
+    
+    // Open the default email client
+    window.location.href = mailtoUrl;
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-8 rounded-3xl bg-white shadow-lg">
@@ -72,15 +91,14 @@ export const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            window.location.href = `mailto:dkikia@ept.sn?subject=Contact from Portfolio&body=${e.currentTarget.message.value}`;
-          }}
+          onSubmit={handleSubmit}
         >
           <div>
             <input
               type="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder={language === 'en' ? 'Your email' : 'Votre email'}
               className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] text-black placeholder:text-black/50"
               required
@@ -90,6 +108,8 @@ export const Contact = () => {
           <div>
             <textarea
               name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               placeholder={language === 'en' ? 'Your message' : 'Votre message'}
               rows={6}
               className="w-full p-3 rounded-lg border border-[#e5e7eb] focus:outline-none focus:ring-0 focus:border-[#e5e7eb] resize-none text-black placeholder:text-black/50"
