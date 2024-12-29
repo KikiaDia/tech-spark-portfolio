@@ -79,10 +79,10 @@ export const Contact = () => {
         {language === 'en' ? 'Get in Touch' : 'Me Contacter'}
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center">
         {/* Contact Information */}
         <motion.div 
-          className="space-y-6"
+          className="space-y-6 w-full max-w-xs"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -135,7 +135,7 @@ export const Contact = () => {
 
         {/* Contact Form */}
         <motion.form 
-          className="space-y-4 mx-auto w-full max-w-md"
+          className="space-y-4 w-full max-w-xs"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
