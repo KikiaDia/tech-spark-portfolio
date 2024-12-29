@@ -79,6 +79,14 @@
     @apply flex-col-reverse px-4;
   }
 
+  .mobile-hero-content {
+    @apply order-2;
+  }
+
+  .mobile-hero-image {
+    @apply order-1 mb-8;
+  }
+
   .hero-image {
     @apply w-full max-w-[250px] mx-auto;
   }

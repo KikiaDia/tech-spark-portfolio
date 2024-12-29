@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { Languages, User, Calendar, IdCard, MapPin, Flag, Plane } from "lucide-react";
+import { Languages, User, Calendar, IdCard, MapPin, Flag, Plane, ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import {
@@ -8,6 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useState } from "react";
 
 const content = {
   en: {
@@ -46,6 +47,7 @@ const content = {
 
 export const Hero = () => {
   const { language, setLanguage } = useLanguage();
+  const [showDetails, setShowDetails] = useState(false);
   console.log("Hero component rendering");
   console.log("Current language:", language);
 
@@ -74,7 +76,7 @@ export const Hero = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6"
+          className="space-y-6 mobile-hero-content"
         >
           <motion.div
             initial={{ opacity: 0 }}
@@ -93,11 +95,22 @@ export const Hero = () => {
             </p>
           </motion.div>
 
+          <div className="md:hidden flex justify-center items-center">
+            <Button
+              variant="ghost"
+              onClick={() => setShowDetails(!showDetails)}
+              className="flex items-center gap-2 text-gray-700"
+            >
+              {language === 'en' ? 'Personal Details' : 'Détails Personnels'}
+              {showDetails ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            </Button>
+          </div>
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-2 personal-details-grid"
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-2 personal-details-grid ${!showDetails ? 'hidden md:grid' : 'grid'}`}
           >
             {Object.entries(content[language].details).map(([key, value], index) => {
               const icons = {
@@ -115,7 +128,7 @@ export const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 * index }}
-                  className="p-2 rounded-lg bg-[#18181b] text-white border border-gray-700 shadow-md hover:bg-white hover:text-[#18181b] transition-colors personal-details-item"
+                  className="personal-details-item"
                 >
                   {icons[key as keyof typeof icons]}
                   <span className="truncate">{value}</span>
@@ -152,7 +165,7 @@ export const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <div className="space-y-6 mt-8 md:mt-0">
+        <div className="space-y-6 mt-8 md:mt-0 mobile-hero-image">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
