@@ -40,7 +40,7 @@ serve(async (req) => {
         to: [{ email: 'dkikia@ept.sn' }]
       }],
       from: {
-        email: "noreply@kikia-dia.com",
+        email: "kikiadia26@gmail.com",
         name: "Portfolio Contact Form"
       },
       reply_to: {
