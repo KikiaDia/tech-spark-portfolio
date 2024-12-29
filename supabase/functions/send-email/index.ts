@@ -32,12 +32,18 @@ serve(async (req) => {
         personalizations: [{
           to: [{ email: 'dkikia@ept.sn' }],
         }],
-        from: { email: 'dkikia@ept.sn' }, // This must be a verified sender in SendGrid
+        from: { email: 'noreply@resend.dev' }, // Using a default sender email
         reply_to: { email: from },
         subject: subject,
         content: [{
-          type: 'text/plain',
-          value: message
+          type: 'text/html',
+          value: `
+            <h2>New Contact Form Message</h2>
+            <p><strong>From:</strong> ${from}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message.replace(/\n/g, '<br>')}</p>
+          `
         }]
       })
     });
