@@ -1,5 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
+const SENDGRID_API_KEY = Deno.env.get('SENDGRID_API_KEY');
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -17,8 +19,6 @@ serve(async (req) => {
     console.log("Sujet:", subject);
     console.log("Contenu du message:", message);
 
-    // SendGrid API Key
-    const SENDGRID_API_KEY = Deno.env.get('SENDGRID_API_KEY');
     if (!SENDGRID_API_KEY) {
       throw new Error('SendGrid API key not found');
     }
