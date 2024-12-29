@@ -1,5 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
+const SENDGRID_API_KEY = Deno.env.get('SENDGRID_API_KEY')
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -15,7 +17,6 @@ serve(async (req) => {
     const { from, subject, message } = await req.json()
     console.log("Données reçues:", { from, subject, message })
 
-    const SENDGRID_API_KEY = Deno.env.get('SENDGRID_API_KEY')
     if (!SENDGRID_API_KEY) {
       throw new Error('SENDGRID_API_KEY is not set')
     }
@@ -29,24 +30,35 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         personalizations: [{
-          to: [{ email: 'dkikia@ept.sn' }],
-          from: { email: from },
+          to: [{ email: 'dkikia@ept.sn' }]
         }],
-        from: { email: from },
+        from: {
+          email: "noreply@yourdomain.com",  // This should be your verified sender in SendGrid
+          name: "Contact Form"
+        },
+        reply_to: {
+          email: from,
+          name: "Sender"
+        },
         subject: subject,
         content: [{
-          type: 'text/plain',
-          value: message
-        }],
-        reply_to: { email: from }
+          type: 'text/html',
+          value: `
+            <h2>New Contact Form Message</h2>
+            <p><strong>From:</strong> ${from}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message.replace(/\n/g, '<br>')}</p>
+          `
+        }]
       })
     });
 
-    console.log("Réponse SendGrid status:", response.status);
+    console.log("SendGrid Response Status:", response.status);
     
     if (!response.ok) {
-      const errorData = await response.text();
-      console.error("Erreur SendGrid:", errorData);
+      const errorText = await response.text();
+      console.error("SendGrid Error Response:", errorText);
       throw new Error(`SendGrid API error: ${response.status}`);
     }
 
