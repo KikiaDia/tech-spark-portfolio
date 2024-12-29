@@ -11,7 +11,7 @@ export const Contact = () => {
         {language === 'en' ? 'Get in Touch' : 'Me Contacter'}
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pl-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <ContactInfo />
         <ContactForm />
       </div>
