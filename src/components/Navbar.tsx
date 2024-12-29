@@ -33,19 +33,25 @@ export const Navbar = () => {
   const scrollToSection = (sectionId: string) => {
     console.log("Attempting to scroll to section:", sectionId);
     const section = document.getElementById(sectionId);
+    
     if (section) {
       console.log("Found section element:", section);
       const navbarHeight = 64;
-      const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-      console.log("Scrolling to position:", sectionPosition);
       
-      window.scrollTo({
-        top: sectionPosition,
-        behavior: "smooth"
-      });
+      // Ajout d'un petit délai pour laisser le menu se fermer
+      setTimeout(() => {
+        section.scrollIntoView({ behavior: "smooth" });
+        const finalPosition = window.scrollY - navbarHeight;
+        window.scrollTo({
+          top: finalPosition,
+          behavior: "smooth"
+        });
+        
+        console.log("Scrolled to position:", finalPosition);
+        setActiveSection(sectionId);
+      }, 100);
       
       setIsOpen(false);
-      setActiveSection(sectionId);
     } else {
       console.warn("Section not found:", sectionId);
     }
