@@ -1,62 +1,88 @@
 import { Button } from "./ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const Contact = () => {
   const { language } = useLanguage();
 
   return (
-    <div className="max-w-4xl mx-auto glass-card p-8 rounded-lg">
-      <h2 className="text-2xl font-bold mb-8 text-center">
+    <div className="max-w-4xl mx-auto glass-card p-8 rounded-lg bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
+      <h2 className="text-2xl font-bold mb-8 text-center text-[#18181b]">
         {language === 'en' ? 'Contact Me' : 'Me Contacter'}
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-6">
-          <div className="flex items-center gap-4 hover:translate-x-2 transition-transform">
-            <Mail className="h-6 w-6 text-[#18181b]" />
+      <div className="grid grid-cols-1 gap-8">
+        <motion.div 
+          className="space-y-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.div 
+            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-white/50 p-4 rounded-lg shadow-sm"
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="p-2 bg-[#18181b] rounded-full">
+              <Mail className="h-6 w-6 text-white" />
+            </div>
             <a 
               href="mailto:kikia.dia@gmail.com" 
-              className="text-[#18181b] hover:underline"
+              className="text-[#18181b] hover:underline font-medium"
             >
               kikia.dia@gmail.com
             </a>
-          </div>
+          </motion.div>
           
-          <div className="flex items-center gap-4 hover:translate-x-2 transition-transform">
-            <Phone className="h-6 w-6 text-[#18181b]" />
+          <motion.div 
+            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-white/50 p-4 rounded-lg shadow-sm"
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="p-2 bg-[#18181b] rounded-full">
+              <Phone className="h-6 w-6 text-white" />
+            </div>
             <a 
               href="tel:+33749457812" 
-              className="text-[#18181b] hover:underline"
+              className="text-[#18181b] hover:underline font-medium"
             >
               +33 7 49 45 78 12
             </a>
-          </div>
+          </motion.div>
           
-          <div className="flex items-center gap-4 hover:translate-x-2 transition-transform">
-            <Github className="h-6 w-6 text-[#18181b]" />
+          <motion.div 
+            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-white/50 p-4 rounded-lg shadow-sm"
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="p-2 bg-[#18181b] rounded-full">
+              <Github className="h-6 w-6 text-white" />
+            </div>
             <a 
               href="https://github.com/kikiadoc" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[#18181b] hover:underline"
+              className="text-[#18181b] hover:underline font-medium"
             >
               github.com/kikiadoc
             </a>
-          </div>
+          </motion.div>
           
-          <div className="flex items-center gap-4 hover:translate-x-2 transition-transform">
-            <Linkedin className="h-6 w-6 text-[#18181b]" />
+          <motion.div 
+            className="flex items-center gap-4 hover:translate-x-2 transition-transform bg-white/50 p-4 rounded-lg shadow-sm"
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="p-2 bg-[#18181b] rounded-full">
+              <Linkedin className="h-6 w-6 text-white" />
+            </div>
             <a 
               href="https://www.linkedin.com/in/kikia-dia" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[#18181b] hover:underline"
+              className="text-[#18181b] hover:underline font-medium"
             >
               linkedin.com/in/kikia-dia
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

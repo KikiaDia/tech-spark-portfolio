@@ -141,6 +141,9 @@ export const Education = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showCourses, setShowCourses] = useState<number | null>(null);
+  const [autoplayPlugin] = useState(() => 
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
   
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
@@ -149,7 +152,7 @@ export const Education = () => {
       slidesToScroll: 1,
       skipSnaps: false
     },
-    [Autoplay({ delay: 3000, stopOnInteraction: false, playOnInit: true })]
+    [autoplayPlugin]
   );
 
   useEffect(() => {
@@ -157,6 +160,13 @@ export const Education = () => {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
+      
+      // Pause autoplay when showing courses
+      if (showCourses !== null) {
+        autoplayPlugin.stop();
+      } else {
+        autoplayPlugin.play();
+      }
       
       emblaApi.reInit();
     }
@@ -166,7 +176,18 @@ export const Education = () => {
         emblaApi.destroy();
       }
     };
-  }, [emblaApi]);
+  }, [emblaApi, showCourses, autoplayPlugin]);
+
+  const handleShowCourses = (index: number) => {
+    setShowCourses(showCourses === index ? null : index);
+    if (autoplayPlugin) {
+      if (showCourses === index) {
+        autoplayPlugin.play();
+      } else {
+        autoplayPlugin.stop();
+      }
+    }
+  };
 
   return (
     <section id="education" className="py-20 px-4 bg-secondary/50">
@@ -181,12 +202,7 @@ export const Education = () => {
             align: "center",
             loop: true,
           }}
-          plugins={[
-            Autoplay({
-              delay: 3000,
-              stopOnInteraction: false,
-            }),
-          ]}
+          plugins={[autoplayPlugin]}
         >
           <CarouselContent>
             {education[language].map((edu, index) => (
@@ -228,7 +244,7 @@ export const Education = () => {
                       <CardContent>
                         <div 
                           className="flex items-center gap-2 mb-4 cursor-pointer hover:text-[#18181b]"
-                          onClick={() => setShowCourses(showCourses === index ? null : index)}
+                          onClick={() => handleShowCourses(index)}
                         >
                           <ChevronDown 
                             className={`w-5 h-5 transition-transform ${
@@ -276,7 +292,12 @@ export const Education = () => {
                     className={`w-2 h-2 rounded-full mx-1 ${
                       currentSlide === index ? 'bg-[#18181b]' : 'bg-gray-300'
                     }`}
-                    onClick={() => emblaApi?.scrollTo(index)}
+                    onClick={() => {
+                      emblaApi?.scrollTo(index);
+                      if (autoplayPlugin) {
+                        autoplayPlugin.stop();
+                      }
+                    }}
                   />
                 </PaginationItem>
               ))}

@@ -110,8 +110,9 @@
 }
 
 /* Education section */
+
 .education-bullet {
-  @apply w-1.5 h-1.5 bg-[#18181b] rounded-full flex-shrink-0;
+  @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
 }
 
 .education-course {
@@ -134,3 +135,4 @@
     @apply px-2;
   }
 }
+
