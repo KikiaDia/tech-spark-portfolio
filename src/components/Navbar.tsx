@@ -36,7 +36,7 @@ export const Navbar = () => {
     if (section) {
       console.log("Found section element:", section);
       const navbarHeight = 64;
-      const sectionPosition = section.offsetTop - navbarHeight;
+      const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
       console.log("Scrolling to position:", sectionPosition);
       
       window.scrollTo({

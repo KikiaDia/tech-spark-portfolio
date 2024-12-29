@@ -13,25 +13,25 @@ const Index = () => {
     <main className="min-h-screen">
       <Navbar />
       <div className="pt-16">
-        <section id="home">
+        <section id="home" className="scroll-mt-16">
           <Hero />
         </section>
-        <section id="education">
+        <section id="education" className="scroll-mt-16">
           <Education />
         </section>
-        <section id="experience">
+        <section id="experience" className="scroll-mt-16">
           <Experience />
         </section>
-        <section id="projects">
+        <section id="projects" className="scroll-mt-16">
           <Projects />
         </section>
-        <section id="skills">
+        <section id="skills" className="scroll-mt-16">
           <Skills />
         </section>
-        <section id="certifications">
+        <section id="certifications" className="scroll-mt-16">
           <Certifications />
         </section>
-        <section id="contact">
+        <section id="contact" className="scroll-mt-16">
           <Footer />
         </section>
       </div>
