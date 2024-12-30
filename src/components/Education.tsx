@@ -72,7 +72,7 @@ const education = {
     {
       period: "2018 – 2019",
       degree: "Baccalaureate in Experimental Sciences (S2) - With Highest Honors",
-      school: "High School",
+      school: "High School - Groupe Scolaire David Diop Mendes",
       location: "Dakar, Senegal",
       logo: "/lovable-uploads/cropped-logo-gsddm.jpg",
       schoolUrl: "https://www.ecoledaviddiopmendes.com/"
@@ -129,7 +129,7 @@ const education = {
     {
       period: "2018 – 2019",
       degree: "Baccalauréat Sciences Expérimentales (S2) - Mention Très Bien",
-      school: "Lycée",
+      school: "Lycée - Groupe Scolaire David Diop Mendes",
       location: "Dakar, Sénégal",
       logo: "/lovable-uploads/cropped-logo-gsddm.jpg",
       schoolUrl: "https://www.ecoledaviddiopmendes.com/"
