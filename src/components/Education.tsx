@@ -32,7 +32,7 @@ const education = {
       courses: [
         "Large Language Models (Transformer architecture)",
         "Static semantic representation",
-        "Prompt engineering (Langchain Ollama)",
+        "Prompt engineering (Langchain, Ollama)",
         "Retrieval Augmented Generation (RAG)",
         "Recurrent Neural Network (RNN)",
         "Convolutional Neural Network (CNN)",
