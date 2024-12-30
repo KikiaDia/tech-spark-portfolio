@@ -3,7 +3,7 @@ export const projects = {
     {
       title: "Agricultural Chatbot Advisor",
       description: "Built an intelligent chatbot for agricultural yield prediction and weather forecasting using RAG and LLMs.",
-      banner: "/lovable-uploads/chatbot.png",
+      banner: "/lovable-uploads/chat.png",
       tags: ["ChatBot", "RAG", "Streamlit", "Docker"],
       github: "https://github.com/KikiaDia/chatbot_agricole",
       videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/view?usp=sharing"
