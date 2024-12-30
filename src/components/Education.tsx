@@ -74,8 +74,8 @@ const education = {
       degree: "Baccalaureate in Experimental Sciences (S2) - With Highest Honors",
       school: "High School",
       location: "Dakar, Senegal",
-      logo: "/lovable-uploads/1af50d24-c56b-46d5-9807-1e29ab841b75.png",
-      schoolUrl: "#"
+      logo: "/lovable-uploads/cropped-logo-gsddm.jpg",
+      schoolUrl: "https://www.ecoledaviddiopmendes.com/"
     }
   ],
   fr: [
@@ -84,7 +84,7 @@ const education = {
       degree: "Master 2 Machine Learning et Traitement Automatique de la Langue (NLP)",
       school: "Nantes Université - UFR Sciences et Techniques",
       location: "Nantes, France",
-      logo: "/lovable-uploads/Logotype_NantesUniversite_Vecto_carre-440.png",
+      logo: "/lovable-uploads/universite_de_nantes_logo.jpeg",
       schoolUrl: "https://sciences-techniques.univ-nantes.fr/",
       courses: [
         "Large Language Models (Architecture Transformer)",
@@ -106,7 +106,7 @@ const education = {
       degree: "Diplôme d'ingénieur de Conception en Informatique",
       school: "École Polytechnique de Thiès",
       location: "Thiès, Sénégal",
-      logo: "/lovable-uploads/2e7c3ea0-3746-4917-ade5-e611f01f6fe0.png",
+      logo: "/lovable-uploads/1630601408996_ept.jpeg",
       schoolUrl: "https://ept.sn/",
       courses: [
         "Analyse de données",
@@ -131,8 +131,8 @@ const education = {
       degree: "Baccalauréat Sciences Expérimentales (S2) - Mention Très Bien",
       school: "Lycée",
       location: "Dakar, Sénégal",
-      logo: "/lovable-uploads/1af50d24-c56b-46d5-9807-1e29ab841b75.png",
-      schoolUrl: "#"
+      logo: "/lovable-uploads/cropped-logo-gsddm.jpg",
+      schoolUrl: "https://www.ecoledaviddiopmendes.com/"
     }
   ]
 };
