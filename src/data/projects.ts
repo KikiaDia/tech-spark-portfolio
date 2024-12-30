@@ -35,6 +35,7 @@ export const projects = {
       title: "PageRank Comparison with PySpark on GCP",
       description: "Compared PageRank with PySpark DataFrame and RDD, analyzing partitioning and cluster performance on Google Cloud Dataproc.",
       tags: ["Big Data", "PySpark", "Google Cloud Dataproc", "Distributed Computing", "PageRank", "Cluster Performance", "Data Partitioning"],
+      banner:"public/lovable-uploads/pagerank.png",
       github: "https://github.com/KikiaDia/PageRank_Project",
     }
   ],
@@ -73,6 +74,7 @@ export const projects = {
     {
       title: "Comparaison de PageRank avec PySpark sur GCP",
       description: "Comparaison de PageRank avec PySpark DataFrame et RDD, en analysant le partitionnement et les performances des clusters sur Google Cloud Dataproc.",
+      banner:"public/lovable-uploads/pagerank.png",
       tags: ["Big Data", "PySpark", "Google Cloud Dataproc", "Calcul Distribué", "PageRank", "Performance Cluster", "Partitionnement des Données"],
       github: "https://github.com/KikiaDia/PageRank_Project",
     }
