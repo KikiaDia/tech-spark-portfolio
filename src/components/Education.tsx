@@ -27,7 +27,7 @@ const education = {
       degree: "Master's Degree in Machine Learning and Natural Language Processing (NLP)",
       school: "Nantes University - Faculty of Sciences and Technology",
       location: "Nantes, France",
-      logo: "/lovable-uploads/a9d7bcfc-afa9-431a-b75b-c27e5c7ec6af.png",
+      logo: "/lovable-uploads/Logotype_NantesUniversite_Vecto_carre-440.png",
       schoolUrl: "https://sciences-techniques.univ-nantes.fr/",
       courses: [
         "Large Language Models (Transformer architecture)",
