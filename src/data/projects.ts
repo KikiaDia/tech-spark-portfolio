@@ -6,7 +6,7 @@ export const projects = {
       banner: "/lovable-uploads/chatbot.png",
       tags: ["ChatBot", "RAG", "Streamlit", "Docker"],
       github: "https://github.com/KikiaDia/chatbot_agricole",
-      videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/view?usp=sharing"
+      videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/preview"
     },
     {
       title: "Disaster Detection in Tweets",
@@ -42,7 +42,7 @@ export const projects = {
       banner: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png",
       tags: ["ChatBot", "RAG", "Streamlit", "Docker"],
       github: "https://github.com/KikiaDia/chatbot_agricole",
-      videoUrl: "https://youtu.be/your-video-id-1"
+      videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/preview"
     },
     {
       title: "Détection de Catastrophes dans les Tweets",
