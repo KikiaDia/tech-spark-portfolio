@@ -98,6 +98,36 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
                 {language === 'en' ? 'View Code' : 'Voir le Code'}
               </a>
             </Button>
+            {project.videoUrl && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] w-full sm:w-auto"
+                  >
+                    <Video className="w-4 h-4 mr-2" />
+                    {language === 'en' ? 'View Demo' : 'Voir la Démo'}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl w-[95vw] sm:w-full">
+                  <DialogHeader>
+                    <DialogTitle>{project.title}</DialogTitle>
+                  </DialogHeader>
+                  <div className="aspect-video">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={project.videoUrl}
+                      title={project.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            )}
           </div>
         </CardContent>
       </Card>
