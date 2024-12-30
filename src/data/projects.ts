@@ -6,7 +6,7 @@ export const projects = {
       banner: "/lovable-uploads/chatbot.png",
       tags: ["ChatBot", "RAG", "Streamlit", "Docker"],
       github: "https://github.com/KikiaDia/chatbot_agricole",
-      videoUrl: "https://drive.google.com/file/d/1Mj2it_w_z6DPVmN0BAhB1Gxghj2TWxJP/view?usp=sharing"
+      videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/view?usp=sharing&t=43"
     },
     {
       title: "Disaster Detection in Tweets",
