@@ -11,9 +11,9 @@ export const projects = {
     {
       title: "Disaster Detection in Tweets",
       description: "Development, optimization, and deployment of machine learning models to classify tweets into 'disaster' and 'non-disaster' categories.",
-      banner: "/lovable-uploads/69f3ee3d-7d45-4d59-bc70-6700666fc4e5.png",
+      banner: "/lovable-uploads/twitter.png",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
-      github: "#",
+      github: "https://github.com/dnaby/NLP-Disaster-Tweets-Detection?tab=readme-ov-file",
       videoUrl: "https://youtu.be/your-video-id-2"
     },
     {
@@ -47,9 +47,9 @@ export const projects = {
     {
       title: "Détection de Catastrophes dans les Tweets",
       description: "Développement, optimisation et déploiement de modèle de machine learning pour classifier les tweets en catégories 'catastrophe' et 'non-catastrophe'.",
-      banner: "/lovable-uploads/69f3ee3d-7d45-4d59-bc70-6700666fc4e5.png",
+      banner: "/lovable-uploads/twitter.png",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
-      github: "#",
+      github: "https://github.com/dnaby/NLP-Disaster-Tweets-Detection?tab=readme-ov-file",
       videoUrl: "https://youtu.be/your-video-id-2"
     },
     {
