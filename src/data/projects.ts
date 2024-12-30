@@ -25,8 +25,10 @@ export const projects = {
     {
       title: "Fintech Fraud Detection",
       description: "Developed ML models to detect suspicious transactions in Fintech, focusing on various transaction types.",
+      banner: "/lovable-uploads/fraud.png",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
       github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
+      videoUrl:"https://drive.google.com/file/d/1GVbT7NfZlxY0y0DsuEwc3emIHBdxcT7_/view?usp=sharing"
     },
     {
       title: "PageRank Comparison with PySpark on GCP",
@@ -55,6 +57,7 @@ export const projects = {
     {
       title: "Pipeline en temps réel de données météo",
       description: "Mise en place d'un pipeline ETL basé sur Microsoft Azure pour traiter et visualiser les données météorologiques avec prévisions climatiques.",
+      banner: "/lovable-uploads/fraud.png",
       tags: ["Azure", "Databricks", "Power BI", "Machine Learning"],
       github: "https://github.com/KikiaDia/Real-time-Weather-Pipeline/tree/main",
     },
@@ -62,7 +65,9 @@ export const projects = {
       title: "Détection de Fraude Fintech",
       description: "Développement de modèles ML pour détecter les transactions suspectes dans le secteur Fintech.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
+      banner: "/lovable-uploads/fraud.png",
       github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
+      videoUrl:"https://drive.google.com/file/d/1GVbT7NfZlxY0y0DsuEwc3emIHBdxcT7_/view?usp=sharing"
     },
     {
       title: "Comparaison de PageRank avec PySpark sur GCP",
