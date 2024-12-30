@@ -7,7 +7,7 @@ export const experiences = {
       description: "Improving Customer Experience through AI and Data",
       logo: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png",
       companyUrl: "https://www.orange.sn/",
-      projectUrl: "https://github.com/yourusername/orange-sonatel-project",
+      projectUrl: "https://drive.google.com/file/d/1BLAQ7pMGUgEGgywC0yVZWtlUVzpXQv4V/view?usp=sharing",
       responsibilities: [
         "Development of sentiment analysis model to detect vulnerable customers during phone interactions",
         "Development of Topic Modeling to detect customer call patterns",
