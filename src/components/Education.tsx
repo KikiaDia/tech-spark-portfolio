@@ -84,7 +84,7 @@ const education = {
       degree: "Master 2 Machine Learning et Traitement Automatique de la Langue (NLP)",
       school: "Nantes Université - UFR Sciences et Techniques",
       location: "Nantes, France",
-      logo: "/lovable-uploads/a9d7bcfc-afa9-431a-b75b-c27e5c7ec6af.png",
+      logo: "/lovable-uploads/Logotype_NantesUniversite_Vecto_carre-440.png",
       schoolUrl: "https://sciences-techniques.univ-nantes.fr/",
       courses: [
         "Large Language Models (Architecture Transformer)",
