@@ -49,7 +49,7 @@ const education = {
       degree: "Engineering Degree in Computer Science",
       school: "Polytechnic School of Thiès",
       location: "Thiès, Senegal",
-      logo: "/lovable-uploads/2e7c3ea0-3746-4917-ade5-e611f01f6fe0.png",
+      logo: "/lovable-uploads/1630601408996_ept.jpeg",
       schoolUrl: "https://ept.sn/",
       courses: [
         "Data Analysis",
