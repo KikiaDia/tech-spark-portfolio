@@ -78,11 +78,9 @@ export const Projects = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="absolute -left-12 top-1/2 -translate-y-1/2">
-            <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
-          </div>
-          <div className="absolute -right-12 top-1/2 -translate-y-1/2">
-            <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <div className="carousel-navigation">
+            <CarouselPrevious />
+            <CarouselNext />
           </div>
         </Carousel>
         <ProjectsPagination 

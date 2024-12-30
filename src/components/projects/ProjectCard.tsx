@@ -30,11 +30,44 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
       <Card className="glass-card hover:bg-white hover:text-[#18181b] overflow-hidden h-full">
         {project.banner && (
           <div className="relative h-48 w-full overflow-hidden">
-            <img
-              src={project.banner}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-            />
+            {project.videoUrl ? (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div className="cursor-pointer group relative">
+                    <img
+                      src={project.banner}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <Video className="w-12 h-12 text-white" />
+                    </div>
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl w-[95vw] sm:w-full">
+                  <DialogHeader>
+                    <DialogTitle>{project.title}</DialogTitle>
+                  </DialogHeader>
+                  <div className="aspect-video">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={project.videoUrl}
+                      title={project.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            ) : (
+              <img
+                src={project.banner}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+            )}
           </div>
         )}
         <CardHeader>
@@ -70,11 +103,11 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
                 <DialogTrigger asChild>
                   <Button 
                     variant="outline" 
-                    size="sm" 
+                    size="sm"
                     className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] w-full sm:w-auto"
                   >
                     <Video className="w-4 h-4 mr-2" />
-                    {language === 'en' ? 'Watch Demo' : 'Voir la Démo'}
+                    {language === 'en' ? 'View Demo' : 'Voir la Démo'}
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-w-4xl w-[95vw] sm:w-full">
@@ -85,7 +118,7 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
                     <iframe
                       width="100%"
                       height="100%"
-                      src={project.videoUrl.replace('youtu.be/', 'youtube.com/embed/')}
+                      src={project.videoUrl}
                       title={project.title}
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

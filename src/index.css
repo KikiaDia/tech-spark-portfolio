@@ -73,6 +73,16 @@
   }
 }
 
+/* Carousel navigation for all screen sizes */
+.CarouselPrevious,
+.CarouselNext {
+  @apply !flex !static !translate-y-0 !translate-x-0 bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] z-10 mx-2;
+}
+
+.carousel-navigation {
+  @apply flex justify-center items-center mt-4 space-x-2;
+}
+
 /* Mobile optimization */
 @media (max-width: 640px) {
   .hero-content {
@@ -114,50 +124,9 @@
   .hero-buttons button {
     @apply text-sm py-1.5;
   }
+}
 
-  /* Education section */
-  .education-bullet {
-    @apply w-1 h-1 bg-[#18181b] rounded-full flex-shrink-0;
-  }
-
-  .education-course {
-    @apply text-sm text-muted-foreground flex items-center gap-2;
-  }
-
-  /* Project link color */
-  .project-link {
-    @apply text-[#18181b] hover:text-[#18181b]/80 transition-colors;
-  }
-
-  /* Carousel responsiveness */
-  @media (max-width: 768px) {
-    .CarouselPrevious,
-    .CarouselNext {
-      @apply hidden md:flex;
-    }
-    
-    .carousel-container {
-      @apply px-2;
-    }
-
-    .section-title {
-      @apply text-2xl;
-    }
-
-    .glass-card {
-      @apply mx-2;
-    }
-
-    .project-card {
-      @apply basis-full;
-    }
-
-    .skills-card {
-      @apply basis-full;
-    }
-
-    .certifications-card {
-      @apply basis-full;
-    }
-  }
+/* Tablet optimization */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* No specific overrides needed for carousel navigation as it's handled by the global styles */
 }
