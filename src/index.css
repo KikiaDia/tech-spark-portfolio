@@ -73,6 +73,16 @@
   }
 }
 
+/* Carousel navigation for all screen sizes */
+.CarouselPrevious,
+.CarouselNext {
+  @apply !flex !static !translate-y-0 !translate-x-0 bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] z-10 mx-2;
+}
+
+.carousel-navigation {
+  @apply flex justify-center items-center mt-4 space-x-2;
+}
+
 /* Mobile optimization */
 @media (max-width: 640px) {
   .hero-content {
@@ -114,29 +124,9 @@
   .hero-buttons button {
     @apply text-sm py-1.5;
   }
-
-  /* Carousel navigation */
-  .CarouselPrevious,
-  .CarouselNext {
-    @apply !flex !static !translate-y-0 !translate-x-0 bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] z-10 mx-2;
-  }
-
-  /* Carousel navigation container */
-  .carousel-navigation {
-    @apply flex justify-center items-center mt-4 space-x-2;
-  }
 }
 
 /* Tablet optimization */
 @media (min-width: 641px) and (max-width: 1024px) {
-  /* Carousel navigation */
-  .CarouselPrevious,
-  .CarouselNext {
-    @apply !flex !static !translate-y-0 !translate-x-0 bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] z-10 mx-2;
-  }
-
-  /* Carousel navigation container */
-  .carousel-navigation {
-    @apply flex justify-center items-center mt-4 space-x-2;
-  }
+  /* No specific overrides needed for carousel navigation as it's handled by the global styles */
 }
