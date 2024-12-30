@@ -121,8 +121,10 @@ export const Certifications = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
-          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <div className="carousel-navigation">
+            <CarouselPrevious />
+            <CarouselNext />
+          </div>
         </Carousel>
         <div className="mt-4 flex justify-center">
           <Pagination>

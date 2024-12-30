@@ -78,8 +78,10 @@ export const Projects = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
-          <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <div className="carousel-navigation">
+            <CarouselPrevious />
+            <CarouselNext />
+          </div>
         </Carousel>
         <ProjectsPagination 
           currentSlide={currentSlide}
