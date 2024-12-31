@@ -9,12 +9,12 @@ export const projects = {
       videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/preview"
     },
     {
-      title: "Fintech Fraud Detection",
-      description: "Developed ML models to detect suspicious transactions in Fintech, focusing on various transaction types.",
-      banner: "/lovable-uploads/fraud.png",
+      title: "Disaster Detection in Tweets",
+      description: "Development, optimization, and deployment of machine learning models to classify tweets into 'disaster' and 'non-disaster' categories.",
+      banner: "/lovable-uploads/twitter.png",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
-      github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
-      videoUrl:"https://drive.google.com/file/d/1GVbT7NfZlxY0y0DsuEwc3emIHBdxcT7_/view?usp=sharing"
+      github: "https://github.com/dnaby/NLP-Disaster-Tweets-Detection?tab=readme-ov-file",
+      videoUrl: "https://youtu.be/your-video-id-2"
     },
     {
       title: "Real-time Weather Pipeline",
@@ -24,11 +24,12 @@ export const projects = {
       github: "https://github.com/KikiaDia/Real-time-Weather-Pipeline/tree/main",
     },
     {
-      title: "Disaster Detection in Tweets",
-      description: "Development, optimization, and deployment of machine learning models to classify tweets into 'disaster' and 'non-disaster' categories.",
-      banner: "/lovable-uploads/twitter.png",
+      title: "Fintech Fraud Detection",
+      description: "Developed ML models to detect suspicious transactions in Fintech, focusing on various transaction types.",
+      banner: "/lovable-uploads/fraud.png",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
-      github: "https://github.com/dnaby/NLP-Disaster-Tweets-Detection?tab=readme-ov-file",
+      github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
+      videoUrl:"https://drive.google.com/file/d/1GVbT7NfZlxY0y0DsuEwc3emIHBdxcT7_/view?usp=sharing"
     },
     {
       title: "PageRank Comparison with PySpark on GCP",
@@ -48,12 +49,12 @@ export const projects = {
       videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/preview"
     },
     {
-      title: "Détection de Fraude Fintech",
-      description: "Développement de modèles ML pour détecter les transactions suspectes dans le secteur Fintech.",
+      title: "Détection de Catastrophes dans les Tweets",
+      description: "Développement, optimisation et déploiement de modèle de machine learning pour classifier les tweets en catégories 'catastrophe' et 'non-catastrophe'.",
+      banner: "/lovable-uploads/twitter.png",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
-      banner: "/lovable-uploads/fraud.png",
-      github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
-      videoUrl:"https://drive.google.com/file/d/1GVbT7NfZlxY0y0DsuEwc3emIHBdxcT7_/view?usp=sharing"
+      github: "https://github.com/dnaby/NLP-Disaster-Tweets-Detection?tab=readme-ov-file",
+      videoUrl: "https://youtu.be/your-video-id-2"
     },
     {
       title: "Pipeline en temps réel de données météo",
@@ -63,11 +64,12 @@ export const projects = {
       github: "https://github.com/KikiaDia/Real-time-Weather-Pipeline/tree/main",
     },
     {
-      title: "Détection de Catastrophes dans les Tweets",
-      description: "Développement, optimisation et déploiement de modèle de machine learning pour classifier les tweets en catégories 'catastrophe' et 'non-catastrophe'.",
-      banner: "/lovable-uploads/twitter.png",
+      title: "Détection de Fraude Fintech",
+      description: "Développement de modèles ML pour détecter les transactions suspectes dans le secteur Fintech.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
-      github: "https://github.com/dnaby/NLP-Disaster-Tweets-Detection?tab=readme-ov-file",
+      banner: "/lovable-uploads/fraud.png",
+      github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
+      videoUrl:"https://drive.google.com/file/d/1GVbT7NfZlxY0y0DsuEwc3emIHBdxcT7_/view?usp=sharing"
     },
     {
       title: "Comparaison de PageRank avec PySpark sur GCP",

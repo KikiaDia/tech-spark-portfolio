@@ -27,9 +27,9 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
       viewport={{ once: true }}
       className="p-1"
     >
-      <Card className="glass-card hover:bg-white hover:text-[#222222] overflow-hidden project-card">
+      <Card className="glass-card hover:bg-white hover:text-[#18181b] overflow-hidden h-full">
         {project.banner && (
-          <div className="relative overflow-hidden">
+          <div className="relative h-48 w-full overflow-hidden">
             {project.videoUrl ? (
               <Dialog>
                 <DialogTrigger asChild>
@@ -37,7 +37,7 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
                     <img
                       src={project.banner}
                       alt={project.title}
-                      className="project-banner transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <Video className="w-12 h-12 text-white" />
@@ -52,7 +52,7 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
                     <iframe
                       width="100%"
                       height="100%"
-                      src={project.videoUrl?.replace('/view', '/preview')}
+                      src={project.videoUrl}
                       title={project.title}
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -65,7 +65,7 @@ export const ProjectCard = ({ project, index, language }: ProjectCardProps) => {
               <img
                 src={project.banner}
                 alt={project.title}
-                className="project-banner transition-transform duration-300 hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
               />
             )}
           </div>
