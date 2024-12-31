@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { ChevronDown, Theater, BookOpen } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -71,17 +71,6 @@ const skillCategories = [
   },
 ];
 
-const languageSkills = [
-  { name: "Français", level: 95 },
-  { name: "English", level: 90 },
-];
-
-const hobbies = [
-  { name: "Théâtre", icon: Theater },
-  { name: "Jogging", icon: Theater }, // Using Theater as Running is not available
-  { name: "Lecture", icon: BookOpen },
-];
-
 export const Skills = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -117,7 +106,7 @@ export const Skills = () => {
   }, [emblaApi]);
 
   return (
-    <section id="skills" className="py-12 px-4 bg-secondary/50">
+    <section id="skills" className="py-20 px-4 bg-secondary/50">
       <h2 className="section-title">Skills & Expertise</h2>
       <div className="max-w-6xl mx-auto">
         <Carousel 
@@ -147,7 +136,7 @@ export const Skills = () => {
                     <CardHeader className="flex flex-row items-center justify-between">
                       <CardTitle className="text-xl">{category.title}</CardTitle>
                       <ChevronDown 
-                        className={`w-5 h-5 transition-transform ${
+                        className={`w-5 h-5 transition-transform animate-bounce ${
                           selectedCategory === index ? 'rotate-180' : ''
                         }`}
                       />
@@ -184,46 +173,25 @@ export const Skills = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="carousel-navigation">
-            <CarouselPrevious className="bg-black text-white hover:bg-black/80" />
-            <CarouselNext className="bg-black text-white hover:bg-black/80" />
-          </div>
+          <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
+          <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
         </Carousel>
-
-        {/* Language Skills */}
-        <div className="mt-8 max-w-2xl mx-auto">
-          <h3 className="text-2xl font-bold mb-6 text-center">Language Proficiency</h3>
-          <div className="space-y-6">
-            {languageSkills.map((language, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span>{language.name}</span>
-                  <span>{language.level}%</span>
-                </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${language.level}%` }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                    className="h-full bg-[#18181b] rounded-full"
+        <div className="mt-4 flex justify-center">
+          <Pagination>
+            <PaginationContent>
+              {skillCategories.map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    isActive={currentSlide === index}
+                    className={`w-2 h-2 rounded-full mx-1 ${
+                      currentSlide === index ? 'bg-[#18181b]' : 'bg-gray-300'
+                    }`}
+                    onClick={() => emblaApi?.scrollTo(index)}
                   />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Hobbies */}
-        <div className="mt-8 max-w-2xl mx-auto">
-          <h3 className="text-2xl font-bold mb-6 text-center">Hobbies</h3>
-          <div className="grid grid-cols-3 gap-4">
-            {hobbies.map((hobby, index) => (
-              <Card key={index} className="glass-card p-4 flex flex-col items-center justify-center">
-                <hobby.icon className="w-8 h-8 mb-2" />
-                <span className="text-sm font-medium">{hobby.name}</span>
-              </Card>
-            ))}
-          </div>
+                </PaginationItem>
+              ))}
+            </PaginationContent>
+          </Pagination>
         </div>
       </div>
     </section>

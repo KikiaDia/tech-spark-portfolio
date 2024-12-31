@@ -1,28 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
-  --radius: 0.75rem;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.75rem;
+  }
 }
 
 @layer base {
@@ -40,7 +42,7 @@
 }
 
 .section-title {
-  @apply text-3xl font-bold mb-6 text-center;
+  @apply text-3xl font-bold mb-8 text-center;
 }
 
 .fade-in {
@@ -74,23 +76,57 @@
 /* Carousel navigation for all screen sizes */
 .CarouselPrevious,
 .CarouselNext {
-  @apply !flex !static !translate-y-0 !translate-x-0 bg-black text-white hover:bg-black/80 z-10 mx-2;
+  @apply !flex !static !translate-y-0 !translate-x-0 bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] z-10 mx-2;
 }
 
 .carousel-navigation {
   @apply flex justify-center items-center mt-4 space-x-2;
 }
 
-/* Section spacing */
-section {
-  @apply py-12;
+/* Mobile optimization */
+@media (max-width: 640px) {
+  .hero-content {
+    @apply flex-col-reverse px-4;
+  }
+
+  .mobile-hero-content {
+    @apply order-1;
+  }
+
+  .mobile-hero-image {
+    @apply order-2 mb-8;
+  }
+
+  .hero-image {
+    @apply w-full max-w-[250px] mx-auto;
+  }
+
+  .hero-details {
+    @apply grid-cols-1 gap-2 px-4;
+  }
+
+  .hero-text {
+    @apply text-sm px-4 whitespace-pre-line break-words;
+  }
+  
+  .hero-title {
+    @apply text-3xl px-4;
+  }
+  
+  .hero-subtitle {
+    @apply text-xl px-4 whitespace-pre-line;
+  }
+  
+  .hero-buttons {
+    @apply flex-col space-y-4 px-4 max-w-[280px] mx-auto;
+  }
+
+  .hero-buttons button {
+    @apply text-sm py-1.5;
+  }
 }
 
-/* Project card standardization */
-.project-card {
-  @apply h-full;
-}
-
-.project-banner {
-  @apply h-48 w-full object-cover;
+/* Tablet optimization */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* No specific overrides needed for carousel navigation as it's handled by the global styles */
 }
