@@ -27,6 +27,7 @@ export const projects = {
       description: "Developed ML models to detect suspicious transactions in Fintech, focusing on various transaction types.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
       github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
+      videoUrl: "https://drive.google.com/file/d/YOUR_FILE_ID/preview" // Replace YOUR_FILE_ID with the actual file ID
     },
     {
       title: "PageRank Comparison with PySpark on GCP",
@@ -63,6 +64,7 @@ export const projects = {
       description: "Développement de modèles ML pour détecter les transactions suspectes dans le secteur Fintech.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
       github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
+      videoUrl: "https://drive.google.com/file/d/YOUR_FILE_ID/preview" // Replace YOUR_FILE_ID with the actual file ID
     },
     {
       title: "Comparaison de PageRank avec PySpark sur GCP",
