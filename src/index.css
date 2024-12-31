@@ -42,11 +42,7 @@
 }
 
 .section-title {
-  @apply text-3xl font-bold mb-6 text-center;
-}
-
-section {
-  @apply py-12; /* Reduced spacing between sections */
+  @apply text-3xl font-bold mb-8 text-center;
 }
 
 .fade-in {
@@ -69,7 +65,7 @@ section {
   }
 
   .personal-details-item {
-    @apply text-sm py-2 px-4 bg-[#222222] text-white rounded-2xl flex items-center justify-start transition-colors hover:bg-[#222222]/90 border-none;
+    @apply text-sm py-2 px-4 bg-[#18181b] text-white rounded-2xl flex items-center justify-start transition-colors hover:bg-[#18181b]/90 border-none;
   }
 
   .personal-details-icon {
@@ -80,40 +76,14 @@ section {
 /* Carousel navigation for all screen sizes */
 .CarouselPrevious,
 .CarouselNext {
-  @apply !flex !static !translate-y-0 !translate-x-0 bg-[#222222] text-white hover:bg-white hover:text-[#222222] z-10 mx-2;
+  @apply !flex !static !translate-y-0 !translate-x-0 bg-[#18181b] text-white hover:bg-white hover:text-[#18181b] z-10 mx-2;
 }
 
 .carousel-navigation {
   @apply flex justify-center items-center mt-4 space-x-2;
 }
 
-/* Project card standardization */
-.project-card {
-  @apply h-full;
-}
-
-.project-banner {
-  @apply h-48 w-full object-cover;
-}
-
-/* Language proficiency gauge */
-.language-gauge {
-  @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
-}
-
-.language-gauge-fill {
-  @apply h-full bg-[#222222] rounded-full transition-all duration-500;
-}
-
-/* Hobbies section */
-.hobbies-container {
-  @apply flex flex-wrap gap-4 justify-center mt-4;
-}
-
-.hobby-item {
-  @apply flex items-center gap-2 px-4 py-2 bg-[#222222] text-white rounded-full text-sm;
-}
-
+/* Mobile optimization */
 @media (max-width: 640px) {
   .hero-content {
     @apply flex-col-reverse px-4;
