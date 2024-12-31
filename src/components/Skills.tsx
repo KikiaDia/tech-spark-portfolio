@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Theater, Running, BookOpen } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -233,18 +233,35 @@ export const Skills = () => {
       <div className="mt-12">
         <h3 className="text-xl font-semibold mb-6 text-center">Hobbies</h3>
         <div className="hobbies-container">
-          {hobbies.map((hobby, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="hobby-item"
-            >
-              <lucide-react icon={hobby.icon} className="w-4 h-4" />
-              <span>{hobby.name}</span>
-            </motion.div>
-          ))}
+          {hobbies.map((hobby, index) => {
+            let Icon;
+            switch (hobby.icon) {
+              case "Theater":
+                Icon = Theater;
+                break;
+              case "Running":
+                Icon = Running;
+                break;
+              case "BookOpen":
+                Icon = BookOpen;
+                break;
+              default:
+                Icon = BookOpen;
+            }
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="hobby-item"
+              >
+                <Icon className="w-4 h-4" />
+                <span>{hobby.name}</span>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
