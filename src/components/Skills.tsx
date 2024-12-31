@@ -71,6 +71,17 @@ const skillCategories = [
   },
 ];
 
+const languages = [
+  { name: "Français", level: 100 },
+  { name: "Anglais", level: 90 }
+];
+
+const hobbies = [
+  { name: "Théâtre", icon: "Theater" },
+  { name: "Jogging", icon: "Running" },
+  { name: "Lecture", icon: "BookOpen" }
+];
+
 export const Skills = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -106,7 +117,7 @@ export const Skills = () => {
   }, [emblaApi]);
 
   return (
-    <section id="skills" className="py-20 px-4 bg-secondary/50">
+    <section id="skills" className="py-12 px-4 bg-secondary/50">
       <h2 className="section-title">Skills & Expertise</h2>
       <div className="max-w-6xl mx-auto">
         <Carousel 
@@ -192,6 +203,48 @@ export const Skills = () => {
               ))}
             </PaginationContent>
           </Pagination>
+        </div>
+      </div>
+
+      {/* Language Proficiency */}
+      <div className="max-w-2xl mx-auto mt-12">
+        <h3 className="text-xl font-semibold mb-6 text-center">Language Proficiency</h3>
+        <div className="space-y-4">
+          {languages.map((lang, index) => (
+            <div key={index} className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>{lang.name}</span>
+                <span>{lang.level}%</span>
+              </div>
+              <div className="language-gauge">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${lang.level}%` }}
+                  transition={{ duration: 1, delay: index * 0.1 }}
+                  className="language-gauge-fill"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Hobbies */}
+      <div className="mt-12">
+        <h3 className="text-xl font-semibold mb-6 text-center">Hobbies</h3>
+        <div className="hobbies-container">
+          {hobbies.map((hobby, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="hobby-item"
+            >
+              <lucide-react icon={hobby.icon} className="w-4 h-4" />
+              <span>{hobby.name}</span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
