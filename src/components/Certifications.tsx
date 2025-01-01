@@ -108,7 +108,7 @@ export const Certifications = () => {
                 >
                   <Card className="glass-card hover-scale">
                     <CardHeader className="text-center">
-                      <div className="mx-auto mb-4 relative w-24 h-24 rounded-full overflow-hidden">
+                      <div className="mx-auto mb-4 relative w-24 h-24 rounded-full overflow-hidden border-2 border-[#18181b]">
                         <img
                           src={cert.image}
                           alt={cert.title}
