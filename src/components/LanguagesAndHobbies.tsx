@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Languages, Theater, Run, Utensils } from "lucide-react";
+import { Languages, Theater, Running, Utensils } from "lucide-react";
 
 const languageSkills = {
   en: [
@@ -17,12 +17,12 @@ const languageSkills = {
 const hobbies = {
   en: [
     { name: "Theater", icon: Theater },
-    { name: "Jogging", icon: Run },
+    { name: "Jogging", icon: Running },
     { name: "Cooking", icon: Utensils }
   ],
   fr: [
     { name: "Théâtre", icon: Theater },
-    { name: "Jogging", icon: Run },
+    { name: "Jogging", icon: Running },
     { name: "Cuisine", icon: Utensils }
   ]
 };
