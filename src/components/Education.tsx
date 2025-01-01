@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Languages, Theater, Running, BookOpen } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -19,6 +19,7 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination";
+import { Progress } from "./ui/progress";
 
 const education = {
   en: [
@@ -137,6 +138,30 @@ const education = {
   ]
 };
 
+const languages = {
+  en: [
+    { language: "French", level: "Native", progress: 100 },
+    { language: "English", level: "Professional", progress: 90 }
+  ],
+  fr: [
+    { language: "Français", level: "Natif", progress: 100 },
+    { language: "Anglais", level: "Professionnel", progress: 90 }
+  ]
+};
+
+const hobbies = {
+  en: [
+    { name: "Theater", icon: Theater, description: "Amateur theater enthusiast" },
+    { name: "Jogging", icon: Running, description: "Regular runner" },
+    { name: "Reading", icon: BookOpen, description: "Book lover" }
+  ],
+  fr: [
+    { name: "Théâtre", icon: Theater, description: "Passionné de théâtre amateur" },
+    { name: "Jogging", icon: Running, description: "Coureur régulier" },
+    { name: "Lecture", icon: BookOpen, description: "Amateur de lecture" }
+  ]
+};
+
 export const Education = () => {
   const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -161,7 +186,6 @@ export const Education = () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
       
-      // Pause autoplay when showing courses
       if (showCourses !== null) {
         autoplayPlugin.stop();
       } else {
@@ -190,7 +214,7 @@ export const Education = () => {
   };
 
   return (
-    <section id="education" className="py-20 px-4 bg-secondary/50">
+    <section id="education" className="py-16 px-4 bg-secondary/50">
       <h2 className="section-title">
         {language === 'en' ? 'Education' : 'Formation'}
       </h2>
@@ -262,13 +286,18 @@ export const Education = () => {
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="grid grid-cols-1 md:grid-cols-2 gap-2"
+                            className="grid grid-cols-1 md:grid-cols-2 gap-3"
                           >
                             {edu.courses.map((course, idx) => (
-                              <div key={idx} className="education-course">
-                                <span className="education-bullet"></span>
+                              <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                                className="bg-[#18181b] text-white p-3 rounded-lg hover:bg-[#18181b]/90 transition-colors"
+                              >
                                 {course}
-                              </div>
+                              </motion.div>
                             ))}
                           </motion.div>
                         )}
@@ -282,6 +311,49 @@ export const Education = () => {
           <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
           <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
         </Carousel>
+        
+        {/* Languages Section */}
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 justify-center">
+            <Languages className="w-6 h-6" />
+            {language === 'en' ? 'Languages' : 'Langues'}
+          </h3>
+          <div className="max-w-2xl mx-auto space-y-4">
+            {languages[language].map((lang, index) => (
+              <div key={index} className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">{lang.language}</span>
+                  <span className="text-sm text-muted-foreground">{lang.level}</span>
+                </div>
+                <Progress value={lang.progress} className="h-2" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Hobbies Section */}
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold mb-6 text-center">
+            {language === 'en' ? 'Hobbies' : 'Loisirs'}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {hobbies[language].map((hobby, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white/30 backdrop-blur-md p-4 rounded-lg flex flex-col items-center gap-2 hover:bg-white/40 transition-colors"
+              >
+                <hobby.icon className="w-8 h-8 text-[#18181b]" />
+                <h4 className="font-medium">{hobby.name}</h4>
+                <p className="text-sm text-muted-foreground text-center">{hobby.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-4 flex justify-center">
           <Pagination>
             <PaginationContent>

@@ -24,8 +24,15 @@ const certifications = {
       title: "Introduction to Natural Language Processing",
       issuer: "OpenClassroom",
       date: "November 2024",
-      link: "#",
+      link: "https://openclassrooms.com/fr/course-certificates/9035733336",
       image: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png"
+    },
+    {
+      title: "Power BI Essential Training",
+      issuer: "LinkedIn Learning",
+      date: "March 2024",
+      link: "https://www.linkedin.com/learning/certificates/55e01c83986c7ca3775455c5bb76f988f4a33ce0535ed0b2d3644c2b8f12e425",
+      image: "/lovable-uploads/69f3ee3d-7d45-4d59-bc70-6700666fc4e5.png"
     }
   ],
   fr: [
@@ -33,8 +40,15 @@ const certifications = {
       title: "Introduction au Traitement du Langage Naturel",
       issuer: "OpenClassroom",
       date: "Novembre 2024",
-      link: "#",
+      link: "https://openclassrooms.com/fr/course-certificates/9035733336",
       image: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png"
+    },
+    {
+      title: "Formation Essentielle Power BI",
+      issuer: "LinkedIn Learning",
+      date: "Mars 2024",
+      link: "https://www.linkedin.com/learning/certificates/55e01c83986c7ca3775455c5bb76f988f4a33ce0535ed0b2d3644c2b8f12e425",
+      image: "/lovable-uploads/69f3ee3d-7d45-4d59-bc70-6700666fc4e5.png"
     }
   ]
 };
@@ -74,7 +88,7 @@ export const Certifications = () => {
   }, [emblaApi]);
 
   return (
-    <section id="certifications" className="py-20 px-4 bg-secondary/50">
+    <section id="certifications" className="py-16 px-4 bg-secondary/50">
       <h2 className="section-title">
         {language === 'en' ? 'Certifications' : 'Certifications'}
       </h2>
