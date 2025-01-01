@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -18,9 +19,6 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination";
-import { CourseList } from "./education/CourseList";
-import { LanguageSkills } from "./education/LanguageSkills";
-import { Hobbies } from "./education/Hobbies";
 
 const education = {
   en: [
@@ -163,6 +161,7 @@ export const Education = () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
       });
       
+      // Pause autoplay when showing courses
       if (showCourses !== null) {
         autoplayPlugin.stop();
       } else {
@@ -191,12 +190,20 @@ export const Education = () => {
   };
 
   return (
-    <section id="education" className="py-16 px-4 bg-secondary/50">
+    <section id="education" className="py-20 px-4 bg-secondary/50">
       <h2 className="section-title">
         {language === 'en' ? 'Education' : 'Formation'}
       </h2>
       <div className="max-w-6xl mx-auto">
-        <Carousel ref={emblaRef} className="w-full">
+        <Carousel 
+          ref={emblaRef} 
+          className="w-full"
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          plugins={[autoplayPlugin]}
+        >
           <CarouselContent>
             {education[language].map((edu, index) => (
               <CarouselItem key={index} className="w-full">
@@ -249,16 +256,21 @@ export const Education = () => {
                           </span>
                         </div>
                         
-                        <CourseList 
-                          courses={edu.courses} 
-                          isVisible={showCourses === index}
-                        />
-
-                        {index === 0 && (
-                          <>
-                            <LanguageSkills />
-                            <Hobbies />
-                          </>
+                        {showCourses === index && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="grid grid-cols-1 md:grid-cols-2 gap-2"
+                          >
+                            {edu.courses.map((course, idx) => (
+                              <div key={idx} className="education-course">
+                                <span className="education-bullet"></span>
+                                {course}
+                              </div>
+                            ))}
+                          </motion.div>
                         )}
                       </CardContent>
                     )}
