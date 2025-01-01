@@ -24,8 +24,15 @@ const certifications = {
       title: "Introduction to Natural Language Processing",
       issuer: "OpenClassroom",
       date: "November 2024",
-      link: "#",
-      image: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png"
+      link: "https://openclassrooms.com/fr/course-certificates/9035733336",
+      image: "/lovable-uploads/e03b699d-4206-4bb9-8974-23f44a36d754.png"
+    },
+    {
+      title: "Power BI Essential Training",
+      issuer: "LinkedIn Learning",
+      date: "March 2024",
+      link: "https://www.linkedin.com/learning/certificates/55e01c83986c7ca3775455c5bb76f988f4a33ce0535ed0b2d3644c2b8f12e425",
+      image: "/lovable-uploads/f11e4846-d360-4c83-bf57-86e1bedc7e79.png"
     }
   ],
   fr: [
@@ -33,8 +40,15 @@ const certifications = {
       title: "Introduction au Traitement du Langage Naturel",
       issuer: "OpenClassroom",
       date: "Novembre 2024",
-      link: "#",
-      image: "/lovable-uploads/44a8ec3d-64f0-4af0-af25-90b3e3d6bb62.png"
+      link: "https://openclassrooms.com/fr/course-certificates/9035733336",
+      image: "/lovable-uploads/e03b699d-4206-4bb9-8974-23f44a36d754.png"
+    },
+    {
+      title: "Formation Essentielle Power BI",
+      issuer: "LinkedIn Learning",
+      date: "Mars 2024",
+      link: "https://www.linkedin.com/learning/certificates/55e01c83986c7ca3775455c5bb76f988f4a33ce0535ed0b2d3644c2b8f12e425",
+      image: "/lovable-uploads/f11e4846-d360-4c83-bf57-86e1bedc7e79.png"
     }
   ]
 };
