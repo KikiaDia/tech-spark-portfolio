@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { ChevronDown, Languages, Theater, Running, BookOpen } from "lucide-react";
+import { ChevronDown, Languages, Theater, Run, BookOpen } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -152,12 +152,12 @@ const languages = {
 const hobbies = {
   en: [
     { name: "Theater", icon: Theater, description: "Amateur theater enthusiast" },
-    { name: "Jogging", icon: Running, description: "Regular runner" },
+    { name: "Jogging", icon: Run, description: "Regular runner" },
     { name: "Reading", icon: BookOpen, description: "Book lover" }
   ],
   fr: [
     { name: "Théâtre", icon: Theater, description: "Passionné de théâtre amateur" },
-    { name: "Jogging", icon: Running, description: "Coureur régulier" },
+    { name: "Jogging", icon: Run, description: "Coureur régulier" },
     { name: "Lecture", icon: BookOpen, description: "Amateur de lecture" }
   ]
 };
