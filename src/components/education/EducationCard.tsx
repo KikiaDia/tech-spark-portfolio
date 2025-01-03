@@ -84,13 +84,15 @@ export const EducationCard = ({
                 className="grid grid-cols-1 md:grid-cols-2 gap-2"
               >
                 {edu.courses.map((course, idx) => (
-                  <div 
-                    key={idx} 
-                    className="text-sm text-muted-foreground hover:text-[#18181b] transition-colors duration-300 p-2 rounded-lg bg-[#18181b]/5"
-                  >
-                    <span className="inline-block bg-[#18181b] rounded-full mr-2"></span>
-                    {course}
-                  </div>
+
+              <div 
+              key={idx} 
+              className="text-sm text-white hover:text-white transition-colors duration-300 p-2 rounded-lg bg-[#18181b]"
+              >
+              <span className="inline-block bg-[#18181b] rounded-full mr-1"></span>
+              {course}
+              </div>
+                  
                 ))}
               </motion.div>
             )}
