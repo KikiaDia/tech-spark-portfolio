@@ -1,7 +1,7 @@
 export const content = {
   en: {
     quote: "Turning Data into Insights, Code into Innovation",
-    role: "Computer Engineer \n Machine Learning & NLP Specialist \n Data Analyst Enthusiast",
+    role: "Computer Engineer - Machine Learning & NLP Specialist \n Data Analyst Enthusiast",
     description: "Computer engineering graduate specializing in Machine Learning and NLP, open to opportunities and collaborations in the field of data.",
     details: {
       age: "24 years old",
@@ -18,7 +18,7 @@ export const content = {
   },
   fr: {
     quote: "Transformer les Données en Insights, le Code en Innovation",
-    role: "Ingénieure Informatique \n Spécialisée en Machine Learning & NLP \n Data Analyst Enthusiast",
+    role: "Ingénieure Informatique - Spécialisée en Machine Learning & NLP \n Data Analyst Enthusiast",
     description: "Ingénieure en informatique, spécialisée en Machine Learning et NLP, ouverte aux opportunités et collaborations dans le domaine de la data.",
     details: {
       age: "24 ans",
