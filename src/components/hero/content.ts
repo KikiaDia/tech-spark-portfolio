@@ -1,8 +1,8 @@
 export const content = {
   en: {
     quote: "Turning Data into Insights, Code into Innovation",
-    role: "Machine Learning Engineer & NLP Specialist",
-    description: "Computer engineering graduate specializing in Machine Learning and NLP, seeking a 6-month internship starting February 2025 in Artificial Intelligence.",
+    role: "Machine Learning Engineer, NLP Specialist & Data Analyst Enthusiast",
+    description: "Computer engineering graduate specializing in Machine Learning and NLP, actively seeking opportunities in Artificial Intelligence.",
     details: {
       age: "24 years old",
       status: "Single",
@@ -18,8 +18,8 @@ export const content = {
   },
   fr: {
     quote: "Transformer les Données en Insights, le Code en Innovation",
-    role: "Ingénieure en Machine Learning & NLP",
-    description: "Ingénieure en informatique, spécialisée en Machine Learning et NLP, je recherche un stage de 6 mois à partir de février 2025 dans le domaine de l'Intelligence Artificielle.",
+    role: "Ingénieure en Machine Learning, NLP & Data Analyst Enthusiast",
+    description: "Ingénieure en informatique, spécialisée en Machine Learning et NLP, à l'affût d'opportunités dans le domaine de l'Intelligence Artificielle.",
     details: {
       age: "24 ans",
       status: "Célibataire",
