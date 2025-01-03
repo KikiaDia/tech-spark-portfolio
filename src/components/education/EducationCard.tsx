@@ -81,7 +81,7 @@ export const EducationCard = ({
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-2"
+                className="list-disc list-inside space-y-2 mb-4 text-sm"
               >
                 {edu.courses.map((course, idx) => (
                   <div 
