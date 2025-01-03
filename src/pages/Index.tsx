@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Certifications } from "@/components/Certifications";
 import { Education } from "@/components/Education";
 import { Footer } from "@/components/Footer";
+import { LanguagesAndHobbies } from "@/components/LanguagesAndHobbies";
 
 const Index = () => {
   console.log("Rendering Index component");
@@ -31,6 +32,7 @@ const Index = () => {
         <section id="certifications" className="scroll-mt-16">
           <Certifications />
         </section>
+        <LanguagesAndHobbies />
         <section id="contact" className="scroll-mt-16">
           <Footer />
         </section>
