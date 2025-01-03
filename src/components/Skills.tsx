@@ -26,7 +26,9 @@ const skillCategories = [
       { name: "Deep Learning", level: 85 },
       { name: "NLP", level: 90 },
       { name: "MLOps", level: 80 },
-      { name: "Data Analysis", level: 85 }
+      { name: "Data Analysis", level: 85 },
+      { name: "PySpark", level: 85 },
+      { name: "MapReduce", level: 80 }
     ],
   },
   {
@@ -60,20 +62,41 @@ const skillCategories = [
     ],
   },
   {
-    title: "Programming",
+    title: "Programming & Databases",
     skills: [
       { name: "Python", level: 95 },
       { name: "SQL", level: 85 },
       { name: "PLSQL", level: 80 },
-      { name: "NoSQL", level: 85 },
+      { name: "Oracle", level: 85 },
+      { name: "MySQL", level: 85 },
+      { name: "MongoDB", level: 80 },
       { name: "JavaScript", level: 80 }
+    ],
+  },
+  {
+    title: "Libraries & Frameworks",
+    skills: [
+      { name: "NumPy", level: 90 },
+      { name: "Pandas", level: 90 },
+      { name: "Scikit-Learn", level: 85 },
+      { name: "PyTorch", level: 85 },
+      { name: "TensorFlow", level: 80 },
+      { name: "NLTK", level: 85 },
+      { name: "Spacy", level: 85 },
+      { name: "Flask", level: 80 },
+      { name: "Streamlit", level: 85 }
     ],
   },
   {
     title: "Tools & Platforms",
     skills: [
       { name: "Git", level: 90 },
+      { name: "Power BI", level: 85 },
       { name: "Docker", level: 85 },
+      { name: "Jupyter", level: 90 },
+      { name: "VSCode", level: 90 },
+      { name: "Postman", level: 85 },
+      { name: "Notion", level: 85 },
       { name: "Azure", level: 80 },
       { name: "GCP", level: 75 },
       { name: "MLFlow", level: 85 }
