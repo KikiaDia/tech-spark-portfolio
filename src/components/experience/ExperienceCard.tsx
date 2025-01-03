@@ -96,7 +96,7 @@ export const ExperienceCard = ({
               className="list-disc list-inside space-y-2 mb-4 text-sm"
             >
               {exp.responsibilities.map((resp, idx) => (
-                <li key={idx} className="text-muted-foreground">{resp}</li>
+                <li key={idx} className="inline-block bg-[#18181b] rounded-full mr-1">{resp}</li>
               ))}
             </motion.ul>
           )}
