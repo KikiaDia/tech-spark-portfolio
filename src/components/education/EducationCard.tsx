@@ -88,7 +88,7 @@ export const EducationCard = ({
                     key={idx} 
                     className="text-sm text-muted-foreground hover:text-[#18181b] transition-colors duration-300 p-2 rounded-lg bg-[#18181b]/5"
                   >
-                    <span className="inline-block w-1 h-1 bg-[#18181b] rounded-full mr-2"></span>
+                    <span className="inline-block bg-[#18181b] rounded-full mr-2"></span>
                     {course}
                   </div>
                 ))}
