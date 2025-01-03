@@ -2,7 +2,7 @@ export const content = {
   en: {
     quote: "Turning Data into Insights, Code into Innovation",
     role: "Computer Engineer",
-    description: "Passionate computer engineering graduate with expertise in Machine Learning and Natural Language Processing (NLP). Driven by a curiosity for data and its transformative potential, I am open to opportunities and collaborations in the fields of AI development, data analysis, and innovative problem-solving. Committed to leveraging advanced algorithms and analytical techniques to derive insights and build impactful solutions.",
+    description: "Passionate computer engineering graduate specializing in Machine Learning and NLP, with a strong curiosity for data. Open to opportunities in AI development, data analysis, and problem-solving, leveraging advanced algorithms to create impactful solutions.",
     details: {
       age: "24 years old",
       status: "Single",
@@ -19,7 +19,7 @@ export const content = {
   fr: {
     quote: "Transformer les Données en Insights, le Code en Innovation",
     role: "Ingénieure Informatique",
-    description: "Diplômée en génie informatique, passionnée par le Machine Learning et le Traitement du Langage Naturel (NLP). Curieuse des données et de leur potentiel transformateur, je suis ouverte aux opportunités et collaborations dans les domaines du développement IA, de l'analyse de données et de la résolution de problèmes innovants. Engagée à utiliser des algorithmes avancés et des techniques analytiques pour extraire des insights et créer des solutions à fort impact.",
+    description: "Diplômée en génie informatique spécialisée en Machine Learning et NLP, avec une grande curiosité pour les données. Ouverte aux opportunités en développement IA, analyse de données et résolution de problèmes, en utilisant des algorithmes avancés pour créer des solutions à fort impact.",
     details: {
       age: "24 ans",
       status: "Célibataire",
