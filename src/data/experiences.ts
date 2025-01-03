@@ -18,7 +18,7 @@ export const experiences = {
         "Implementation of dashboards",
         "Close collaboration with technical team for model integration"
       ],
-      tools: ["Python", "LDA", "Whisper OpenAi", "distilcamembert-base-sentiment", "Hugging Face", "SARIMA", "Flask", "SVM", "Angular", "Scrum"]
+      tools: ["Python","SQL","NLP", "Data Analysis","EDA","Machine Learning","Deep Learning","Topic Modeling","LDA", "ASR","Whisper OpenAi","SARIMA", "Flask", "SVM","distilcamembert-base-sentiment", "Hugging Face", "Angular", "Scrum"]
     },
     {
       title: "Backend Developer Intern - Team X Group",
@@ -32,7 +32,7 @@ export const experiences = {
         "Structuring and managing data flows with MongoDB",
         "Using request testing tools (Postman)"
       ],
-      tools: ["Javascript", "Node.js", "MongoDB", "Postman", "Mongoose", "REST API", "CRUD"]
+      tools: ["Javascript", "Node.js","Nest Js", "MongoDB", "Postman", "Mongoose", "REST API", "CRUD"]
     }
   ],
   fr: [
@@ -54,7 +54,7 @@ export const experiences = {
         "Mise en place de dashboards",
         "Collaboration étroite avec l'équipe technique pour l'intégration des modèles"
       ],
-      tools: ["Python", "LDA", "Whisper OpenAi", "distilcamembert-base-sentiment", "Hugging Face", "SARIMA", "Flask", "SVM", "Angular", "Scrum"]
+      tools: ["Python","SQL","NLP","EDA","Machine Learning","Deep Learning","Topic Modeling","LDA", "ASR","Whisper OpenAi","SARIMA", "Flask", "SVM","distilcamembert-base-sentiment", "Hugging Face", "Angular", "Scrum"]
     },
     {
       title: "Stage Développeur Backend - Team X Group",
@@ -68,7 +68,7 @@ export const experiences = {
         "Structurer et gérer le flux de données avec MongoDB",
         "Utiliser des outils de test de requêtes (Postman)"
       ],
-      tools: ["Javascript", "Node.js", "MongoDB", "Postman", "Mongoose", "API Rest", "CRUD"]
+      tools: ["Javascript", "Node.js","Nest Js", "MongoDB", "Postman", "Mongoose", "REST API", "CRUD"]
     }
   ]
 };

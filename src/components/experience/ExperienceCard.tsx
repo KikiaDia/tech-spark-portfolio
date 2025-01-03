@@ -87,24 +87,24 @@ export const ExperienceCard = ({
             </span>
           </div>
           
-            {showResponsibilities && (
-    <motion.ul 
-      initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: "auto" }}
-      exit={{ opacity: 0, height: 0 }}
-      transition={{ duration: 0.3 }}
-      className="list-disc list-inside space-y-2 mb-4 text-sm"
-    >
-      {exp.responsibilities.map((resp, idx) => (
-        <li 
-          key={idx} 
-          className="bg-[#18181b] text-white p-2 rounded-md"
-        >
-          {resp}
-        </li>
-      ))}
-    </motion.ul>
-  )}
+        {showResponsibilities && (
+          <motion.ul 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="list-disc list-inside space-y-2 mb-4 text-sm"
+          >
+            {exp.responsibilities.map((resp, idx) => (
+              <li 
+                key={idx} 
+                className="bg-[#18181b] text-white p-2 rounded-md"
+              >
+                {resp}
+              </li>
+            ))}
+          </motion.ul>
+        )}
 
           
           <div className="flex flex-wrap gap-2 mt-4">
