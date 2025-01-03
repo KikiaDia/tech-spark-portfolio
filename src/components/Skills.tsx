@@ -30,6 +30,26 @@ const skillCategories = [
     ],
   },
   {
+    title: "Data Analysis",
+    skills: [
+      { name: "Data Visualization", level: 90 },
+      { name: "Statistical Analysis", level: 85 },
+      { name: "Power BI", level: 85 },
+      { name: "Excel Advanced", level: 90 },
+      { name: "Data Cleaning", level: 85 }
+    ],
+  },
+  {
+    title: "Data Engineering",
+    skills: [
+      { name: "ETL Pipelines", level: 85 },
+      { name: "Data Warehousing", level: 80 },
+      { name: "Big Data", level: 75 },
+      { name: "Data Modeling", level: 85 },
+      { name: "Data Integration", level: 80 }
+    ],
+  },
+  {
     title: "NLP Technologies",
     skills: [
       { name: "LLM", level: 85 },
@@ -47,16 +67,6 @@ const skillCategories = [
       { name: "PLSQL", level: 80 },
       { name: "NoSQL", level: 85 },
       { name: "JavaScript", level: 80 }
-    ],
-  },
-  {
-    title: "Frameworks & Libraries",
-    skills: [
-      { name: "PyTorch", level: 85 },
-      { name: "TensorFlow", level: 80 },
-      { name: "Scikit-Learn", level: 90 },
-      { name: "NLTK", level: 85 },
-      { name: "Spacy", level: 80 }
     ],
   },
   {
