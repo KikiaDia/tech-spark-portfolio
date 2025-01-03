@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Languages, Theater, Running, Utensils } from "lucide-react";
+import { Languages, Theater, Activity, Utensils } from "lucide-react";
 
 const languageSkills = {
   en: [
@@ -18,12 +18,12 @@ const hobbies = {
   en: [
     { name: "Theater", icon: Theater, description: "Passionate about performing arts" },
     { name: "Cooking", icon: Utensils, description: "Love experimenting with recipes" },
-    { name: "Sports", icon: Running, description: "Regular physical activities" }
+    { name: "Sports", icon: Activity, description: "Regular physical activities" }
   ],
   fr: [
     { name: "Théâtre", icon: Theater, description: "Passionnée par les arts de la scène" },
     { name: "Cuisine", icon: Utensils, description: "J'aime expérimenter de nouvelles recettes" },
-    { name: "Sport", icon: Running, description: "Activités physiques régulières" }
+    { name: "Sport", icon: Activity, description: "Activités physiques régulières" }
   ]
 };
 
