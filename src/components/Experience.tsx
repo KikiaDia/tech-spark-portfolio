@@ -63,7 +63,7 @@ export const Experience = () => {
   return (
     <section id="experience" className="py-20 px-4 bg-secondary/50">
       <h2 className="section-title">
-        {language === 'en' ? 'Professional Experience' : 'Expérience Professionnelle'}
+        {language === 'en' ? 'Professional Experience' : 'Expériences Professionnelles'}
       </h2>
       <div className="max-w-4xl mx-auto">
         <Carousel 

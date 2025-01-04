@@ -15,7 +15,7 @@ const content = {
   },
   fr: {
     education: "Formation",
-    experience: "Expérience",
+    experience: "Expériences",
     projects: "Projets",
     skills: "Compétences",
     certifications: "Certifications",
