@@ -1,4 +1,4 @@
-import { Github, Linkedin, MapPin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, MapPin, Mail, Phone, Link } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -52,6 +52,15 @@ export const ContactInfo = () => {
           className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"
         >
           <Linkedin className="h-5 w-5 text-white" />
+        </a>
+
+        <a 
+          href="https://huggingface.co/Kikia26" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"
+        >
+          <Link className="h-5 w-5 text-white" />
         </a>
       </div>
     </motion.div>
