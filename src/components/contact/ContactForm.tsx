@@ -13,6 +13,11 @@ export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Début de la soumission du formulaire");
@@ -24,6 +29,17 @@ export const ContactForm = () => {
         description: language === 'en' 
           ? "Please fill in all fields" 
           : "Veuillez remplir tous les champs"
+      });
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      toast({
+        variant: "destructive",
+        title: language === 'en' ? "Error" : "Erreur",
+        description: language === 'en' 
+          ? "Please enter a valid email address" 
+          : "Veuillez entrer une adresse email valide"
       });
       return;
     }
