@@ -2,7 +2,7 @@ export const content = {
   en: {
     quote: "Turning Data into Insights, Code into Innovation",
     role: "Computer Engineer",
-    description: "I am Kikia Dia, a Computer Engineering graduate specializing in Machine Learning and NLP, with a strong passion for data. I am open to opportunities in AI development, data analysis, and problem-solving, aiming to create impactful solutions.",
+    description: "I am Kikia Dia, a Computer Engineering graduate, specializing in Machine Learning and NLP, with a strong passion for data. I am open to opportunities in AI development, data analysis, and problem-solving, aiming to create impactful solutions.",
     details: {
       age: "24 years old",
       status: "Single",
@@ -19,7 +19,7 @@ export const content = {
   fr: {
     quote: "Transformer les Données en Insights, le Code en Innovation",
     role: "Ingénieure Informatique",
-    description: "Je suis Kikia Dia, diplômée en ingénierie informatique, spécialisée en Machine Learning et NLP, avec une grande passion pour les données. Je suis ouverte aux opportunités en développement IA, analyse de données et résolution de problèmes pour créer des solutions à fort impact.",
+    description: "Je suis Kikia Dia, diplômée en Ingénierie Informatique, spécialisée en Machine Learning et NLP, avec une grande passion pour les données. Je suis ouverte aux opportunités en développement IA, analyse de données et résolution de problèmes pour créer des solutions à fort impact.",
     details: {
       age: "24 ans",
       status: "Célibataire",
