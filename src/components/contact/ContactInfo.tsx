@@ -31,13 +31,13 @@ export const ContactInfo = () => {
           href="tel:+33766523097" 
           className="text-black hover:underline"
         >
-          +33 7 66 52 30 97
+          +33 7 60 76 19 31
         </a>
       </div>
       
       <div className="flex items-center gap-4 mt-6">
         <a 
-          href="https://github.com/kikiadoc" 
+          href="https://github.com/KikiaDia" 
           target="_blank" 
           rel="noopener noreferrer"
           className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"
@@ -46,7 +46,7 @@ export const ContactInfo = () => {
         </a>
         
         <a 
-          href="https://www.linkedin.com/in/kikia-dia" 
+          href="https://www.linkedin.com/in/kikiadia/" 
           target="_blank" 
           rel="noopener noreferrer"
           className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"

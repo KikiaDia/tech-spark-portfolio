@@ -19,77 +19,59 @@ import {
 } from "@/components/ui/pagination";
 
 const skillCategories = [
+  
   {
-    title: "Data Science & ML",
+    title: "NLP",
     skills: [
-      { name: "Machine Learning", level: 90 },
-      { name: "Deep Learning", level: 85 },
-      { name: "NLP", level: 90 },
-      { name: "MLOps", level: 80 },
-      { name: "Data Analysis", level: 85 },
-      { name: "PySpark", level: 85 },
-      { name: "MapReduce", level: 80 }
-    ],
-  },
-  {
-    title: "Data Analysis",
-    skills: [
-      { name: "Data Visualization", level: 90 },
-      { name: "Statistical Analysis", level: 85 },
-      { name: "Power BI", level: 85 },
-      { name: "Excel Advanced", level: 90 },
-      { name: "Data Cleaning", level: 85 }
-    ],
-  },
-  {
-    title: "Data Engineering",
-    skills: [
-      { name: "ETL Pipelines", level: 85 },
-      { name: "Data Warehousing", level: 80 },
-      { name: "Big Data", level: 75 },
-      { name: "Data Modeling", level: 85 },
-      { name: "Data Integration", level: 80 }
-    ],
-  },
-  {
-    title: "NLP Technologies",
-    skills: [
+      { name: "Data preprocessing", level: 85 },
       { name: "LLM", level: 85 },
       { name: "RAG", level: 80 },
       { name: "Langchain", level: 85 },
       { name: "Ollama", level: 75 },
-      { name: "Transformers", level: 85 }
+      { name: "Transformers", level: 85 },
+      { name: "Streamlit", level: 85 }
     ],
   },
   {
-    title: "Programming & Databases",
+    title: "Programming",
     skills: [
       { name: "Python", level: 95 },
-      { name: "SQL", level: 85 },
-      { name: "PLSQL", level: 80 },
-      { name: "Oracle", level: 85 },
-      { name: "MySQL", level: 85 },
-      { name: "MongoDB", level: 80 },
-      { name: "JavaScript", level: 80 }
+      { name: "SQL", level: 90 },
+      { name: "Pyspark", level: 90 },
+      { name: "JavaScript", level: 80 },
+      { name: "PLSQL", level: 70 },
+      { name: "NOSQL", level: 70 },
+
     ],
   },
+  {
+    title: "Databases",
+    skills: [
+      { name: "MySQL", level: 85 },
+      { name: "MongoDB", level: 85 },
+      { name: "Oracle", level: 80 },
+    ],
+  },
+
   {
     title: "Libraries & Frameworks",
     skills: [
       { name: "NumPy", level: 90 },
       { name: "Pandas", level: 90 },
+      { name: "Matplotlib", level: 85 },
       { name: "Scikit-Learn", level: 85 },
       { name: "PyTorch", level: 85 },
       { name: "TensorFlow", level: 80 },
       { name: "NLTK", level: 85 },
       { name: "Spacy", level: 85 },
       { name: "Flask", level: 80 },
-      { name: "Streamlit", level: 85 }
     ],
+    
   },
   {
     title: "Tools & Platforms",
     skills: [
+      { name: "Hugging Face", level: 90 },
       { name: "Git", level: 90 },
       { name: "Power BI", level: 85 },
       { name: "Docker", level: 85 },
@@ -100,6 +82,37 @@ const skillCategories = [
       { name: "Azure", level: 80 },
       { name: "GCP", level: 75 },
       { name: "MLFlow", level: 85 }
+    ],
+  },
+  {
+    title: "Data Science",
+    skills: [
+      { name: "Machine Learning", level: 80 },
+      { name: "Deep Learning", level: 80 },
+      { name: "NLP", level: 90 },
+      { name: "MLOps", level: 70 },
+    ],
+  },
+  {
+    title: "Data Analysis",
+    skills: [
+      { name: "Python", level: 95 },
+      { name: "SQL", level: 90 },
+      { name: "Pyspark", level: 90 },
+      { name: "EDA", level: 90 },
+      { name: "Statistics", level: 80 },
+      { name: "Power BI", level: 70 },
+      { name: "Excel", level: 80 },
+    ],
+  },
+  {
+    title: "Big Data",
+    skills: [
+      { name: "ETL Pipelines", level: 85 },
+      { name: "PySpark", level: 90 },
+      { name: "MapReduce", level: 80 },
+      { name: "Cloud", level: 85 },
+
     ],
   },
 ];
