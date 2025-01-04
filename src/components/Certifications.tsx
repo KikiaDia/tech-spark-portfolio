@@ -106,7 +106,7 @@ export const Certifications = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="glass-card hover-scale">
+                  <Card className="glass-card hover:bg-white hover-scale">
                     <CardHeader className="text-center">
                       <div className="mx-auto mb-4 relative w-24 h-24 rounded-full overflow-hidden">
                         <img
