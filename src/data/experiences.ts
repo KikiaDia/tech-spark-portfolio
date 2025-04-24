@@ -1,6 +1,23 @@
 export const experiences = {
   en: [
     {
+      title: "Final Year Internship - SLB",
+      period: "February 2025 – August 2025",
+      location: "Clamart, Île-de-France, France",
+      description: "Report Automation using Gen AI",
+      logo: "/lovable-uploads/image.png",
+      companyUrl: "https://www.slb.com/",
+      responsibilities: [
+        "Parsing mud report PDFs to extract raw information",
+        "Defining a data model using Pydantic",
+        "Prompt Engineering with GPT-4o – One Shot Learning",
+        "Evaluation using Pairwise Comparison and LLM-as-judge, tested models: GPT-4o, Gemini, Claude",
+        "Report generation pipeline",
+        "Development of a Streamlit application"
+      ],
+      tools: ["Python", "Pymupdf4llm", "LlamaParse", "LLMWhisperer", "OpenAI GPT-4o", "Claude", "Gemini", "LangChain", "Streamlit"]
+    },
+    {
       title: "Final Year Project Internship - Orange Sonatel",
       period: "September 2023 – June 2024",
       location: "Dakar, Senegal",
@@ -36,6 +53,21 @@ export const experiences = {
     }
   ],
   fr: [
+    {
+      title: "Stage Fin d’études - SLB",
+      period: "Février 2025 – Août 2025",
+      location: "Clamart, Île-de-France, France",
+      description: "Automatisation de rapports à l’aide de l’IA Générative",
+      responsibilities: [
+        "Parsing de PDFs de rapport de boue pour l’extraction d’informations brutes",
+        "Définition d’un modèle de données avec Pydantic",
+        "Prompt Engineering avec gpt-4o – One Shot Learning",
+        "Évaluation avec Pairwise Comparison, LLM-as-judge, modèles testés : GPT-4o, Gemini, Claude",
+        "Pipeline de génération de rapports",
+        "Développement d’une application Streamlit"
+      ],
+      tools: ["Python", "Pymupdf4llm", "LlamaParse", "LLMWhisperer", "OpenAI GPT-4o", "Claude", "Gemini", "LangChain", "Streamlit"]
+    },
     {
       title: "Alternance Projet Fin d'étude - Orange Sonatel",
       period: "Septembre 2023 – Juin 2024",
