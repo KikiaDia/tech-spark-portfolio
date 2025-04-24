@@ -25,7 +25,7 @@ const certifications = {
       issuer: "Hugging Face",
       date: "Mars 2025",
       link: "https://cdn-lfs-us-1.hf.co/repos/f2/34/f2344151f60f6027c436821dc61cf3f27a46435de57df8df50ad02b5acca7c07/b16cae66499bdb9f7406e8aaf5de651d5fd1056eaf85c53074c1dc3aeceec3ed?response-content-disposition=inline%3B+filename*%3DUTF-8%27%272025-03-25.png%3B+filename%3D%222025-03-25.png%22%3B&response-content-type=image%2Fpng&Expires=1745497189&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0NTQ5NzE4OX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmhmLmNvL3JlcG9zL2YyLzM0L2YyMzQ0MTUxZjYwZjYwMjdjNDM2ODIxZGM2MWNmM2YyN2E0NjQzNWRlNTdkZjhkZjUwYWQwMmI1YWNjYTdjMDcvYjE2Y2FlNjY0OTliZGI5Zjc0MDZlOGFhZjVkZTY1MWQ1ZmQxMDU2ZWFmODVjNTMwNzRjMWRjM2FlY2VlYzNlZD9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSomcmVzcG9uc2UtY29udGVudC10eXBlPSoifV19&Signature=mj8pfjvraIWAAoMfAz4uVJtk4oFlfh9B69JN-N83shkdBGgPvOSg1vo1Gs3y6K%7ETKvqZWXvquPapAHUaHip02CuW-akE7qje%7E%7EXm16H3us74cNcOPHYQf8h6FFooOZmy8IqIJGs5fHkD61I7BCKEwF%7EKmZC4lDmYYzFWQnR8ylTlU0hCLksdFBnyzjdkCD8IBC3FeknkG2kZOAgLFn8%7EGjdMteyBunM3eXiSLwkaXgUtHDfs6MokPbzc5uLYZsgAhqqmZdU1-Lm8PEsE1SgfJlMUnL28-FjREm6yR0KOUVpVIfwBmAwSrqQdkj-LwfVSDe78UfLrgTYXq1MXclLWpw__&Key-Pair-Id=K24J24Z295AEI9",
-      image: "/lovable-uploads/image copy.png"
+      image: "/lovable-uploads/huggingface.png"
     },
     {
       title: "Introduction to Natural Language Processing",
