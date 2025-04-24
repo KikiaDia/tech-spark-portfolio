@@ -7,9 +7,9 @@ export const content = {
       age: "25 years old",
       status: "Single",
       license: "Driving License (A1, B)",
-      address: "Nantes, France",
+      address: "Île-de-France, France",
       origin: "Senegalese",
-      mobility: "Île-de-France, Pays de la Loire"
+      mobility: "Île-de-France, Dakar"
     },
     viewProjects: "View Projects",
     contactMe: "Contact Me",
@@ -24,9 +24,9 @@ export const content = {
       age: "25 ans",
       status: "Célibataire",
       license: "Permis (A1, B)",
-      address: "Nantes, France",
+      address: "Île-de-France, France",
       origin: "Sénégalaise",
-      mobility: "Île-de-France, Pays de la Loire"
+      mobility: "Île-de-France, Dakar"
     },
     viewProjects: "Voir les Projets",
     contactMe: "Me Contacter",
