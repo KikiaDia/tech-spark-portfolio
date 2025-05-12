@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
@@ -75,17 +76,27 @@ export const Certifications = () => {
       align: "center",
       skipSnaps: false,
       duration: 20,
-    },
-    [
-      Autoplay({
-        delay: 3000,
-        stopOnInteraction: true,
-        rootNode: (emblaRoot) => emblaRoot.parentElement,
-      })
-    ]
+    }
   );
 
   useEffect(() => {
+    const autoplay = () => {
+      if (!emblaApi) return;
+      
+      const timeoutId = setTimeout(() => {
+        if (emblaApi.canScrollNext()) {
+          emblaApi.scrollNext();
+        } else {
+          emblaApi.scrollTo(0);
+        }
+        autoplay();
+      }, 3000);
+      
+      return () => clearTimeout(timeoutId);
+    };
+    
+    const autoplayInstance = autoplay();
+    
     if (emblaApi) {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
@@ -95,7 +106,10 @@ export const Certifications = () => {
     
     return () => {
       if (emblaApi) {
-        emblaApi.destroy();
+        emblaApi.off('select', () => {});
+      }
+      if (autoplayInstance) {
+        clearTimeout(autoplayInstance as unknown as number);
       }
     };
   }, [emblaApi]);

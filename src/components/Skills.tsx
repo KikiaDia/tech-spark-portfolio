@@ -1,8 +1,8 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import { ChevronDown } from "lucide-react";
 import {
   Carousel,
@@ -126,17 +126,27 @@ export const Skills = () => {
       align: "center",
       skipSnaps: false,
       duration: 20,
-    },
-    [
-      Autoplay({
-        delay: 3000,
-        stopOnInteraction: false,
-        rootNode: (emblaRoot) => emblaRoot.parentElement,
-      })
-    ]
+    }
   );
 
   useEffect(() => {
+    const autoplay = () => {
+      if (!emblaApi || selectedCategory !== null) return;
+      
+      const timeoutId = setTimeout(() => {
+        if (emblaApi.canScrollNext()) {
+          emblaApi.scrollNext();
+        } else {
+          emblaApi.scrollTo(0);
+        }
+        autoplay();
+      }, 3000);
+      
+      return () => clearTimeout(timeoutId);
+    };
+    
+    const autoplayInstance = autoplay();
+    
     if (emblaApi) {
       const onSelect = () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
@@ -147,9 +157,12 @@ export const Skills = () => {
 
       return () => {
         emblaApi.off('select', onSelect);
+        if (autoplayInstance) {
+          clearTimeout(autoplayInstance as unknown as number);
+        }
       };
     }
-  }, [emblaApi]);
+  }, [emblaApi, selectedCategory]);
 
   return (
     <section id="skills" className="py-20 px-4 bg-secondary/50">

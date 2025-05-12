@@ -36,7 +36,8 @@ export const Experience = () => {
 
   useEffect(() => {
     const autoplay = () => {
-      if (!emblaApi) return;
+      if (!emblaApi || showResponsibilities !== null) return;
+      
       const timeoutId = setTimeout(() => {
         if (emblaApi.canScrollNext()) {
           emblaApi.scrollNext();
@@ -66,7 +67,7 @@ export const Experience = () => {
         }
       };
     }
-  }, [emblaApi]);
+  }, [emblaApi, showResponsibilities]);
 
   const handleToggleResponsibilities = (index: number) => {
     setShowResponsibilities(showResponsibilities === index ? null : index);

@@ -66,7 +66,7 @@ export const EducationCarousel = ({
     
     return () => {
       if (emblaApi) {
-        emblaApi.destroy();
+        emblaApi.off('select', () => {});
       }
       if (autoplayInstance) {
         clearTimeout(autoplayInstance as unknown as number);
