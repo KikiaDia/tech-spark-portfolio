@@ -21,7 +21,7 @@ export const ContactInfo = () => {
     >
       <div className="flex items-center gap-3 justify-center">
         <MapPin className="h-5 w-5 text-black" />
-        <span className="text-black">Nantes, France</span>
+        <span className="text-black"> Châtillon, 92320, France</span>
       </div>
       
       <div className="flex items-center gap-3 justify-center">
