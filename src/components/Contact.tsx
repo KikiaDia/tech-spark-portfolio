@@ -1,6 +1,6 @@
+
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ContactInfo } from "./contact/ContactInfo";
-import { ContactForm } from "./contact/ContactForm";
 
 export const Contact = () => {
   const { language } = useLanguage();
@@ -11,9 +11,8 @@ export const Contact = () => {
         {language === 'en' ? 'Get in Touch' : 'Me Contacter'}
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center">
+      <div className="flex justify-center">
         <ContactInfo />
-        <ContactForm />
       </div>
     </div>
   );

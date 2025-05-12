@@ -1,3 +1,4 @@
+
 import { Github, Linkedin, MapPin, Mail, Phone, Link } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -13,17 +14,17 @@ export const ContactInfo = () => {
   
   return (
     <motion.div 
-      className="space-y-6"
+      className="space-y-6 max-w-md mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 justify-center">
         <MapPin className="h-5 w-5 text-black" />
         <span className="text-black">Nantes, France</span>
       </div>
       
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 justify-center">
         <Mail className="h-5 w-5 text-black" />
         <a 
           href="mailto:dkikia@ept.sn" 
@@ -33,7 +34,7 @@ export const ContactInfo = () => {
         </a>
       </div>
       
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 justify-center">
         <Phone className="h-5 w-5 text-black" />
         <a 
           href="tel:+33766523097" 
@@ -43,7 +44,7 @@ export const ContactInfo = () => {
         </a>
       </div>
       
-      <div className="flex items-center gap-4 mt-6">
+      <div className="flex items-center gap-4 mt-6 justify-center">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
