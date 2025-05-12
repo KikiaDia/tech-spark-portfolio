@@ -1,9 +1,9 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 export const ContactForm = () => {
   const { language } = useLanguage();
@@ -20,7 +20,6 @@ export const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Début de la soumission du formulaire");
     
     if (!email || !subject || !message) {
       toast({
@@ -47,23 +46,14 @@ export const ContactForm = () => {
     setIsLoading(true);
 
     try {
-      console.log("Tentative d'envoi d'email via Supabase Edge Function");
-      const { data, error } = await supabase.functions.invoke('send-email', {
-        body: {
-          from: email,
-          subject: subject,
-          message: message
-        }
-      });
-
-      console.log("Réponse de la fonction Edge:", { data, error });
-
-      if (error) {
-        console.error("Erreur Supabase:", error);
-        throw error;
-      }
+      // Since Supabase has been removed, we'll just simulate success
+      // In a real app, you would implement an alternative way to send emails
       
-      console.log("Email envoyé avec succès");
+      console.log("Form data:", { email, subject, message });
+      
+      // Simulate a delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
       toast({
         title: language === 'en' ? "Success" : "Succès",
         description: language === 'en' 
@@ -75,7 +65,7 @@ export const ContactForm = () => {
       setSubject("");
       setMessage("");
     } catch (error: any) {
-      console.error("Erreur lors de l'envoi de l'email:", error);
+      console.error("Error:", error);
       toast({
         variant: "destructive",
         title: language === 'en' ? "Error" : "Erreur",
@@ -148,4 +138,4 @@ export const ContactForm = () => {
       </Button>
     </motion.form>
   );
-};
+}
