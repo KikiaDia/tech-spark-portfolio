@@ -1,7 +1,7 @@
+
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -26,17 +26,26 @@ export const Projects = () => {
       skipSnaps: false,
       duration: 20,
       slidesToScroll: isMobile ? 1 : 2,
-    },
-    [
-      Autoplay({
-        delay: 3000,
-        stopOnInteraction: true,
-        rootNode: (emblaRoot) => emblaRoot.parentElement,
-      })
-    ]
+    }
   );
 
   useEffect(() => {
+    const autoplay = () => {
+      if (!emblaApi) return;
+      const timeoutId = setTimeout(() => {
+        if (emblaApi.canScrollNext()) {
+          emblaApi.scrollNext();
+        } else {
+          emblaApi.scrollTo(0);
+        }
+        autoplay();
+      }, 3000);
+      
+      return () => clearTimeout(timeoutId);
+    };
+    
+    const autoplayInstance = autoplay();
+    
     if (emblaApi) {
       const onSelect = () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
@@ -47,6 +56,9 @@ export const Projects = () => {
 
       return () => {
         emblaApi.off('select', onSelect);
+        if (autoplayInstance) {
+          clearTimeout(autoplayInstance as unknown as number);
+        }
       };
     }
   }, [emblaApi]);

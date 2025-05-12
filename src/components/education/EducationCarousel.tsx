@@ -1,3 +1,4 @@
+
 import {
   Carousel,
   CarouselContent,
@@ -13,7 +14,6 @@ import {
 } from "@/components/ui/pagination";
 import { EducationCard } from "./EducationCard";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import { useState, useEffect } from "react";
 
 interface EducationCarouselProps {
@@ -21,7 +21,6 @@ interface EducationCarouselProps {
   language: string;
   showCourses: number | null;
   onToggleCourses: (index: number) => void;
-  autoplayPlugin: any;
 }
 
 export const EducationCarousel = ({
@@ -29,7 +28,6 @@ export const EducationCarousel = ({
   language,
   showCourses,
   onToggleCourses,
-  autoplayPlugin,
 }: EducationCarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
@@ -38,11 +36,27 @@ export const EducationCarousel = ({
       loop: true,
       align: "center",
       skipSnaps: false
-    },
-    [autoplayPlugin]
+    }
   );
 
   useEffect(() => {
+    const autoplay = () => {
+      if (!emblaApi || showCourses !== null) return;
+      
+      const timeoutId = setTimeout(() => {
+        if (emblaApi.canScrollNext()) {
+          emblaApi.scrollNext();
+        } else {
+          emblaApi.scrollTo(0);
+        }
+        autoplay();
+      }, 3000);
+      
+      return () => clearTimeout(timeoutId);
+    };
+    
+    const autoplayInstance = autoplay();
+    
     if (emblaApi) {
       emblaApi.on('select', () => {
         setCurrentSlide(emblaApi.selectedScrollSnap());
@@ -53,6 +67,9 @@ export const EducationCarousel = ({
     return () => {
       if (emblaApi) {
         emblaApi.destroy();
+      }
+      if (autoplayInstance) {
+        clearTimeout(autoplayInstance as unknown as number);
       }
     };
   }, [emblaApi, showCourses]);
@@ -66,7 +83,6 @@ export const EducationCarousel = ({
           align: "center",
           loop: true,
         }}
-        plugins={[autoplayPlugin]}
       >
         <CarouselContent>
           {education.map((edu, index) => (
@@ -96,9 +112,6 @@ export const EducationCarousel = ({
                   }`}
                   onClick={() => {
                     emblaApi?.scrollTo(index);
-                    if (autoplayPlugin) {
-                      autoplayPlugin.stop();
-                    }
                   }}
                 />
               </PaginationItem>
