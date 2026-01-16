@@ -27,15 +27,13 @@ export const Navbar = () => {
   const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
   
   const scrollToSection = (sectionId: string) => {
-    console.log("Attempting to scroll to section:", sectionId);
     const section = document.getElementById(sectionId);
     
     if (section) {
-      console.log("Found section element:", section);
       const navbarHeight = 64;
-      
       setIsOpen(false);
       
       setTimeout(() => {
@@ -43,23 +41,20 @@ export const Navbar = () => {
         const absoluteTop = sectionRect.top + window.pageYOffset;
         const scrollPosition = absoluteTop - navbarHeight;
         
-        console.log("Calculated scroll position:", scrollPosition);
-        
         window.scrollTo({
           top: scrollPosition,
           behavior: "smooth"
         });
         
         setActiveSection(sectionId);
-        console.log("Scrolling complete, new active section:", sectionId);
       }, 300);
-    } else {
-      console.warn("Section not found:", sectionId);
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      
       const sections = Object.keys(content[language]).map(key => 
         document.getElementById(key)
       );
@@ -82,13 +77,19 @@ export const Navbar = () => {
   }, [language]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#18181b] backdrop-blur-sm border-b">
-      <div className="max-w-7xl mx-auto px-4">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      scrolled 
+        ? 'bg-white/90 backdrop-blur-xl shadow-elegant border-b border-border/50' 
+        : 'bg-transparent'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-16">
           <motion.h1 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="text-xl font-bold text-white cursor-pointer"
+            className={`text-xl font-display font-bold cursor-pointer transition-colors duration-300 ${
+              scrolled ? 'text-navy' : 'text-foreground'
+            }`}
             onClick={() => scrollToSection('home')}
           >
             Kikia Dia
@@ -97,27 +98,35 @@ export const Navbar = () => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="md:hidden text-white hover:bg-white hover:text-[#18181b]"
+            className={`md:hidden transition-colors ${
+              scrolled 
+                ? 'text-navy hover:bg-secondary' 
+                : 'text-foreground hover:bg-white/20'
+            }`}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
           
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-1">
             {Object.entries(content[language]).map(([key, value]) => (
               <Button 
                 key={key}
                 variant="ghost" 
                 onClick={() => scrollToSection(key)}
-                className={`relative text-white hover:bg-white hover:text-[#18181b] transition-colors ${
-                  activeSection === key ? "text-white" : "text-gray-300"
+                className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                  activeSection === key 
+                    ? 'text-primary bg-primary/10' 
+                    : scrolled 
+                      ? 'text-muted-foreground hover:text-foreground hover:bg-secondary' 
+                      : 'text-foreground/80 hover:text-foreground hover:bg-white/10'
                 }`}
               >
                 {value}
                 {activeSection === key && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full bg-primary"
                     initial={false}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -134,28 +143,22 @@ export const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-[#18181b]/95 border-b"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-border shadow-lg"
           >
-            <div className="flex flex-col p-4 space-y-2">
+            <div className="flex flex-col p-4 space-y-1">
               {Object.entries(content[language]).map(([key, value]) => (
                 <Button
                   key={key}
                   variant="ghost"
                   onClick={() => scrollToSection(key)}
-                  className={`w-full text-left justify-start text-white hover:bg-white hover:text-[#18181b] ${
-                    activeSection === key ? "text-white" : "text-gray-300"
+                  className={`w-full text-left justify-start rounded-lg font-medium transition-all ${
+                    activeSection === key 
+                      ? 'text-primary bg-primary/10' 
+                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
                   }`}
                 >
                   {value}
-                  {activeSection === key && (
-                    <motion.div
-                      layoutId="activeSectionMobile"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
-                      initial={false}
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
                 </Button>
               ))}
             </div>

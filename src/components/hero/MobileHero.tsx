@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import { Languages, User, Calendar, IdCard, MapPin, Flag, Plane, ChevronDown, ChevronUp } from "lucide-react";
+import { User, Calendar, IdCard, MapPin, Flag, Plane, ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -12,55 +12,53 @@ export const MobileHero = () => {
 
   const renderPersonalDetail = (icon: React.ReactNode, text: string, key: string) => (
     <div 
-      className={`flex items-center space-x-2 bg-[#18181b] text-white p-2 rounded-xl ${
-        key === 'mobility' ? 'cursor-pointer relative' : ''
+      className={`flex items-center space-x-3 p-3 rounded-xl ${
+        key === 'mobility' ? 'cursor-pointer' : ''
       }`}
+      style={{
+        background: 'linear-gradient(135deg, hsl(220 40% 13%) 0%, hsl(220 35% 22%) 100%)',
+        color: 'white',
+      }}
       onClick={() => {
         if (key === 'mobility') {
           setExpandedMobility(!expandedMobility);
         }
       }}
     >
-      {icon}
-      <span className={`text-sm ${key === 'mobility' && !expandedMobility ? 'truncate max-w-[120px]' : ''}`}>
+      <span className="opacity-80">{icon}</span>
+      <span className={`text-sm font-medium ${key === 'mobility' && !expandedMobility ? 'truncate max-w-[140px]' : ''}`}>
         {text}
       </span>
       {key === 'mobility' && (
-        <span className="ml-1">
-          {expandedMobility ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
+        <span className="ml-auto opacity-60">
+          {expandedMobility ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </span>
       )}
     </div>
   );
 
   return (
-    <div className="md:hidden space-y-6 px-4">
-      <div className="max-w-[280px] mx-auto space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 text-left">
+    <div className="md:hidden space-y-8 px-4">
+      <div className="max-w-[320px] mx-auto space-y-4 text-center">
+        <h1 className="text-4xl font-display font-bold tracking-tight text-foreground">
           Kikia Dia
         </h1>
-        <div className="space-y-2 overflow-hidden">
-          <p className="text-xl text-[#18181b] whitespace-pre-line text-justify break-words">
-            {content[language].role}
-          </p>
-          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-justify break-words">
-            {content[language].description}
-          </p>
-        </div>
+        <p className="text-lg font-medium text-primary">
+          {content[language].role}
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {content[language].description}
+        </p>
       </div>
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative w-full max-w-[250px] mx-auto aspect-square"
+        transition={{ duration: 0.6 }}
+        className="relative w-full max-w-[280px] mx-auto"
       >
-        <div className="absolute inset-0 rounded-lg border-2 border-gray-300 animate-pulse" />
-        <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-gray-200 shadow-xl">
+        <div className="absolute -inset-3 bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl blur-xl" />
+        <div className="relative aspect-square rounded-2xl overflow-hidden shadow-elegant border-4 border-card">
           <img 
             src="/lovable-uploads/2e7c3ea0-3746-4917-ade5-e611f01f6fe0.png" 
             alt="Kikia Dia"
@@ -73,7 +71,7 @@ export const MobileHero = () => {
         <Button
           variant="ghost"
           onClick={() => setShowDetails(!showDetails)}
-          className="flex items-center gap-2 text-gray-700"
+          className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
         >
           {content[language].personalDetails}
           {showDetails ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
@@ -82,10 +80,10 @@ export const MobileHero = () => {
 
       {showDetails && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="grid grid-cols-1 gap-2 max-w-[280px] mx-auto"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          transition={{ duration: 0.3 }}
+          className="grid grid-cols-1 gap-2 max-w-[320px] mx-auto"
         >
           {Object.entries(content[language].details).map(([key, value], index) => {
             const icons = {
@@ -102,7 +100,7 @@ export const MobileHero = () => {
                 key={key}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
+                transition={{ delay: 0.05 * index }}
               >
                 {renderPersonalDetail(icons[key as keyof typeof icons], value, key)}
               </motion.div>
@@ -112,13 +110,13 @@ export const MobileHero = () => {
       )}
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="flex flex-col gap-4 max-w-[280px] mx-auto"
+        className="flex flex-col gap-3 max-w-[320px] mx-auto"
       >
         <Button
-          className="w-full hover:bg-white hover:text-[#18181b] bg-[#18181b] text-white transition-colors"
+          className="w-full btn-primary"
           onClick={() => {
             const projectsSection = document.getElementById("projects");
             projectsSection?.scrollIntoView({ behavior: "smooth" });
@@ -128,7 +126,7 @@ export const MobileHero = () => {
         </Button>
         <Button
           variant="outline"
-          className="w-full border-gray-600 text-gray-700 hover:bg-white hover:text-[#18181b] transition-colors"
+          className="w-full border-2 border-border hover:bg-card hover:border-primary/30"
           onClick={() => {
             const contactSection = document.getElementById("contact");
             contactSection?.scrollIntoView({ behavior: "smooth" });
