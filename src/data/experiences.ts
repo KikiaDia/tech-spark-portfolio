@@ -12,8 +12,6 @@ export const experiences = {
         "Defining a data model using Pydantic",
         "Prompt Engineering with GPT-4o – One Shot Learning",
         "Evaluation using Pairwise Comparison and LLM-as-judge, tested models: GPT-4o, Gemini, Claude",
-        "Report generation pipeline",
-        "Development of a Streamlit application"
       ],
       tools: ["Python", "Pymupdf4llm", "LlamaParse", "LLMWhisperer", "OpenAI GPT-4o", "Claude", "Gemini", "LangChain", "Streamlit"]
     },

@@ -9,6 +9,21 @@ export const projects = {
       videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/preview"
     },
     {
+      title: "HR Dashboard – Q3 2024",
+      description: "Interactive Python dashboard to analyze HR data for Q3 2024, consolidating KPIs, visualizing monthly trends, and querying data with a conversational agent.",
+      banner: "/lovable-uploads/hr_dashboard.png",
+      tags: ["Dash", "Plotly", "pandas", "LangChain", "GPT-4", "Pyngrok"],
+      github: "https://github.com/KikiaDia/Dashboard-RH.git",
+      videoUrl :"https://drive.google.com/file/d/1Qb-79WZH8c_pjQgg7Sejs5djHRzsQrsE/preview"
+    },
+    {
+      title: "Codeforces Multilabel Classification",
+      description: "Multi-label classification of programming problems from Codeforces, predicting algorithmic tags using ML models and code features.",
+      banner: "/lovable-uploads/codeforces.png",
+      tags: ["Machine Learning", "Multi-label", "Python", "TF-IDF", "LinearSVC", "Transformers", "EDA"],
+      github: "https://github.com/KikiaDia/multilabel_code_classification.git"
+    },
+    {
       title: "Fintech Fraud Detection",
       description: "Developed ML models to detect suspicious transactions in Fintech, focusing on various transaction types.",
       banner: "/lovable-uploads/fraud.png",
@@ -48,13 +63,28 @@ export const projects = {
       github: "https://github.com/KikiaDia/chatbot_agricole",
       videoUrl: "https://drive.google.com/file/d/1WjI0a3tap1j02RL4FG1sSCZayJK8j-Bt/preview"
     },
+        {
+      title: "Dashboard RH – 3ᵉ Trimestre 2024",
+      description: "Tableau de bord interactif en Python pour analyser les données RH du 3ᵉ trimestre 2024, consolider les KPI, visualiser les tendances mensuelles et interroger les données via un agent conversationnel.",
+      banner: "/lovable-uploads/hr_dashboard.png",
+      tags: ["Dash", "Plotly", "pandas", "LangChain", "GPT-4", "Pyngrok"],
+      github: "https://github.com/KikiaDia/Dashboard-RH.git",
+      videoUrl :"https://drive.google.com/file/d/1Qb-79WZH8c_pjQgg7Sejs5djHRzsQrsE/preview"
+    },
+    {
+      title: "Classification Multilabel Codeforces",
+      description: "Classification multi-label de problèmes de programmation Codeforces, prédiction des tags algorithmiques via modèles ML et features extraits du code.",
+      banner: "/lovable-uploads/codeforces.png",
+      tags: ["Machine Learning", "Multi-label", "Python", "TF-IDF", "LinearSVC", "Transformers", "EDA"],
+      github: "https://github.com/KikiaDia/multilabel_code_classification.git"
+    },
     {
       title: "Détection de Fraude Fintech",
       description: "Développement de modèles ML pour détecter les transactions suspectes dans le secteur Fintech.",
       tags: ["Machine Learning", "Deep Learning", "MLFlow", "EDA"],
       banner: "/lovable-uploads/fraud.png",
       github: "https://github.com/KikiaDia/Fintech_Fraude_Detection",
-      videoUrl:"https://drive.google.com/file/d/1GVbT7NfZlxY0y0DsuEwc3emIHBdxcT7_/preview"
+      videoUrl: "https://drive.google.com/file/d/1GVbT7NfZlxY0y0DsuEwc3emIHBdxcT7_/preview"
 
     },
     {
