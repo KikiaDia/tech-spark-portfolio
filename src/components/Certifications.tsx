@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
@@ -90,7 +89,7 @@ export const Certifications = () => {
           emblaApi.scrollTo(0);
         }
         autoplay();
-      }, 3000);
+      }, 4000);
       
       return () => clearTimeout(timeoutId);
     };
@@ -115,10 +114,18 @@ export const Certifications = () => {
   }, [emblaApi]);
 
   return (
-    <section id="certifications" className="py-20 px-4 bg-secondary/50">
-      <h2 className="section-title">
-        {language === 'en' ? 'Certifications' : 'Certifications'}
-      </h2>
+    <section id="certifications" className="section-container section-light">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="section-title">
+          {language === 'en' ? 'Certifications' : 'Certifications'}
+        </h2>
+      </motion.div>
+      
       <div className="max-w-4xl mx-auto">
         <Carousel 
           ref={emblaRef}
@@ -126,36 +133,36 @@ export const Certifications = () => {
         >
           <CarouselContent>
             {certifications[language].map((cert, index) => (
-              <CarouselItem key={index} className="md:basis-1/2">
+              <CarouselItem key={index} className="md:basis-1/2 p-3">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="glass-card hover:bg-white hover-scale">
-                    <CardHeader className="text-center">
-                      <div className="mx-auto mb-4 relative w-24 h-24 rounded-full overflow-hidden">
+                  <Card className="glass-card hover-scale h-full">
+                    <CardHeader className="text-center pb-4">
+                      <div className="mx-auto mb-4 relative w-20 h-20 rounded-2xl overflow-hidden shadow-card">
                         <img
                           src={cert.image}
                           alt={cert.title}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <CardTitle className="text-xl">
+                      <CardTitle className="text-lg font-display">
                         <a
                           href={cert.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-[#18181b] transition-colors"
+                          className="link-underline hover:text-primary transition-colors"
                         >
                           {cert.title}
                         </a>
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground text-center">{cert.issuer}</p>
-                      <p className="text-sm text-muted-foreground text-center">{cert.date}</p>
+                    <CardContent className="text-center">
+                      <p className="text-muted-foreground font-medium">{cert.issuer}</p>
+                      <p className="text-sm text-muted-foreground mt-1">{cert.date}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -163,19 +170,19 @@ export const Certifications = () => {
             ))}
           </CarouselContent>
           <div className="carousel-navigation">
-            <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
-            <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"/>
+            <CarouselPrevious className="CarouselPrevious" />
+            <CarouselNext className="CarouselNext"/>
           </div>
         </Carousel>
-        <div className="mt-4 flex justify-center">
+        <div className="mt-6 flex justify-center">
           <Pagination>
             <PaginationContent>
               {certifications[language].map((_, index) => (
                 <PaginationItem key={index}>
                   <PaginationLink
                     isActive={currentSlide === index}
-                    className={`w-2 h-2 rounded-full mx-1 ${
-                      currentSlide === index ? 'bg-[#18181b]' : 'bg-gray-300'
+                    className={`pagination-dot ${
+                      currentSlide === index ? 'pagination-dot-active' : 'pagination-dot-inactive'
                     }`}
                     onClick={() => emblaApi?.scrollTo(index)}
                   />

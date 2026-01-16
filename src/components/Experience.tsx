@@ -1,5 +1,3 @@
-
-import { Card } from "./ui/card";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -45,7 +43,7 @@ export const Experience = () => {
           emblaApi.scrollTo(0);
         }
         autoplay();
-      }, 3000);
+      }, 4000);
       
       return () => clearTimeout(timeoutId);
     };
@@ -74,10 +72,18 @@ export const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 px-4 bg-secondary/50">
-      <h2 className="section-title">
-        {language === 'en' ? 'Professional Experience' : 'Expériences Professionnelles'}
-      </h2>
+    <section id="experience" className="section-container section-subtle">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="section-title">
+          {language === 'en' ? 'Professional Experience' : 'Expériences Professionnelles'}
+        </h2>
+      </motion.div>
+      
       <div className="max-w-4xl mx-auto">
         <Carousel 
           ref={emblaRef}
@@ -90,7 +96,7 @@ export const Experience = () => {
         >
           <CarouselContent>
             {experiences[language].map((exp, index) => (
-              <CarouselItem key={index} className="w-full">
+              <CarouselItem key={index} className="w-full p-2">
                 <ExperienceCard
                   exp={exp}
                   showResponsibilities={showResponsibilities === index}
@@ -102,19 +108,19 @@ export const Experience = () => {
             ))}
           </CarouselContent>
           <div className="carousel-navigation">
-            <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"/>
-            <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"/>
+            <CarouselPrevious className="CarouselPrevious"/>
+            <CarouselNext className="CarouselNext"/>
           </div>
         </Carousel>
-        <div className="mt-4 flex justify-center">
+        <div className="mt-6 flex justify-center">
           <Pagination>
             <PaginationContent>
               {experiences[language].map((_, index) => (
                 <PaginationItem key={index}>
                   <PaginationLink
                     isActive={currentSlide === index}
-                    className={`w-2 h-2 rounded-full mx-1 ${
-                      currentSlide === index ? 'bg-[#18181b]' : 'bg-gray-300'
+                    className={`pagination-dot ${
+                      currentSlide === index ? 'pagination-dot-active' : 'pagination-dot-inactive'
                     }`}
                     onClick={() => emblaApi?.scrollTo(index)}
                   />

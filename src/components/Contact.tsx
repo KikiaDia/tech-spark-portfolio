@@ -1,19 +1,23 @@
-
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ContactInfo } from "./contact/ContactInfo";
+import { motion } from "framer-motion";
 
 export const Contact = () => {
   const { language } = useLanguage();
 
   return (
-    <div className="max-w-3xl mx-auto p-8 rounded-3xl bg-white shadow-lg">
-      <h2 className="text-2xl font-bold mb-8 text-center text-[#18181b]">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="max-w-2xl mx-auto text-center"
+    >
+      <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 text-white">
         {language === 'en' ? 'Get in Touch' : 'Me Contacter'}
       </h2>
       
-      <div className="flex justify-center">
-        <ContactInfo />
-      </div>
-    </div>
+      <ContactInfo />
+    </motion.div>
   );
 };

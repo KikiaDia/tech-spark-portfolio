@@ -1,8 +1,8 @@
-
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { education } from "@/data/education";
 import { EducationCarousel } from "./education/EducationCarousel";
+import { motion } from "framer-motion";
 
 export const Education = () => {
   const { language } = useLanguage();
@@ -13,10 +13,18 @@ export const Education = () => {
   };
 
   return (
-    <section id="education" className="py-20 px-4 bg-secondary/50">
-      <h2 className="section-title">
-        {language === 'en' ? 'Education' : 'Formation'}
-      </h2>
+    <section id="education" className="section-container section-subtle">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="section-title">
+          {language === 'en' ? 'Education' : 'Formation'}
+        </h2>
+      </motion.div>
+      
       <EducationCarousel
         education={education[language]}
         language={language}

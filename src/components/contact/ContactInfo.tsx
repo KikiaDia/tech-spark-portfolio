@@ -1,7 +1,5 @@
-
 import { Github, Linkedin, MapPin, Mail, Phone, Link } from "lucide-react";
 import { motion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Tooltip,
   TooltipContent,
@@ -10,41 +8,35 @@ import {
 } from "@/components/ui/tooltip";
 
 export const ContactInfo = () => {
-  const { language } = useLanguage();
-  
   return (
     <motion.div 
-      className="space-y-6 max-w-md mx-auto"
+      className="space-y-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex items-center gap-3 justify-center">
-        <MapPin className="h-5 w-5 text-black" />
-        <span className="text-black"> Châtillon, 92320, France</span>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 text-white/90">
+        <div className="flex items-center gap-3">
+          <MapPin className="h-5 w-5 text-white/70" />
+          <span>Châtillon, 92320, France</span>
+        </div>
+        
+        <div className="flex items-center gap-3">
+          <Mail className="h-5 w-5 text-white/70" />
+          <a href="mailto:dkikia@ept.sn" className="hover:text-white transition-colors">
+            dkikia@ept.sn
+          </a>
+        </div>
+        
+        <div className="flex items-center gap-3">
+          <Phone className="h-5 w-5 text-white/70" />
+          <a href="tel:+33766523097" className="hover:text-white transition-colors">
+            +33 7 60 76 19 31
+          </a>
+        </div>
       </div>
       
-      <div className="flex items-center gap-3 justify-center">
-        <Mail className="h-5 w-5 text-black" />
-        <a 
-          href="mailto:dkikia@ept.sn" 
-          className="text-black hover:underline"
-        >
-          dkikia@ept.sn
-        </a>
-      </div>
-      
-      <div className="flex items-center gap-3 justify-center">
-        <Phone className="h-5 w-5 text-black" />
-        <a 
-          href="tel:+33766523097" 
-          className="text-black hover:underline"
-        >
-          +33 7 60 76 19 31
-        </a>
-      </div>
-      
-      <div className="flex items-center gap-4 mt-6 justify-center">
+      <div className="flex items-center gap-4 justify-center pt-4">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -52,14 +44,12 @@ export const ContactInfo = () => {
                 href="https://github.com/KikiaDia" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"
+                className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-all duration-300 hover:-translate-y-1"
               >
                 <Github className="h-5 w-5 text-white" />
               </a>
             </TooltipTrigger>
-            <TooltipContent>
-              <p>GitHub</p>
-            </TooltipContent>
+            <TooltipContent><p>GitHub</p></TooltipContent>
           </Tooltip>
           
           <Tooltip>
@@ -68,14 +58,12 @@ export const ContactInfo = () => {
                 href="https://www.linkedin.com/in/kikiadia/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"
+                className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-all duration-300 hover:-translate-y-1"
               >
                 <Linkedin className="h-5 w-5 text-white" />
               </a>
             </TooltipTrigger>
-            <TooltipContent>
-              <p>LinkedIn</p>
-            </TooltipContent>
+            <TooltipContent><p>LinkedIn</p></TooltipContent>
           </Tooltip>
 
           <Tooltip>
@@ -84,14 +72,12 @@ export const ContactInfo = () => {
                 href="https://huggingface.co/Kikia26" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-black rounded-lg hover:bg-black/80 transition-colors"
+                className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-all duration-300 hover:-translate-y-1"
               >
                 <Link className="h-5 w-5 text-white" />
               </a>
             </TooltipTrigger>
-            <TooltipContent>
-              <p>Hugging Face</p>
-            </TooltipContent>
+            <TooltipContent><p>Hugging Face</p></TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </div>

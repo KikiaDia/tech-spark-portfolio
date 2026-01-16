@@ -1,4 +1,3 @@
-
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -13,6 +12,7 @@ import { projects } from "@/data/projects";
 import { ProjectCard } from "./projects/ProjectCard";
 import { ProjectsPagination } from "./projects/ProjectsPagination";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { motion } from "framer-motion";
 
 export const Projects = () => {
   const { language } = useLanguage();
@@ -39,7 +39,7 @@ export const Projects = () => {
           emblaApi.scrollTo(0);
         }
         autoplay();
-      }, 3000);
+      }, 4000);
       
       return () => clearTimeout(timeoutId);
     };
@@ -64,10 +64,18 @@ export const Projects = () => {
   }, [emblaApi]);
 
   return (
-    <section id="projects" className="py-20 px-4 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
-      <h2 className="section-title">
-        {language === 'en' ? 'Featured Projects' : 'Projets'}
-      </h2>
+    <section id="projects" className="section-container section-light">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="section-title">
+          {language === 'en' ? 'Featured Projects' : 'Projets'}
+        </h2>
+      </motion.div>
+      
       <div className="max-w-6xl mx-auto relative">
         <Carousel 
           ref={emblaRef}
@@ -81,7 +89,7 @@ export const Projects = () => {
         >
           <CarouselContent>
             {projects[language].map((project, index) => (
-              <CarouselItem key={index} className={`${isMobile ? 'basis-full' : 'basis-1/2'}`}>
+              <CarouselItem key={index} className={`${isMobile ? 'basis-full' : 'basis-1/2'} p-2`}>
                 <ProjectCard 
                   project={project}
                   index={index}
@@ -91,8 +99,8 @@ export const Projects = () => {
             ))}
           </CarouselContent>
           <div className="carousel-navigation">
-            <CarouselPrevious className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]" />
-            <CarouselNext className="bg-[#18181b] text-white hover:bg-white hover:text-[#18181b]"/>
+            <CarouselPrevious className="CarouselPrevious" />
+            <CarouselNext className="CarouselNext"/>
           </div>
         </Carousel>
         <ProjectsPagination 
