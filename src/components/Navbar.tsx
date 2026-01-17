@@ -79,17 +79,15 @@ export const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled 
-        ? 'bg-white/90 backdrop-blur-xl shadow-elegant border-b border-border/50' 
-        : 'bg-transparent'
+        ? 'bg-navy/95 backdrop-blur-xl shadow-elegant border-b border-primary/20' 
+        : 'bg-navy/80 backdrop-blur-md'
     }`}>
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-16">
           <motion.h1 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className={`text-xl font-display font-bold cursor-pointer transition-colors duration-300 ${
-              scrolled ? 'text-navy' : 'text-foreground'
-            }`}
+            className="text-xl font-display font-bold cursor-pointer text-white transition-colors duration-300"
             onClick={() => scrollToSection('home')}
           >
             Kikia Dia
@@ -98,11 +96,7 @@ export const Navbar = () => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className={`md:hidden transition-colors ${
-              scrolled 
-                ? 'text-navy hover:bg-secondary' 
-                : 'text-foreground hover:bg-white/20'
-            }`}
+            className="md:hidden text-white hover:bg-white/20 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -116,17 +110,15 @@ export const Navbar = () => {
                 onClick={() => scrollToSection(key)}
                 className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                   activeSection === key 
-                    ? 'text-primary bg-primary/10' 
-                    : scrolled 
-                      ? 'text-muted-foreground hover:text-foreground hover:bg-secondary' 
-                      : 'text-foreground/80 hover:text-foreground hover:bg-white/10'
+                    ? 'text-white bg-white/20' 
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {value}
                 {activeSection === key && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full bg-primary"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full bg-accent"
                     initial={false}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -144,7 +136,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-border shadow-lg"
+            className="md:hidden bg-navy/95 backdrop-blur-xl border-b border-primary/20 shadow-lg"
           >
             <div className="flex flex-col p-4 space-y-1">
               {Object.entries(content[language]).map(([key, value]) => (
@@ -154,8 +146,8 @@ export const Navbar = () => {
                   onClick={() => scrollToSection(key)}
                   className={`w-full text-left justify-start rounded-lg font-medium transition-all ${
                     activeSection === key 
-                      ? 'text-primary bg-primary/10' 
-                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                      ? 'text-white bg-white/20' 
+                      : 'text-white/70 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   {value}
