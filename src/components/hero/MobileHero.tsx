@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import { User, Calendar, IdCard, MapPin, Flag, Plane, ChevronDown, ChevronUp } from "lucide-react";
+import { User, Calendar, IdCard, MapPin, Flag, Plane, ChevronDown, ChevronUp, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -133,6 +133,16 @@ export const MobileHero = () => {
           }}
         >
           {content[language].contactMe}
+        </Button>
+        <Button
+          variant="outline"
+          className="w-full border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
+          asChild
+        >
+          <a href="/CV_Kikia_Dia.pdf" download className="flex items-center justify-center gap-2">
+            <Download className="h-4 w-4" />
+            {content[language].downloadCV}
+          </a>
         </Button>
       </motion.div>
     </div>
