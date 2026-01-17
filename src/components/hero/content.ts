@@ -13,6 +13,7 @@ export const content = {
     },
     viewProjects: "View Projects",
     contactMe: "Contact Me",
+    downloadCV: "Download CV",
     changeLanguage: "Change Language",
     personalDetails: "Personal Details"
   },
@@ -30,6 +31,7 @@ export const content = {
     },
     viewProjects: "Voir les Projets",
     contactMe: "Me Contacter",
+    downloadCV: "Télécharger CV",
     changeLanguage: "Changer de Langue",
     personalDetails: "Détails Personnels"
   }
