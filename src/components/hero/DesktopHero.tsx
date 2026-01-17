@@ -121,7 +121,7 @@ export const DesktopHero = () => {
             className="px-6 py-3 text-base border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
             asChild
           >
-            <a href="/CV_Kikia_Dia.pdf" download="CV_Kikia_Dia.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <a href="/CV_Kikia_Dia.pdf" download="CV_Kikia_Dia.pdf" className="flex items-center gap-2">
               <Download className="h-4 w-4" />
               {content[language].downloadCV}
             </a>
