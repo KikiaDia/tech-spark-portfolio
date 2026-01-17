@@ -9,6 +9,31 @@ export const DesktopHero = () => {
   const { language } = useLanguage();
   const [expandedMobility, setExpandedMobility] = useState(false);
 
+  const handleDownloadCV = async () => {
+    const fileUrl = "/CV_Kikia_Dia.pdf";
+    const fileName = "CV_Kikia_Dia.pdf";
+
+    try {
+      const res = await fetch(fileUrl, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const blob = await res.blob();
+      const objectUrl = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = objectUrl;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(objectUrl);
+    } catch {
+      // Fallback: open the PDF normally (user can download from the PDF viewer)
+      window.location.href = fileUrl;
+    }
+  };
+
   const renderPersonalDetail = (icon: React.ReactNode, text: string, key: string) => (
     <div 
       className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-300 ${
@@ -119,12 +144,12 @@ export const DesktopHero = () => {
           <Button
             variant="outline"
             className="px-6 py-3 text-base border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
-            asChild
+            onClick={handleDownloadCV}
           >
-            <a href="/CV_Kikia_Dia.pdf" download="CV_Kikia_Dia.pdf" className="flex items-center gap-2">
+            <span className="flex items-center gap-2">
               <Download className="h-4 w-4" />
               {content[language].downloadCV}
-            </a>
+            </span>
           </Button>
         </motion.div>
       </motion.div>

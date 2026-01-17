@@ -137,12 +137,33 @@ export const MobileHero = () => {
         <Button
           variant="outline"
           className="w-full border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
-          asChild
+          onClick={async () => {
+            const fileUrl = "/CV_Kikia_Dia.pdf";
+            const fileName = "CV_Kikia_Dia.pdf";
+
+            try {
+              const res = await fetch(fileUrl, { cache: "no-cache" });
+              if (!res.ok) throw new Error(`HTTP ${res.status}`);
+              const blob = await res.blob();
+              const objectUrl = URL.createObjectURL(blob);
+
+              const a = document.createElement("a");
+              a.href = objectUrl;
+              a.download = fileName;
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+
+              URL.revokeObjectURL(objectUrl);
+            } catch {
+              window.location.href = fileUrl;
+            }
+          }}
         >
-          <a href="/CV_Kikia_Dia.pdf" download="CV_Kikia_Dia.pdf" className="flex items-center justify-center gap-2">
+          <span className="flex items-center justify-center gap-2">
             <Download className="h-4 w-4" />
             {content[language].downloadCV}
-          </a>
+          </span>
         </Button>
       </motion.div>
     </div>
