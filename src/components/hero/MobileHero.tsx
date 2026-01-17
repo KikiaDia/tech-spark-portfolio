@@ -139,7 +139,7 @@ export const MobileHero = () => {
           className="w-full border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
           asChild
         >
-          <a href="/CV_Kikia_Dia.pdf" download className="flex items-center justify-center gap-2">
+          <a href="/CV_Kikia_Dia.pdf" download="CV_Kikia_Dia.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
             <Download className="h-4 w-4" />
             {content[language].downloadCV}
           </a>

@@ -95,10 +95,10 @@ export const DesktopHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="flex gap-4 pt-2"
+          className="flex flex-wrap gap-3 pt-4"
         >
           <Button
-            className="btn-primary px-8 py-3 text-base"
+            className="btn-primary px-6 py-3 text-base"
             onClick={() => {
               const projectsSection = document.getElementById("projects");
               projectsSection?.scrollIntoView({ behavior: "smooth" });
@@ -108,7 +108,7 @@ export const DesktopHero = () => {
           </Button>
           <Button
             variant="outline"
-            className="px-8 py-3 text-base border-2 border-border hover:bg-card hover:border-primary/30 transition-all duration-300"
+            className="px-6 py-3 text-base border-2 border-border hover:bg-card hover:border-primary/30 transition-all duration-300"
             onClick={() => {
               const contactSection = document.getElementById("contact");
               contactSection?.scrollIntoView({ behavior: "smooth" });
@@ -118,10 +118,10 @@ export const DesktopHero = () => {
           </Button>
           <Button
             variant="outline"
-            className="px-8 py-3 text-base border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
+            className="px-6 py-3 text-base border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
             asChild
           >
-            <a href="/CV_Kikia_Dia.pdf" download className="flex items-center gap-2">
+            <a href="/CV_Kikia_Dia.pdf" download="CV_Kikia_Dia.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <Download className="h-4 w-4" />
               {content[language].downloadCV}
             </a>
